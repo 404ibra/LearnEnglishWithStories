@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomePage: View {
+struct FeatuderImages: View {
     @State var FeaturedList: Int = 0
     let sliderTimer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
     var body: some View {
@@ -41,6 +41,6 @@ struct HomePage: View {
 
 struct HomePage_Previews: PreviewProvider {
     static var previews: some View {
-        HomePage()
+        FeatuderImages()
     }
 }

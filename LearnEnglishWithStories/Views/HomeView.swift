@@ -14,6 +14,21 @@ struct HomeView: View {
         
         ScrollView(.vertical, showsIndicators: false){
             VStack(alignment: .leading, spacing: 0) {
+                HStack{
+                    Text("Uzay ve Bilim")
+                        .font(.system(size: 24, weight: .bold))
+                    
+                    Spacer()
+                    Text("4 tane daha")
+                        .font(.system(size: 13, weight: .regular))
+                    Image(systemName: "arrow.right")
+                        .foregroundColor(.blue)
+                }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 8)
+                //HStack
+                
+                    
                 FeatuderImages()
                Text("Öne Çıkarılan Konular")
                     .font(.system(size: 24, weight: .semibold, design: .rounded))

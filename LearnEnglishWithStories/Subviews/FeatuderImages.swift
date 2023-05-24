@@ -8,34 +8,23 @@
 import SwiftUI
 
 struct FeatuderImages: View {
-    @State var FeaturedList: Int = 0
-    let sliderTimer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
+    
+  
     var body: some View {
-        TabView(selection: $FeaturedList) {
-            ForEach(0...3, id: \.self){i in
-                Image("featured_img_\(i)")
-                    .resizable()
-                    .tag(i)
-            }
-        }//TabView
-        
-        
-        .tabViewStyle(PageTabViewStyle())
-        .frame(height: UIScreen.main.bounds.height/3)
-        .foregroundColor(.red)
-        .onReceive(sliderTimer) { input in
-            if FeaturedList < 3 {
-                FeaturedList += 1
-            }else{
-                FeaturedList = 0
-            }
-        }
-        .onTapGesture(count: 1 , perform: {
-            sliderTimer.upstream.connect().cancel()
-
-        })
-        }
-        
+        var size = UIScreen.main.bounds
+        ScrollView(.horizontal, showsIndicators:  false) {
+            HStack{
+                ForEach(0..<3) { index in
+                    Image("featured_img_\(index)")
+                        .resizable()
+                        .frame(height: size.height/3.4)
+                         .frame(width: size.width/2.25)
+                        .cornerRadius(15)
+                        .padding(.leading, 16)
+                }
+            }//Hstack
+        }//scrollview
+        }//View
     }
 
 

@@ -27,8 +27,7 @@ struct HomeView: View {
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
                 //HStack
-                
-                    
+
                 FeatuderImages()
                Text("Öne Çıkarılan Konular")
                     .font(.system(size: 24, weight: .semibold, design: .rounded))

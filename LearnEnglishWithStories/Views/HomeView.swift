@@ -12,48 +12,62 @@ struct HomeView: View {
    
     var body: some View {
         
-        ScrollView(.vertical, showsIndicators: false){
-            VStack(alignment: .leading, spacing: 0) {
-                HStack{
-                    Text("Uzay ve Bilim")
-                        .font(.system(size: 24, weight: .bold))
-                    
-                    Spacer()
-                    Text("4 tane daha")
-                        .font(.system(size: 13, weight: .regular))
-                    Image(systemName: "arrow.right")
-                        .foregroundColor(.blue)
-                }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
-                //HStack
+        VStack {
+            ScrollView(.vertical, showsIndicators: false){
+                VStack(alignment: .leading, spacing: 0) {
+                    HStack{
+                        Text("Uzay ve Bilim")
+                            .font(.system(size: 24, weight: .bold))
+                        
+                        Spacer()
+                        Text("4 tane daha")
+                            .font(.system(size: 13, weight: .regular))
+                        Image(systemName: "arrow.right")
+                            .foregroundColor(.blue)
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
+                    //HStack
 
-                FeatuderImages()
-               Text("Öne Çıkarılan Konular")
-                    .font(.system(size: 24, weight: .semibold, design: .rounded))
-                    .padding(.horizontal,16)
-                    .padding(.vertical, 14)
+                    FeatuderImages()
                     
-                ZStack(alignment: .bottom){
-                    Image("space_img")
-                        .resizable()
-                        .cornerRadius(10)
-                        .frame(height: UIScreen.main.bounds.height/2)
-                        .scaledToFit()
-                        .padding(.horizontal, 8)
-                    Text("SPACE")
-                        .tracking(5)
-                        .font(.system(size:60, weight: .semibold, design: .rounded))
-                        .foregroundColor(.white)
-                        .padding(.bottom, 5)
-                }//ZStack
-                
+                        
+                 Spacer()
+                    
+                    
+                        Divider()
+                            .frame(height: 1.5)
                   
-            }//VStack
+                    ZStack {
+                        Rectangle()
+                            .fill(.white)
+                            .shadow(color: .black.opacity(0.2), radius: 10, x: 0.0, y: -2)
+                        HStack{
+                                ForEach(Tabs.allCases, id: \.self){tab in
+                                    Spacer()
+                                    TabItem(tab: tab)
+                                    Spacer()
+                                }//ForEach
+                        }//HStack
+                        .padding(.horizontal,5)
+                    }//ZStack
+                    .frame(height: 70)
+                    .ignoresSafeArea(edges: .bottom)
+                    
+                    
+                    
+                    }//ZStack
+                    
+                      
+                    
+            
+                    
+                }//VStack
             .ignoresSafeArea(edges: .top)
         }
+        }
         
-    }
+
 }
 
 struct HomeView_Previews: PreviewProvider {
@@ -63,3 +77,12 @@ struct HomeView_Previews: PreviewProvider {
 }
    
   
+
+struct TabItem: View {
+    let tab: Tabs
+    var body: some View {
+        Image(systemName: tab.rawValue)
+            .imageScale(.large)
+          
+    }
+}

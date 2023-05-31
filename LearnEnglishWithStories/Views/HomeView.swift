@@ -16,7 +16,7 @@ struct HomeView: View {
             ScrollView(.vertical, showsIndicators: false){
                 VStack(alignment: .leading, spacing: 0) {
                     HStack{
-                        Text("Uzay ve Bilim")
+                        Text("Konular")
                             .font(.system(size: 24, weight: .bold))
                         
                         Spacer()
@@ -35,24 +35,6 @@ struct HomeView: View {
                  Spacer()
                     
                     
-                        Divider()
-                            .frame(height: 1.5)
-                  
-                    ZStack {
-                        Rectangle()
-                            .fill(.white)
-                            .shadow(color: .black.opacity(0.2), radius: 10, x: 0.0, y: -2)
-                        HStack{
-                                ForEach(Tabs.allCases, id: \.self){tab in
-                                    Spacer()
-                                    TabItem(tab: tab)
-                                    Spacer()
-                                }//ForEach
-                        }//HStack
-                        .padding(.horizontal,5)
-                    }//ZStack
-                    .frame(height: 70)
-                    .ignoresSafeArea(edges: .bottom)
                     
                     
                     

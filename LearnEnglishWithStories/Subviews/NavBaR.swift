@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NavBaR: View {
+struct NavBar: View {
     var body: some View {
         VStack{
             Divider()
@@ -31,8 +31,8 @@ struct NavBaR: View {
     }
 }
 
-struct NavBaR_Previews: PreviewProvider {
+struct NavBar_Preview: PreviewProvider {
     static var previews: some View {
-        NavBaR()
+        NavBar()
     }
 }

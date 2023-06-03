@@ -8,32 +8,19 @@
 import SwiftUI
 
 struct MainView: View {
+    @State var SelectedTab : Int = 0
     var body: some View {
         VStack(alignment: .center){
-           //Background Color
-        
-            HStack {
-                Text("Seriler")
-                    .font(.system(size: 20, weight: .bold, design: .rounded))
-                .foregroundColor(.white)
-                Spacer()
-                HStack{
-                    Text("Tümünü gör")
-                        .font(.system(size: 15, weight: .medium, design: .rounded))
-                    .foregroundColor(.white)
-                    Image(systemName: "arrow.right")
-                        .foregroundColor(.white)
-                }
-                
-            }
-            .padding(.horizontal, 16)
-            
-                
-            FeatuderImages()
+            FeaturedView(HeadlineText: "Seriler")
+                .padding(.bottom,25)
+            FeaturedView(HeadlineText: "En Günceller")
+            //FeaturedView.v2 --film dialogları, şarkı sözleri gibi
             Spacer()
             NavBar()
-        }.frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(.black)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(.black)
+        
         //VStack
     }
     
@@ -45,3 +32,4 @@ struct MainView_Previews: PreviewProvider {
         MainView()
     }
 }
+

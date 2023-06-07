@@ -19,15 +19,18 @@ struct MainView: View {
                     //FeaturedView.v2 --film dialogları, şarkı sözleri gibi
                     DialogsFeatured(HeadlineText: "Diyaloglar")
                         .padding(.top,10)
+                  
                 }//ScrollVeiw
-                Spacer()
-                NavBar()
+          
+            
+              
+                //TabView
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.black)
             .padding(.top, 0)
             //VStack
-       
+  
         
         }
     

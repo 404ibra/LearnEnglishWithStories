@@ -1,0 +1,35 @@
+//
+//  MainTabView.swift
+//  LearnEnglishWithStories
+//
+//  Created by İbrahim Aktaş on 7.06.2023.
+//
+
+import SwiftUI
+
+struct MainTabView: View {
+    init() {
+        UITabBar.appearance().barTintColor = .black // custom color.
+    }
+    var body: some View {
+        TabView {
+            ForEach(HomeTabItem.tabItems) { item in
+                item.page.tabItem {
+                    VStack{
+                        Image(systemName: item.model.icon.rawValue)
+                        Text(item.model.title.rawValue)
+                    }
+                }
+            }
+        }
+             
+            .accentColor(.orange)
+        
+    }
+}
+
+struct MainTabView_Previews: PreviewProvider {
+    static var previews: some View {
+        MainTabView()
+    }
+}

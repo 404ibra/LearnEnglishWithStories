@@ -13,9 +13,3 @@ class MainVM: ObservableObject {
 
 
 
-enum Tabs: String, CaseIterable{
-    case search = "books.vertical";
-    case profile = "person";
-    case vocabulary = "book";
-    case other = "gear";
-}

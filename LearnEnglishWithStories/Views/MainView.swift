@@ -10,19 +10,26 @@ import SwiftUI
 struct MainView: View {
     @State var SelectedTab : Int = 0
     var body: some View {
-        VStack(alignment: .center){
-            FeaturedView(HeadlineText: "Seriler")
-                .padding(.bottom,25)
-            FeaturedView(HeadlineText: "En Günceller")
-            //FeaturedView.v2 --film dialogları, şarkı sözleri gibi
-            Spacer()
-            NavBar()
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(.black)
+   
+            VStack(alignment: .center){
+                ScrollView {
+                    FeaturedView(HeadlineText: "Seriler")
+                        .padding(.bottom,25)
+                    FeaturedView(HeadlineText: "En Günceller")
+                    //FeaturedView.v2 --film dialogları, şarkı sözleri gibi
+                    DialogsFeatured(HeadlineText: "Diyaloglar")
+                        .padding(.top,10)
+                }//ScrollVeiw
+                Spacer()
+                NavBar()
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(.black)
+            .padding(.top, 0)
+            //VStack
+       
         
-        //VStack
-    }
+        }
     
     
 }

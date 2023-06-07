@@ -17,6 +17,7 @@
 		6C1B49CA2A0D263800428512 /* LearnEnglishWithStories.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6C1B49C82A0D263800428512 /* LearnEnglishWithStories.xcdatamodeld */; };
 		6C1B49D42A0D281300428512 /* FeatuderImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1B49D32A0D281300428512 /* FeatuderImages.swift */; };
 		6C3442A22A27325D0086CB33 /* StoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3442A12A27325D0086CB33 /* StoryScreen.swift */; };
+		6C3816B02A30A22C000E498F /* DialogsFeatured.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3816AF2A30A22C000E498F /* DialogsFeatured.swift */; };
 		6CC187852A26042900F9E803 /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC187842A26042900F9E803 /* StoryView.swift */; };
 		6CD728D42A2B4E8300A9A110 /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD728D32A2B4E8300A9A110 /* NavBar.swift */; };
 		6CD728D92A2B56AA00A9A110 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD728D82A2B56AA00A9A110 /* Font+Extension.swift */; };
@@ -36,6 +37,7 @@
 		6C1B49C92A0D263800428512 /* LearnEnglishWithStories.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LearnEnglishWithStories.xcdatamodel; sourceTree = "<group>"; };
 		6C1B49D32A0D281300428512 /* FeatuderImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatuderImages.swift; sourceTree = "<group>"; };
 		6C3442A12A27325D0086CB33 /* StoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryScreen.swift; sourceTree = "<group>"; };
+		6C3816AF2A30A22C000E498F /* DialogsFeatured.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsFeatured.swift; sourceTree = "<group>"; };
 		6CC187842A26042900F9E803 /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
 		6CD728D32A2B4E8300A9A110 /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
 		6CD728D82A2B56AA00A9A110 /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				6C1B49D32A0D281300428512 /* FeatuderImages.swift */,
 				6CD728D32A2B4E8300A9A110 /* NavBar.swift */,
 				6CD728E02A2B5BA200A9A110 /* FeaturedView.swift */,
+				6C3816AF2A30A22C000E498F /* DialogsFeatured.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 				6C3442A22A27325D0086CB33 /* StoryScreen.swift in Sources */,
 				6CD728E12A2B5BA200A9A110 /* FeaturedView.swift in Sources */,
 				6CD728D42A2B4E8300A9A110 /* NavBar.swift in Sources */,
+				6C3816B02A30A22C000E498F /* DialogsFeatured.swift in Sources */,
 				6C1B49C02A0D263700428512 /* ContentView.swift in Sources */,
 				6CD728DF2A2B5A0C00A9A110 /* HomeView.swift in Sources */,
 				6C1B49BE2A0D263700428512 /* LearnEnglishWithStoriesApp.swift in Sources */,

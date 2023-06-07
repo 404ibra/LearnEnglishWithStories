@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FeaturedView: View {
+    let DeviceSize = UIScreen.main.bounds
     let HeadlineText: String
     var body: some View {
         VStack{

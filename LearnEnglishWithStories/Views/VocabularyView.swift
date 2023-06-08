@@ -9,7 +9,17 @@ import SwiftUI
 
 struct VocabularyView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .center, spacing: 0){
+            ScrollView{
+                PageHeader(PageName: "Kelimelerim")
+            }
+            Spacer()
+        }//VStack
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(.black)
+            .padding(.top, 0)
+            .ignoresSafeArea()
+        
     }
 }
 

@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct MainTabView: View {
+  
     init() {
         UITabBar.appearance().barTintColor = .black // custom color.
     }
     var body: some View {
-        TabView {
+        TabView{
             ForEach(HomeTabItem.tabItems) { item in
                 item.page.tabItem {
                     VStack{
@@ -20,13 +21,16 @@ struct MainTabView: View {
                         Text(item.model.title.rawValue)
                     }
                 }
+              
             }
         }
              
             .accentColor(.orange)
+            
+            }
         
     }
-}
+
 
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {

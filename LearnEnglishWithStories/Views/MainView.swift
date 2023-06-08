@@ -11,9 +11,10 @@ struct MainView: View {
     @State var SelectedTab : Int = 0
     var body: some View {
    
-            VStack(alignment: .center, spacing: 0){
+            VStack(alignment: .leading, spacing: 0){
                 ScrollView{
                     PageHeader(PageName: "Kütüphanem")
+                    ContinueSection()
                     FeaturedView(HeadlineText: "Seriler")
                         .padding(.bottom,25)
                     FeaturedView(HeadlineText: "En Günceller")

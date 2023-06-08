@@ -20,4 +20,15 @@ extension View {
             .font(.system(size: 15, weight: .medium, design: .rounded))
             .foregroundColor(.white)
     }
+    
+    func DescriptionFont() -> some View {
+        self
+            .font(.system(size: 20, weight: .semibold, design: .rounded))
+            .foregroundColor(.white)
+    }
+    func LargeButtonFont() -> some View {
+        self
+            .font(.system(size: 20, weight: .bold, design: .rounded))
+            .foregroundColor(.white)
+    }
 }

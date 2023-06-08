@@ -61,6 +61,9 @@ struct ExtractedView: View {
                         
                         
                     }
+                    .onTapGesture {
+                        print("dsadsa")
+                    }
                 }
             }.padding(.leading, 16)
             

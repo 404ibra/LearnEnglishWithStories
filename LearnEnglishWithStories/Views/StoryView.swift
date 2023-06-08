@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct StoryView: View {
-    let sentence = "One nice morning the eggs hatched and out popped six chirply duckling."
+    
     let maxCharactersPerLine = 35
     
     var body: some View {
-        let words = sentence.components(separatedBy: " ")
+        let words = Story.stories[0].content.components(separatedBy: " ")
         
         var lines: [[String]] = []
         var currentLine: [String] = []

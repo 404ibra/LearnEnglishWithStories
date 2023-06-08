@@ -10,8 +10,8 @@ import SwiftUI
 struct StoryPreview: View {
     @State var isLocked: Bool = true
     var body: some View {
-        VStack{
-            PageHeader(PageName: "İstanbul'u Keşfediyoruz")
+        VStack(){
+            StoryPreviewHeader(PageName: "İstanbul'u Keşfediyoruz")
             ZStack{
                 Image("istanbul_img")
                     .resizable()
@@ -33,12 +33,11 @@ struct StoryPreview: View {
                         .frame(height: 50)
                         .foregroundColor(Color(hex: "#184b74").opacity(0.85))
                 }
-                    
-                
+
             }
             Text("Bu serimizle birlikte üç imparatorluğun başkentliğni yapmış avrupanın en büyük metropolü olan İstanbul'un geçmişine ve geleceğine ışık tutuyoruz")
                 .DescriptionFont()
-            Spacer()
+    
             
             Button {
                 print("Okundu")
@@ -54,9 +53,10 @@ struct StoryPreview: View {
                 }
                 
             }.padding()
+            Spacer()
 
         }
-        .frame(maxWidth: .infinity, maxHeight:  .infinity)
+       .frame(maxWidth: .infinity, maxHeight:  .infinity)
         .background(.black)
         .ignoresSafeArea()
         

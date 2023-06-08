@@ -29,6 +29,6 @@ extension View {
     func LargeButtonFont() -> some View {
         self
             .font(.system(size: 20, weight: .bold, design: .rounded))
-            .foregroundColor(.white)
+            
     }
 }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContinueSection: View {
+    @StateObject private var MainVM = MainVievModel()
     var body: some View {
         VStack(alignment: .leading){
             Text("Kaldığın Yerden Devam Et")
@@ -28,14 +29,14 @@ struct ContinueSection: View {
                         .foregroundColor(.white)
                         .padding(.horizontal, 8)
                         .padding(.vertical, 16)
-
                 }
-                   
             }
-        }//VStack
-        .padding(.vertical, 16)
+        }
     }
+    //VStack
 }
+   
+
 
 struct ContinueSection_Previews: PreviewProvider {
     static var previews: some View {

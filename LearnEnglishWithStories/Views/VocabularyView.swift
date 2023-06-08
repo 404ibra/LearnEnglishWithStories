@@ -15,8 +15,8 @@ struct VocabularyView: View {
             }
             Spacer()
         }//VStack
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(.black)
+           // .frame(maxWidth: .infinity, maxHeight: .infinity)
+           // .background(.black)
             .padding(.top, 0)
             .ignoresSafeArea()
         

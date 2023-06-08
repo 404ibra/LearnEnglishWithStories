@@ -7,9 +7,11 @@
 
 import Foundation
 
-class MainVM: ObservableObject {
+class MainVievModel: ObservableObject {
+    @Published var showSecondPage = false
     
 }
+      
 
 
 

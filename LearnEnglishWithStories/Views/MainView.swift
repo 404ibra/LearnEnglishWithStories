@@ -8,13 +8,21 @@
 import SwiftUI
 
 struct MainView: View {
+    @StateObject private var MainVM = MainVievModel()
     @State var SelectedTab : Int = 0
+
+    
     var body: some View {
-   
+        NavigationStack{
             VStack(alignment: .leading, spacing: 0){
                 ScrollView{
                     PageHeader(PageName: "Kütüphanem")
-                    ContinueSection()
+                    NavigationLink(destination: StoryPreview()) {
+                        ContinueSection()
+                    } .navigationBarTitle("")
+                        .navigationBarBackButtonHidden(true)
+                        
+                
                     FeaturedView(HeadlineText: "Seriler")
                         .padding(.bottom,25)
                     FeaturedView(HeadlineText: "En Günceller")
@@ -23,22 +31,31 @@ struct MainView: View {
                         .padding(.top,10)
                   
                 }//ScrollVeiw
-          
-              
                 //TabView
             }
-        
+            
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.black)
             .padding(.top, 0)
+            
             .ignoresSafeArea()
-        
+         
             //VStack
-  
-        
+        }.modifier(ViewStatusHiddenModifier())
         }
     
     
+}
+
+struct ViewStatusHiddenModifier: ViewModifier {
+    @ViewBuilder //return etkisi yaratıyor
+    func body(content: Content) -> some View {
+        if #available(iOS 16.0, *){
+            content.toolbar(.hidden, for: .automatic)
+        }else {
+            content.navigationBarHidden(true)
+        }
+    }
 }
 
 struct MainView_Previews: PreviewProvider {

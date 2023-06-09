@@ -10,8 +10,9 @@ import SwiftUI
 struct VocabularyView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 0){
+            PageHeader(PageName: "Kelimelerim")
             ScrollView{
-                PageHeader(PageName: "Kelimelerim")
+               
             }
             Spacer()
         }//VStack
@@ -19,6 +20,9 @@ struct VocabularyView: View {
            // .background(.black)
             .padding(.top, 0)
             .ignoresSafeArea()
+            .refreshable {
+                print("refresh")
+            }
         
     }
 }

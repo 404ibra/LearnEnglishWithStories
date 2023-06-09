@@ -29,7 +29,6 @@ struct StoryScreen: View {
             .padding(.horizontal, 16)
             .padding(.top, 32)
             .padding(.bottom, 16)
-            
             //HStack
             StoryView()
             HStack{

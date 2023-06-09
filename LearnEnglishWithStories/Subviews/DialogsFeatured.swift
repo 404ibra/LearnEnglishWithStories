@@ -17,10 +17,10 @@ struct DialogsFeatured: View {
                     .FeaturedStoriesHeadline()
                 Spacer()
                 HStack{
-                    Text("Tümünü gör")
+                    Text("Tümünü Görüntüle")
                         .SeeAll()
                     Image(systemName: "arrow.right")
-                        .foregroundColor(.white)
+                        //.foregroundColor(.white)
                 }
             }//HStack
             .padding(.horizontal, 16)

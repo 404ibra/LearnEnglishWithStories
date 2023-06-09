@@ -16,14 +16,18 @@ struct ContinueSection: View {
             ZStack(alignment: .bottom){
                 Image("istanbul_img")
                     .resizable()
-                    .frame(height: 160)
+                    .frame(height: 230)
                     .frame(width: UIScreen.main.bounds.width * 0.9)
-                    .cornerRadius(15)
+                    .cornerRadius(12)
                 ZStack(alignment: .bottomLeading){
-                    RoundedRectangle(cornerRadius: 15)
+                    Rectangle()
                         .foregroundColor(.red.opacity(0.8))
-                        .frame(height: 50)
+                        .frame(height: 60)
                         .frame(width: UIScreen.main.bounds.width * 0.9)
+                        .roundedCornerRectangle(radius: 12, corners: [.bottomLeft, .bottomRight])
+                    
+                
+                        
                     Text("Istanbul'u Keşfediyoruz")
                         .font(.system(size: 18, weight: .semibold, design: .rounded))
                         .foregroundColor(.white)

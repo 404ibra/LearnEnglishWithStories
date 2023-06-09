@@ -15,37 +15,39 @@ struct MainView: View {
     var body: some View {
         NavigationStack{
             VStack(alignment: .leading, spacing: 0){
+                PageHeader(PageName: "Kütüphanem")
                 ScrollView{
-                    PageHeader(PageName: "Kütüphanem")
                     NavigationLink(destination: StoryPreview()) {
                         ContinueSection()
-                    } .navigationBarTitle("")
-                        .navigationBarBackButtonHidden(true)
-                        
-                
+                            .padding(.top,32)
+                    }
+                    Divider()
+                        .background(.gray)
+                        .padding(.top,10)
                     FeaturedView(HeadlineText: "Seriler")
                         .padding(.bottom,25)
+                        .padding(.top, 12)
                     FeaturedView(HeadlineText: "En Günceller")
                     //FeaturedView.v2 --film dialogları, şarkı sözleri gibi
                     DialogsFeatured(HeadlineText: "Diyaloglar")
                         .padding(.top,10)
-                  
                 }//ScrollVeiw
                 //TabView
             }
-            
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(.black)
+           // .frame(maxWidth: .infinity, maxHeight: .infinity)
+            //.background(.black)
             .padding(.top, 0)
-            
             .ignoresSafeArea()
-         
             //VStack
-        }.modifier(ViewStatusHiddenModifier())
         }
-    
-    
+        .modifier(ViewStatusHiddenModifier())
+        .refreshable {
+            //TO DO
+        }
+    }
+
 }
+
 
 struct ViewStatusHiddenModifier: ViewModifier {
     @ViewBuilder //return etkisi yaratıyor
@@ -57,6 +59,7 @@ struct ViewStatusHiddenModifier: ViewModifier {
         }
     }
 }
+
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {

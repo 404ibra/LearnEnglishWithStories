@@ -8,40 +8,40 @@
 import SwiftUI
 
 struct FeatuderImages: View {
-    
-
-  
     var body: some View {
         let size = UIScreen.main.bounds
+        let StoryVM = Story.stories
         ScrollView(.horizontal, showsIndicators:  false) {
             HStack{
-                ForEach(0..<3) { index in
-                    ZStack(alignment: .bottom){
-                        Image("featured_img_\(index)")
-                            .resizable()
-                            .frame(height: size.height/4.2)
-                            .frame(width: size.width/1.8)
-                            .cornerRadius(12)
-                            .padding(.trailing, 6)
-                        ZStack(alignment: .center){
-                            Rectangle()
-                                .frame(height: size.height / 12)
-                                .frame(width: size.width/1.8)
+                ForEach(StoryVM) { index in
+                    VStack{
+                        ZStack(alignment: .bottom){
+                            Image(index.images)
+                                .resizable()
+                                .frame(height: 215)
+                                .frame(width: 230)
+                                .cornerRadius(12)
                                 .padding(.trailing, 6)
-                            .foregroundColor(.indigo.opacity(0.5))
-                            Text("ABD'yi keşfedin")
-                                .font(.system(size: 18, weight: .bold, design: .rounded))
-                                .foregroundColor(.white)
-                        }
-                        
-                            
+                            ZStack(alignment: .center){
+                                Rectangle()
+                                    .frame(height: 60)
+                                    .frame(width: 230)
+                                    .padding(.trailing, 6)
+                                    .foregroundColor(.indigo.opacity(0.5))
+                                    .roundedCornerRectangle(radius: 12, corners: [.bottomLeft, .bottomRight])
+                                Text(index.level)
+                                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                                    .foregroundColor(.white)
+                            }
+                        }//ZStack
+                        Text(index.name)
+                            .font(.system(size: 18, weight: .light, design: .rounded))
                     }
                 }
-            }.padding(.leading, 16)
-                
+            }//HStack
+            .padding(.leading, 16)
             //Hstack
         }//scrollview
-      
         }//View
     }
 

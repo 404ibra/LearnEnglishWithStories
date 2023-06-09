@@ -38,7 +38,7 @@ struct StoryPreview: View {
             Text("Bu serimizle birlikte üç imparatorluğun başkentliğni yapmış avrupanın en büyük metropolü olan İstanbul'un geçmişine ve geleceğine ışık tutuyoruz")
                 .DescriptionFont()
     
-            
+            Spacer()
             Button {
                 print("Okundu")
             } label: {
@@ -56,8 +56,9 @@ struct StoryPreview: View {
             Spacer()
 
         }
-       .frame(maxWidth: .infinity, maxHeight:  .infinity)
-        .background(.black)
+        .navigationBarBackButtonHidden(true)
+      // .frame(maxWidth: .infinity, maxHeight:  .infinity)
+       // .background(.black)
         .ignoresSafeArea()
         
     }

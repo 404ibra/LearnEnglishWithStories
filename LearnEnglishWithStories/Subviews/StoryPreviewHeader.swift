@@ -27,27 +27,26 @@ struct StoryPreviewHeader: View {
                 }//HStack
                 .padding(.leading, 16)
                 .padding(.trailing,16)
-                .padding(.bottom, 32)
+                .padding(.bottom, 20)
             }//ZStack
             HStack{
                 Image(systemName: "arrow.backward.circle")
                     .resizable()
                     .frame(height: 30)
                     .frame(width: 30)
-                    .foregroundColor(.orange)
+                    .foregroundColor(Color(hex: "fa6c38"))
                     .onTapGesture {
-                        print("sad")
-                        presentationMode.wrappedValue.dismiss()
+                       presentationMode.wrappedValue.dismiss()
                     }
                 
                 Spacer()
                 Text("Favorilerime Ekle")
                     .font(.system(size: 18, weight: .semibold, design: .rounded))
-                    .foregroundColor(.orange)
+                    .foregroundColor(Color(hex: "fa6c38"))
             }//HStack
             .padding(.horizontal, 24)
-            .padding(.top, 56)
-            .padding(.bottom, 12)
+            .padding(.top, 46)
+           
                
         }//ZStack
         

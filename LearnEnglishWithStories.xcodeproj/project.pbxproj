@@ -32,6 +32,7 @@
 		6C29D8642A321EB300D0408B /* StoryPreviewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C29D8632A321EB300D0408B /* StoryPreviewHeader.swift */; };
 		6C3442A22A27325D0086CB33 /* StoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3442A12A27325D0086CB33 /* StoryScreen.swift */; };
 		6C3816B02A30A22C000E498F /* DialogsFeatured.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3816AF2A30A22C000E498F /* DialogsFeatured.swift */; };
+		6C55FC362A348320000DFCEC /* TextFieldAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C55FC352A348320000DFCEC /* TextFieldAnimation.swift */; };
 		6CC187852A26042900F9E803 /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC187842A26042900F9E803 /* StoryView.swift */; };
 		6CC2C4C22A332F8B00074C1E /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC2C4C12A332F8B00074C1E /* View+Extension.swift */; };
 		6CD728D92A2B56AA00A9A110 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD728D82A2B56AA00A9A110 /* Font+Extension.swift */; };
@@ -65,6 +66,7 @@
 		6C29D8632A321EB300D0408B /* StoryPreviewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryPreviewHeader.swift; sourceTree = "<group>"; };
 		6C3442A12A27325D0086CB33 /* StoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryScreen.swift; sourceTree = "<group>"; };
 		6C3816AF2A30A22C000E498F /* DialogsFeatured.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsFeatured.swift; sourceTree = "<group>"; };
+		6C55FC352A348320000DFCEC /* TextFieldAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldAnimation.swift; sourceTree = "<group>"; };
 		6CC187842A26042900F9E803 /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
 		6CC2C4C12A332F8B00074C1E /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		6CD728D82A2B56AA00A9A110 /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 		6C1B49BC2A0D263700428512 /* LearnEnglishWithStories */ = {
 			isa = PBXGroup;
 			children = (
+				6C55FC342A348310000DFCEC /* Utils */,
 				6C15FAED2A31E9DC00C77AB1 /* Sounds */,
 				6C17B6452A30FC9B00552CB7 /* Enums */,
 				6CD728D52A2B564B00A9A110 /* Extensions */,
@@ -150,6 +153,14 @@
 				6C1B49C42A0D263800428512 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		6C55FC342A348310000DFCEC /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6C55FC352A348320000DFCEC /* TextFieldAnimation.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		6CD728D52A2B564B00A9A110 /* Extensions */ = {
@@ -273,6 +284,7 @@
 				6C1B49CA2A0D263800428512 /* LearnEnglishWithStories.xcdatamodeld in Sources */,
 				6CC2C4C22A332F8B00074C1E /* View+Extension.swift in Sources */,
 				6C010EC62A274D9D00538D83 /* MainView.swift in Sources */,
+				6C55FC362A348320000DFCEC /* TextFieldAnimation.swift in Sources */,
 				6CC187852A26042900F9E803 /* StoryView.swift in Sources */,
 				6C3442A22A27325D0086CB33 /* StoryScreen.swift in Sources */,
 				6C15FAE62A31CBCB00C77AB1 /* Color+Extension.swift in Sources */,

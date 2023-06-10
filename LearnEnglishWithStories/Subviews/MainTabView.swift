@@ -9,9 +9,9 @@ import SwiftUI
 
 struct MainTabView: View {
   
-    init() {
+    /*init() {
         UITabBar.appearance().barTintColor = .black // custom color.
-    }
+    }*/
     var body: some View {
         TabView{
             ForEach(HomeTabItem.tabItems) { item in

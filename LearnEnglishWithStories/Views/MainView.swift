@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
+    
     @StateObject private var MainVM = MainVievModel()
     @State var SelectedTab : Int = 0
 
@@ -19,7 +20,7 @@ struct MainView: View {
                 ScrollView{
                     NavigationLink(destination: StoryPreview()) {
                         ContinueSection()
-                            .padding(.top,32)
+                            .padding(.top,16)
                     }
                     Divider()
                         .background(.gray)

@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct PageHeader: View {
-    @State private var isSearchVisible = false
-    @State private var searchText = ""
+    @StateObject private var MainVM = MainVievModel()
+   
     @Environment(\.colorScheme) var colorScheme
     var PageName: String
+    
     
     var body: some View {
         ZStack(alignment: .bottomLeading){
@@ -22,28 +23,39 @@ struct PageHeader: View {
                                  : .white
                 )
             HStack{
-                isSearchVisible ? nil :  Text(PageName)
+                MainVM.isSearchVisible ? nil :  Text(PageName)
                     .font(.system(size: 28, weight: .bold ,design: .rounded))
                     .transition(.slide)
-                    .modifier(TextFieldAnimation.ViewAnimationModifier(value: isSearchVisible))
+                    .modifier(TextFieldAnimation.ViewAnimationModifier(value: MainVM.isSearchVisible))
                 Spacer()
                 Button {
-                    isSearchVisible.toggle()
+                    MainVM.isSearchVisible.toggle()
                 } label: {
-             isSearchVisible ?  Image(systemName:       "chevron.backward.circle")
-                         .font(.system(size: 36, weight: .light))
+                    MainVM.isSearchVisible ?  Image(systemName: "chevron.backward.circle")
+                         .font(.system(size: 24, weight: .light))
                          .foregroundColor(Color(hex: "fa6c38"))
                     : Image(systemName: "magnifyingglass.circle")
-                        .font(.system(size: 36, weight: .light))
+                        .font(.system(size: 24, weight: .light))
                         .foregroundColor(Color(hex: "fa6c38"))
                 }
-                if isSearchVisible {
-                    TextField("Ne okumak istersiniz", text: $searchText)
-                        .font(.system(size: 16, weight: .semibold, design: .rounded))
-                        .foregroundColor(.red)
-                        .padding()
-                        .transition(.move(edge: .trailing))
-                        .modifier(TextFieldAnimation.ViewAnimationModifier(value: isSearchVisible))
+                if MainVM.isSearchVisible {
+                
+                    HStack{
+                        Image(systemName: "magnifyingglass")
+                        TextField("Ne okumak istersiniz", text: $MainVM.searchText)
+                            .foregroundColor(.red)
+                                .font(.system(size: 16, weight: .semibold, design: .rounded))
+                                .padding(.leading, 6)
+                        
+                                
+                    }//HStack
+                    .padding(.leading, 4)
+                    .padding(.trailing, 24)
+                    .padding(.vertical, 8)
+                    .background(.gray.opacity(0.10))
+                    .cornerRadius(10)
+                    .transition(.move(edge: .trailing))
+                    .modifier(TextFieldAnimation.ViewAnimationModifier(value: MainVM.isSearchVisible))
                 }
             }//HStack
             .padding(.leading, 16)

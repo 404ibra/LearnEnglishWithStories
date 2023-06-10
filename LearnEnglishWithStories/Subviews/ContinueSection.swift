@@ -32,7 +32,8 @@ struct ContinueSection: View {
                         .padding(.horizontal, 8)
                         .padding(.vertical, 16)
                 }
-            }.shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 2)
+            }
+            .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 2)
         }
     }
     //VStack

@@ -14,10 +14,21 @@ struct MainView: View {
 
     
     var body: some View {
+        
         NavigationStack{
             VStack(alignment: .leading, spacing: 0){
                 PageHeader(PageName: "Kütüphanem")
-                ScrollView{
+                
+                // TO DO eğer alt taraf yazılan texte göre değişebilirse yap yoksa yeni sayfaya yönlendir
+                if MainVM.isSearchVisible == true {
+                    
+                    ScrollView{
+                        
+                    }
+                }
+                //Arama kısmına bir şey yazılmadıysa
+                else{
+                    ScrollView{
                     NavigationLink(destination: StoryPreview()) {
                         ContinueSection()
                             .padding(.top,16)
@@ -26,6 +37,11 @@ struct MainView: View {
                         .background(.gray)
                         .padding(.top,10)
                     FeaturedView(HeadlineText: "Seriler")
+                            .onTapGesture {
+                                print("sdadas")
+                                print(MainVM.searchText.count)
+                             
+                            }
                         .padding(.bottom,25)
                         .padding(.top, 12)
                     FeaturedView(HeadlineText: "En Günceller")
@@ -33,13 +49,15 @@ struct MainView: View {
                     DialogsFeatured(HeadlineText: "Diyaloglar")
                         .padding(.top,10)
                 }//ScrollVeiw
-                //TabView
+                    //TabView
+                }
             }
            // .frame(maxWidth: .infinity, maxHeight: .infinity)
             //.background(.black)
             .padding(.top, 0)
             .ignoresSafeArea()
             //VStack
+                
         }
         .modifier(ViewStatusHiddenModifier())
         .refreshable {

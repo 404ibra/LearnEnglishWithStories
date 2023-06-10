@@ -23,7 +23,7 @@ extension View {
     
     func DescriptionFont() -> some View {
         self
-            .font(.system(size: 20, weight: .semibold, design: .rounded))
+            .font(.system(size: 17.5, weight: .light, design: .rounded))
      //       .foregroundColor(.white)
     }
     func LargeButtonFont() -> some View {

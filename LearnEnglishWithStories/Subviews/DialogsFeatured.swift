@@ -53,6 +53,7 @@ struct ExtractedView: View {
                                 .frame(height: size.height / 12)
                                 .frame(width: size.width/2.5)
                                 .padding(.trailing, 6)
+                                .roundedCornerRectangle(radius: 12, corners: [.bottomLeft, .bottomRight])
                                 .foregroundColor(.indigo.opacity(0.5))
                             Text("ABD'yi keşfedin")
                                 .font(.system(size: 18, weight: .bold, design: .rounded))
@@ -61,6 +62,8 @@ struct ExtractedView: View {
                         
                         
                     }
+                    .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 2)
+
                     .onTapGesture {
                         print("dsadsa")
                     }

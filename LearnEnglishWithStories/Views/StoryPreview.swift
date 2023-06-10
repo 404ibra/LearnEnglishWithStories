@@ -37,6 +37,7 @@ struct StoryPreview: View {
             }
             Text("Bu serimizle birlikte üç imparatorluğun başkentliğni yapmış avrupanın en büyük metropolü olan İstanbul'un geçmişine ve geleceğine ışık tutuyoruz")
                 .DescriptionFont()
+                .padding(.horizontal, 16)
     
             Spacer()
             Button {

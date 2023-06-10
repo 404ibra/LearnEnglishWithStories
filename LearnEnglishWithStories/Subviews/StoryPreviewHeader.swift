@@ -11,17 +11,20 @@ struct StoryPreviewHeader: View {
     var PageName: String
     @StateObject private var MainVM = MainVievModel()
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
 
         ZStack(alignment: .topLeading){
             ZStack(alignment: .bottomLeading){
                 Rectangle()
                     .frame(height: 160)
-                    .foregroundColor(Color(hex: "#184b74"))
+                    .foregroundColor(colorScheme == .dark
+                                        ? Color(hex: "#184b74")
+                                        : .white)
                 HStack{
                     Text(PageName)
                         .font(.system(size: 28, weight: .bold ,design: .rounded))
-                        .foregroundColor(.white)
+                        
                     Spacer()
 
                 }//HStack
@@ -45,7 +48,7 @@ struct StoryPreviewHeader: View {
                     .foregroundColor(Color(hex: "fa6c38"))
             }//HStack
             .padding(.horizontal, 24)
-            .padding(.top, 46)
+            .padding(.top, 60)
            
                
         }//ZStack

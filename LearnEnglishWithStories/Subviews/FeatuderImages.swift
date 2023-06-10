@@ -24,17 +24,21 @@ struct FeatuderImages: View {
                                 .padding(.trailing, 6)
                             ZStack(alignment: .center){
                                 Rectangle()
+                                    .foregroundColor(Color(hex: "fa6c38").opacity(0.8))
                                     .frame(height: 60)
                                     .frame(width: 230)
-                                    .padding(.trailing, 6)
-                                    .foregroundColor(Color(hex: "fa6c38").opacity(0.8))
+                                   
+                                    
                                 //.indigo.opacity(0.5)
-                                    .roundedCornerRectangle(radius: 12, corners: [.bottomLeft, .bottomRight])
+                                    .roundedCornerRectangle(radius: 12, corners: [.bottomRight, .bottomLeft])
+                                    .padding(.trailing, 6)
                                 Text(index.level)
                                     .font(.system(size: 18, weight: .bold, design: .rounded))
                                     .foregroundColor(.white)
                             }
-                        }//ZStack
+                        }
+                        .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 2)
+                        //ZStack
                         Text(index.name)
                             .font(.system(size: 18, weight: .light, design: .rounded))
                     }

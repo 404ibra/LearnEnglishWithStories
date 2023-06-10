@@ -9,7 +9,8 @@ import Foundation
 
 class MainVievModel: ObservableObject {
     @Published var showSecondPage = false
-    
+    @Published var isSearchVisible = false
+    @Published var searchText = ""
 }
       
 

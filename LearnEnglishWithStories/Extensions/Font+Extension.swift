@@ -32,4 +32,10 @@ extension View {
             .foregroundColor(.orange)
             
     }
+    func SettingsButtonFont() -> some View {
+        self
+            .font(.system(size: 16, weight: .bold, design: .rounded))
+           
+            
+    }
 }

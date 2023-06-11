@@ -17,7 +17,7 @@ struct MainView: View {
         
         NavigationStack{
             VStack(alignment: .leading, spacing: 0){
-                PageHeader(PageName: "Kütüphanem")
+                PageHeader(PageName: "Kütüphanem", searchicon: true)
                 
                 // TO DO eğer alt taraf yazılan texte göre değişebilirse yap yoksa yeni sayfaya yönlendir
                 if MainVM.isSearchVisible == true {

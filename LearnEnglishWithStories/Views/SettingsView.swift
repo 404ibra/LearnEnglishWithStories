@@ -11,7 +11,7 @@ struct SettingsView: View {
     
     var body: some View {
         VStack {
-            PageHeader(PageName: "Ayarlar")
+            PageHeader(PageName: "Ayarlar", searchicon: false)
             GeometryReader { geometry in
                 ScrollView(.vertical, showsIndicators: false) {
                         SettingsOptionContainers(buttontext: "Premium Ol", imagename: "premium", systemIcon: false, iconcolor: .orange)

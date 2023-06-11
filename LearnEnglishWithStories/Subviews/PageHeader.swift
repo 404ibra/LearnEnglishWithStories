@@ -12,7 +12,7 @@ struct PageHeader: View {
    
     @Environment(\.colorScheme) var colorScheme
     var PageName: String
-    
+    var searchicon: Bool
     
     var body: some View {
         ZStack(alignment: .bottomLeading){
@@ -28,7 +28,8 @@ struct PageHeader: View {
                     .transition(.slide)
                     .modifier(TextFieldAnimation.ViewAnimationModifier(value: MainVM.isSearchVisible))
                 Spacer()
-                Button {
+               searchicon == true
+                ? Button {
                     MainVM.isSearchVisible.toggle()
                 } label: {
                     MainVM.isSearchVisible ?  Image(systemName: "chevron.backward.circle")
@@ -38,6 +39,7 @@ struct PageHeader: View {
                         .font(.system(size: 24, weight: .light))
                         .foregroundColor(Color(hex: "fa6c38"))
                 }
+                : nil
                 if MainVM.isSearchVisible {
                 
                     HStack{
@@ -67,7 +69,7 @@ struct PageHeader: View {
 
 struct PageHeader_Preview: PreviewProvider {
     static var previews: some View {
-        PageHeader(PageName: "Kütüphanem")
+        PageHeader(PageName: "Kütüphanem", searchicon: false)
     }
 }
 

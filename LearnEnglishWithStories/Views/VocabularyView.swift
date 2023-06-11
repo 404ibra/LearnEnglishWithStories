@@ -11,7 +11,7 @@ struct VocabularyView: View {
     @State private var currentTab = 0
     var body: some View {
         VStack(alignment: .center, spacing: 0){
-            PageHeader(PageName: "Kelimelerim")
+            PageHeader(PageName: "Kelimelerim", searchicon: false)
             TabBarView(currentTab: self.$currentTab)
             ZStack{
                 TabView(selection: self.$currentTab) {

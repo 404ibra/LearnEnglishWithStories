@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainTabView: View {
-  
+ 
     /*init() {
         UITabBar.appearance().barTintColor = .black // custom color.
     }*/
@@ -20,6 +20,7 @@ struct MainTabView: View {
                         Image(systemName: item.model.icon.rawValue)
                         Text(item.model.title.rawValue)
                     }
+ 
                 }
               
             }

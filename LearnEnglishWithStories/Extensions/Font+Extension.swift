@@ -34,8 +34,11 @@ extension View {
     }
     func SettingsButtonFont() -> some View {
         self
-            .font(.system(size: 16, weight: .bold, design: .rounded))
-           
-            
+            .font(.system(size: 20, weight: .bold, design: .rounded))
+    }
+    
+    func ProfileOptionButtonTextFont() -> some View {
+        self
+            .font(.system(size: 20, weight: .bold, design: .rounded))
     }
 }

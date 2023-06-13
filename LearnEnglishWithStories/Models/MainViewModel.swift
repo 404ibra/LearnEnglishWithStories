@@ -11,6 +11,8 @@ class MainVievModel: ObservableObject {
     @Published var showSecondPage = false
     @Published var isSearchVisible = false
     @Published var searchText = ""
+    @Published var readButton = false
+    @Published var playbutton = false
 }
       
 

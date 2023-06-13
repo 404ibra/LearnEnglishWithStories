@@ -12,7 +12,7 @@ struct StoryView: View {
     let maxCharactersPerLine = 35
     
     var body: some View {
-        let words = Story.stories[0].content.components(separatedBy: " ")
+        let words =  Story.stories[0].content.components(separatedBy: " ")
         
         var lines: [[String]] = []
         var currentLine: [String] = []

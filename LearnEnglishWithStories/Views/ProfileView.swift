@@ -55,6 +55,7 @@ struct ProfileView: View {
             }//SCROLLView
             
         }
+        .ignoresSafeArea()
     }
 }
 

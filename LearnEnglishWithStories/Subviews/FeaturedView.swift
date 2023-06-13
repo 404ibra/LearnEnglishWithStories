@@ -15,10 +15,12 @@ struct FeaturedView: View {
             HStack {
                 Text(HeadlineText)
                     .FeaturedStoriesHeadline()
+                    .foregroundColor(.mainlightblue)
                 Spacer()
                 HStack{
                     Text("Tümünü Görüntüle")
                         .SeeAll()
+                      
                     Image(systemName: "arrow.right")
                         //.foregroundColor(.white)
                 }

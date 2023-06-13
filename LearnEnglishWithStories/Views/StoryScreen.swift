@@ -38,6 +38,7 @@ struct StoryScreen: View {
                 
                 
                 StoryView()
+                Divider()
                 StoryView()
             }
             .frame(height: 550)
@@ -48,12 +49,25 @@ struct StoryScreen: View {
                 : .white
             )
             
-     
-            PlayBackControlButtons()//HStack
-            Slider(value: $timing, in: 0...60)
-                .accentColor(Color(hex: "0d4e89"))
-                .padding(.horizontal, 32)
             Spacer()
+            PlayBackControlButtons()//HStack
+            VStack{
+                Slider(value: $timing, in: 0...60)
+                    .accentColor(Color(hex: "0d4e89"))
+                    .padding(.horizontal, 32)
+                HStack{
+                    Text("0:00")
+                        .font(.system(size: 14, design: .rounded))
+                        .foregroundColor(.gray)
+                    Spacer()
+                    Text("1:13")
+                        .font(.system(size: 14, design: .rounded))
+                        .foregroundColor(.gray)
+                }//HStack
+                .padding(.horizontal, 40)
+            }
+            Spacer()
+            
             
         }//VStack
         .frame(maxWidth: .infinity, maxHeight: .infinity)

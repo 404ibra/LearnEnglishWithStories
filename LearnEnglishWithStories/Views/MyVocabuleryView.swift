@@ -9,9 +9,15 @@ import SwiftUI
 
 struct MyVocabuleryView: View {
     var body: some View {
-        ScrollView {
-            Text("Hello, Vocabulary!")
-        }
+
+            ScrollView(.vertical) {
+                VocabuleryBoxes()
+                VocabuleryBoxes()
+                VocabuleryBoxes()
+                VocabuleryBoxes()
+                VocabuleryBoxes()
+                
+            }
     }
 }
 
@@ -20,3 +26,4 @@ struct MyVocabuleryView_Previews: PreviewProvider {
         MyVocabuleryView()
     }
 }
+

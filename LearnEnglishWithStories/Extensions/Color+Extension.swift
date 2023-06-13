@@ -20,6 +20,10 @@ extension Color {
 
         self.init(red: r, green: g, blue: b)
     }
+    
+    static let mainorange = Color(hex: "fa6b35")
+    static let maindarkblue = Color(hex: "0d4e89")
+    static let mainlightblue = Color(hex: "1a639b")
 }
 
 

@@ -19,7 +19,7 @@ struct PageHeader: View {
             Rectangle()
                 .frame(height: 140)
                 .foregroundColor(colorScheme == .dark
-                                 ? Color(hex: "#184b74")
+                                 ? .maindarkblue
                                  : .white
                 )
             HStack{

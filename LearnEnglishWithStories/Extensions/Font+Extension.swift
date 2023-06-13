@@ -12,7 +12,7 @@ extension View {
     func FeaturedStoriesHeadline() -> some View {
         self
             .font(.system(size: 20, weight: .bold, design: .rounded))
-            .foregroundColor(Color(hex: "#fa6c38"))
+            .foregroundColor(.mainlightblue)
     }
     
     func SeeAll() -> some View {

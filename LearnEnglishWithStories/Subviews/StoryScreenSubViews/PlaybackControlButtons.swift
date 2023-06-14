@@ -10,6 +10,8 @@ import SwiftUI
 struct PlayBackControlButtons: View {
     @StateObject private var MainVM = MainVievModel()
     
+    let backpage: () -> Void
+    let nextpage: () -> Void
     
     var body: some View {
         HStack{
@@ -17,8 +19,11 @@ struct PlayBackControlButtons: View {
                 .foregroundColor(Color(hex: "1a659e"))
                 .padding(.horizontal, 16)
                 .padding(.top, 16)
+                .onTapGesture {
+                    backpage()
+                }
             Go10SecButton(buttonaction: {
-                print("10 saniye geri alındı")
+           
             }, iconname: "gobackward.10")
             Button {
                 MainVM.playbutton.toggle()
@@ -44,12 +49,15 @@ struct PlayBackControlButtons: View {
             }//Button finish with label
             .padding(.horizontal,8)
             Go10SecButton(buttonaction: {
-                print("10 saniye ilerleri alındı")
+                
             }, iconname: "goforward.10")
             Image(systemName: "arrow.forward")
                 .foregroundColor(Color(hex: "1a659e"))
                 .padding(.horizontal, 16)
                 .padding(.top, 16)
+                .onTapGesture {
+                    nextpage()
+                }
         }//HStack
     }
 }
@@ -72,8 +80,3 @@ struct Go10SecButton: View {
 
 
 
-struct PlaybackControlButtons_Previews: PreviewProvider {
-    static var previews: some View {
-        PlayBackControlButtons()
-    }
-}

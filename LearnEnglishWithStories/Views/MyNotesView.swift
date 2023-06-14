@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct MyNotesView: View {
+    let geometry = UIScreen.main.bounds.size
     var body: some View {
+        
         ScrollView {
-            Text("Hello, Notes!")
+            Rectangle()
+                .frame(width: geometry.width * 0.9, height: 300)
         }
         
     }

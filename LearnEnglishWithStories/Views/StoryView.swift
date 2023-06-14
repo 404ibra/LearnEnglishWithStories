@@ -11,8 +11,14 @@ struct StoryView: View {
     
     let maxCharactersPerLine = 35
     
+    let words: [String]
+    
+    init(words: [String]) {
+            self.words = words
+        }
+    
     var body: some View {
-        let words =  Story.stories[0].content.components(separatedBy: " ")
+       
         
         var lines: [[String]] = []
         var currentLine: [String] = []
@@ -41,9 +47,15 @@ struct StoryView: View {
                     ForEach(lines[lineIndex], id: \.self) { word in
                         Text(word)
                             .font(.system(size: 19, weight: .medium, design: .rounded))
-                            .onTapGesture {
-                                print("Tıklanan kelime: \(word)")
+                            .onLongPressGesture(minimumDuration: 0.6) {
+                                
+                                // telefonu titretmesi için yazdığım kod
+                                let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                                impactMed.impactOccurred()
+                                // check
+                                print(word)
                             }
+                            
                     }
                 }
             }
@@ -55,7 +67,7 @@ struct StoryView: View {
 
 struct StoryView_Previews: PreviewProvider {
     static var previews: some View {
-        StoryView()
+        StoryView(words: Story.stories[0].content[1].components(separatedBy: " "))
     }
 }
 

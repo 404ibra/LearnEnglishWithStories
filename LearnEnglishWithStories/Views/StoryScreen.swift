@@ -16,6 +16,8 @@ struct StoryScreen: View {
     @State var DarkTheme: Bool = false
     @State var NightShift: Bool = false
     @State private var timing: Double = 0.0
+    
+    @State private var currentPageIndex = 0
 
     var body: some View {
         VStack{
@@ -37,11 +39,11 @@ struct StoryScreen: View {
                 //HStack
                 
                 
-                StoryView()
+                StoryView(words: getWords(for: currentPageIndex))
                 Divider()
-                StoryView()
+                StoryView(words: Story.stories[0].translate[1].components(separatedBy: " "))
             }
-            .frame(height: 550)
+            .frame(height: 600)
             .padding(.bottom, 24)
             .background(
                 NightShift ?
@@ -50,7 +52,21 @@ struct StoryScreen: View {
             )
             
             Spacer()
-            PlayBackControlButtons()//HStack
+            PlayBackControlButtons {
+                if currentPageIndex > 0 {
+                    currentPageIndex -= 1
+                } else {
+                    print("önceki sayfa mevcut deil")
+                }
+            } nextpage: {
+                if currentPageIndex >= 0 && currentPageIndex < Story.stories[0].content.count {
+                    currentPageIndex += 1
+                }else {
+                    print("ileri sayfa yok ki")
+                }
+            }
+
+//HStack
             VStack{
                 Slider(value: $timing, in: 0...60)
                     .accentColor(Color(hex: "0d4e89"))
@@ -99,7 +115,14 @@ func playSound(status: Bool) {
     }
 }
 
-
+func getWords(for pageIndex: Int) -> [String] {
+    // dizide belirtilen sayfa varsa ilgili kelimeleri döndürürü aksi halde boş dizi gönderir
+    guard pageIndex >= 0 && pageIndex < Story.stories[0].content.count else {
+        return []
+    }
+    return Story.stories[0].content[pageIndex].components(separatedBy: " ")
+}
+ 
 
 
 

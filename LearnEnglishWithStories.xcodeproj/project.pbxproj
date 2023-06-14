@@ -42,6 +42,7 @@
 		6CC2C4C22A332F8B00074C1E /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC2C4C12A332F8B00074C1E /* View+Extension.swift */; };
 		6CD728D92A2B56AA00A9A110 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD728D82A2B56AA00A9A110 /* Font+Extension.swift */; };
 		6CD728E12A2B5BA200A9A110 /* FeaturedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD728E02A2B5BA200A9A110 /* FeaturedView.swift */; };
+		6CDA2A932A39F61B00535EDA /* 1_2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6CDA2A922A39F61B00535EDA /* 1_2.mp3 */; };
 		6CE708142A3743A100B8C853 /* ProfileViewOptionButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE708132A3743A100B8C853 /* ProfileViewOptionButtons.swift */; };
 		6CE7081B2A374A7000B8C853 /* LevelBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE7081A2A374A7000B8C853 /* LevelBar.swift */; };
 		6CE7081D2A374AF700B8C853 /* MedalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE7081C2A374AF700B8C853 /* MedalView.swift */; };
@@ -85,6 +86,7 @@
 		6CC2C4C12A332F8B00074C1E /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		6CD728D82A2B56AA00A9A110 /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
 		6CD728E02A2B5BA200A9A110 /* FeaturedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedView.swift; sourceTree = "<group>"; };
+		6CDA2A922A39F61B00535EDA /* 1_2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = 1_2.mp3; path = ../../../../../Downloads/1_2.mp3; sourceTree = "<group>"; };
 		6CE708132A3743A100B8C853 /* ProfileViewOptionButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewOptionButtons.swift; sourceTree = "<group>"; };
 		6CE7081A2A374A7000B8C853 /* LevelBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelBar.swift; sourceTree = "<group>"; };
 		6CE7081C2A374AF700B8C853 /* MedalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedalView.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 		6C15FAED2A31E9DC00C77AB1 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				6CDA2A922A39F61B00535EDA /* 1_2.mp3 */,
 				6C6583532A37B046008AB4AB /* 1_1.mp3 */,
 			);
 			path = Sounds;
@@ -313,6 +316,7 @@
 				6C6583542A37B046008AB4AB /* 1_1.mp3 in Resources */,
 				6C1B49C52A0D263800428512 /* Preview Assets.xcassets in Resources */,
 				6C1B49C22A0D263800428512 /* Assets.xcassets in Resources */,
+				6CDA2A932A39F61B00535EDA /* 1_2.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

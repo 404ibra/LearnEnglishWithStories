@@ -12,8 +12,9 @@ struct MyNotesView: View {
     var body: some View {
         
         ScrollView {
-            Rectangle()
-                .frame(width: geometry.width * 0.9, height: 300)
+            VStack{
+                
+            }
         }
         
     }

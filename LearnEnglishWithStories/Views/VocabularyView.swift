@@ -38,7 +38,7 @@ struct TabBarView: View {
     @Binding var currentTab: Int
     @Namespace var namespace
     
-    var tabBarOptions: [String] = ["Kelimelerim", "Notlarım"]
+    var tabBarOptions: [String] = ["Kelimelerim", "Hedeflerim"]
     
     var body: some View {
        

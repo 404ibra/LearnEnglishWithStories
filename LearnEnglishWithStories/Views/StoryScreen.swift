@@ -16,8 +16,15 @@ struct StoryScreen: View {
     @State var DarkTheme: Bool = false
     @State var NightShift: Bool = false
     @State private var timing: Double = 0.0
-    
     @State private var currentPageIndex = 0
+    
+    let storiesIndex: Int
+    
+     var StoryScreenVM = StoryScreenViewModel.self
+    
+ /*   init(storiesIndex: Int) {
+            self.storiesIndex = storiesIndex
+        } */
 
     var body: some View {
         VStack{
@@ -39,9 +46,10 @@ struct StoryScreen: View {
                 //HStack
                 
                 
-                StoryView(words: getWords(for: currentPageIndex))
+                StoryView(words: StoryScreenVM.getWords(for: currentPageIndex, storiesIndex: storiesIndex))
                 Divider()
-                StoryView(words: Story.stories[0].translate[1].components(separatedBy: " "))
+                StoryView(words: StoryScreenVM.getTranslateWords(for: currentPageIndex, storiesIndex: storiesIndex))
+             //   Story.stories[0].translate[1].components(separatedBy: " ")
             }
             .frame(height: 600)
             .padding(.bottom, 24)
@@ -115,20 +123,13 @@ func playSound(status: Bool) {
     }
 }
 
-func getWords(for pageIndex: Int) -> [String] {
-    // dizide belirtilen sayfa varsa ilgili kelimeleri döndürürü aksi halde boş dizi gönderir
-    guard pageIndex >= 0 && pageIndex < Story.stories[0].content.count else {
-        return []
-    }
-    return Story.stories[0].content[pageIndex].components(separatedBy: " ")
-}
- 
+
 
 
 
 struct StoryScreen_Previews: PreviewProvider {
     static var previews: some View {
-        StoryScreen()
+        StoryScreen(storiesIndex: 0)
     }
 }
 

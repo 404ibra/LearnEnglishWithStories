@@ -1,13 +1,13 @@
 //
-//  HomePage.swift
+//  LastlyAdded.swift
 //  LearnEnglishWithStories
 //
-//  Created by İbrahim Aktaş on 11.05.2023.
+//  Created by İbrahim Aktaş on 15.06.2023.
 //
 
 import SwiftUI
 
-struct FeatuderImages: View {
+struct LastlyAdded: View {
     var body: some View {
         @StateObject var MainVM = MainVievModel()
         
@@ -16,7 +16,7 @@ struct FeatuderImages: View {
         NavigationStack{
             ScrollView(.horizontal, showsIndicators:  false) {
                 HStack{
-                    ForEach(StoryVM) { index in
+                    ForEach(StoryVM.reversed().prefix(1)) { index in
                         NavigationLink {
                             StoryScreen(storiesIndex: index.storynumber)
                         } label: {
@@ -31,7 +31,7 @@ struct FeatuderImages: View {
                                             .padding(.trailing, 6)
                                         ZStack(alignment: .center){
                                             Rectangle()
-                                                .foregroundColor(Color(hex: "fa6c38").opacity(0.8))
+                                                .foregroundColor(.mainorange)
                                                 .frame(height: 60)
                                                 .frame(width: 249)
                                                
@@ -64,8 +64,8 @@ struct FeatuderImages: View {
     }
 
 
-struct HomePage_Previews: PreviewProvider {
+struct LastlyAdded_Previews: PreviewProvider {
     static var previews: some View {
-        FeatuderImages()
+        LastlyAdded()
     }
 }

@@ -44,7 +44,7 @@ struct MainView: View {
                             }
                         .padding(.bottom,25)
                         .padding(.top, 12)
-                    FeaturedView(HeadlineText: "En Günceller")
+                    LastlyAddedView(HeadlineText: "En Günceller")
                     //FeaturedView.v2 --film dialogları, şarkı sözleri gibi
                     DialogsFeatured(HeadlineText: "Diyaloglar")
                         .padding(.top,10)

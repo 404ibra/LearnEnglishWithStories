@@ -77,7 +77,7 @@ struct ReadButton: View {
                 Rectangle()
                     .frame(width: UIScreen.main.bounds.width * 0.8)
                     .frame(height: UIScreen.main.bounds.width * 0.17)
-                    .foregroundColor(Color(hex: "#184b74").opacity(0.85))
+                    .foregroundColor(.mainorange)
                     .cornerRadius(15)
                 Text(isLocked ? "Oku" : "Premium Hesaba Yükselt")
                     .LargeButtonFont()
@@ -86,7 +86,7 @@ struct ReadButton: View {
         }
         .padding()
             .navigationDestination(isPresented: $MainVM.readButton) {
-                StoryScreen()
+                StoryScreen(storiesIndex: 0)
             }
             
     }

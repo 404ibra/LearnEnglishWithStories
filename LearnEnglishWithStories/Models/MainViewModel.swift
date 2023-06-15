@@ -13,6 +13,7 @@ class MainVievModel: ObservableObject {
     @Published var searchText = ""
     @Published var readButton = false
     @Published var playbutton = false
+    @Published var isLongPressWord = false
 }
       
 

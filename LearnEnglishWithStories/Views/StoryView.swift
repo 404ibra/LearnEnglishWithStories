@@ -15,7 +15,9 @@ struct StoryView: View {
     
     let geometry = UIScreen.main.bounds
     let maxCharactersPerLine = 35
-    private var words: [String]
+    var words: [String]
+    
+    
     init(words: [String]) {
             self.words = words
         }
@@ -56,7 +58,7 @@ struct StoryView: View {
                                     let impactMed = UIImpactFeedbackGenerator(style: .heavy)
                                     impactMed.impactOccurred()
                                     // check true
-                                    MainVM.isLongPressWord = true
+                                   MainVM.isLongPressWord = true
                                     selectedWord = word
                                 }
                                 

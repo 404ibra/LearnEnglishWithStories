@@ -10,8 +10,7 @@ import SwiftUI
 struct LastlyAdded: View {
     var body: some View {
         @StateObject var MainVM = MainVievModel()
-        
-        let size = UIScreen.main.bounds
+     
         let StoryVM = Story.stories
         NavigationStack{
             ScrollView(.horizontal, showsIndicators:  false) {

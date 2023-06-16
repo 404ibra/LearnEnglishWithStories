@@ -11,14 +11,21 @@ struct FeatuderImages: View {
     var body: some View {
         @StateObject var MainVM = MainVievModel()
         
-        let size = UIScreen.main.bounds
+      
         let StoryVM = Story.stories
         NavigationStack{
             ScrollView(.horizontal, showsIndicators:  false) {
                 HStack{
                     ForEach(StoryVM) { index in
                         NavigationLink {
-                            StoryScreen(storiesIndex: index.storynumber)
+                            
+                            //StoryScreen(storiesIndex: index.storynumber)
+                            
+                            StoryPreview(index: index.storynumber)
+                            
+                          
+                                
+                        //    StoryScreen(storiesIndex: index.storynumber) hikayenin sayfası
                         } label: {
                             ZStack{
                                 VStack{
@@ -58,6 +65,9 @@ struct FeatuderImages: View {
                 //Hstack
             }//scrollview
         }//NavStack
+        
+ 
+      
 
 
         }//View

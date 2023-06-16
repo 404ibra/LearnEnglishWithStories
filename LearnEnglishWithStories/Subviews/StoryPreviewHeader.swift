@@ -30,7 +30,7 @@ struct StoryPreviewHeader: View {
                 }//HStack
                 .padding(.leading, 16)
                 .padding(.trailing,16)
-                .padding(.bottom, 20)
+                
             }//ZStack
             HStack{
                 Image(systemName: "arrow.backward.circle")

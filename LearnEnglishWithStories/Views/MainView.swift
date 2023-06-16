@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct MainView: View {
     
     @StateObject private var MainVM = MainVievModel()
@@ -29,10 +31,10 @@ struct MainView: View {
                 //Arama kısmına bir şey yazılmadıysa
                 else{
                     ScrollView{
-                    NavigationLink(destination: StoryPreview()) {
-                        ContinueSection()
-                            .padding(.top,16)
-                    }
+                        NavigationLink(destination: StoryPreview(index: 0)) {
+                            ContinueSection()
+                                .padding(.top,16)
+                        }
                     Divider()
                         .background(.gray)
                         .padding(.top,10)

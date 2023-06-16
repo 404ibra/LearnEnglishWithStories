@@ -22,9 +22,9 @@ struct StoryScreen: View {
     
      var StoryScreenVM = StoryScreenViewModel.self
     
- /*   init(storiesIndex: Int) {
+    init(storiesIndex: Int) {
             self.storiesIndex = storiesIndex
-        } */
+        }
 
     var body: some View {
         VStack{
@@ -46,9 +46,9 @@ struct StoryScreen: View {
                 //HStack
                 
                 
-                StoryView(words: StoryScreenVM.getWords(for: currentPageIndex, storiesIndex: storiesIndex))
+                StoryView(words: StoryScreenVM.getWords(for: currentPageIndex, storiesIndex: 1))
                 Divider()
-                StoryView(words: StoryScreenVM.getTranslateWords(for: currentPageIndex, storiesIndex: storiesIndex))
+                StoryView(words: StoryScreenVM.getTranslateWords(for: currentPageIndex, storiesIndex: 1))
              //   Story.stories[0].translate[1].components(separatedBy: " ")
             }
             .frame(height: 600)

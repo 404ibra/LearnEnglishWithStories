@@ -10,12 +10,26 @@ import SwiftUI
 struct StoryPreview: View {
     @State var isLocked: Bool = true
     @StateObject private var MainVM = MainVievModel()
+    
+    var StoryModel = Story.stories
+    
+    let index: Int
+    
+    init(index: Int) {
+        self.index = index
+    }
+    
     var body: some View {
         NavigationStack {
-            VStack(){
-                StoryPreviewHeader(PageName: "İstanbul'u Keşfediyoruz")
+            VStack{
+                StoryPreviewHeader(PageName: StoryModel[index].name)
+                Text(StoryModel[index].level)
+                    .font(.system(size: 18, weight: .light, design: .rounded))
+                    .alignH(alignment: .leading)
+                    .padding(.horizontal, 16)
                 ZStack{
-                    Image("istanbul_img")
+                    //fix
+                    Image(StoryModel[index].images)
                         .resizable()
                         .frame(height: 240)
                         .frame(width: UIScreen.main.bounds.width *  0.95)
@@ -40,18 +54,16 @@ struct StoryPreview: View {
                 Text("Bu serimizle birlikte üç imparatorluğun başkentliğni yapmış avrupanın en büyük metropolü olan İstanbul'un geçmişine ve geleceğine ışık tutuyoruz")
                     .DescriptionFont()
                     .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
+               
         
                 Spacer()
-              
-               
-                    ReadButton(isLocked: isLocked)
-                    
-                
-            
+                ReadButton(isLocked: isLocked)
                 Spacer()
 
             }
             .navigationBarBackButtonHidden(true)
+       
           // .frame(maxWidth: .infinity, maxHeight:  .infinity)
            // .background(.black)
         .ignoresSafeArea()
@@ -62,7 +74,7 @@ struct StoryPreview: View {
 
 struct StoryPreview_Previews: PreviewProvider {
     static var previews: some View {
-        StoryPreview()
+        StoryPreview(index: 0)
     }
 }
 

@@ -7,24 +7,33 @@
 
 import Foundation
 
+
+/*Story Model Sırasıyla eklenecekler
+
+ -Ortalama okuma süresi
+ -Seviye hk.
+ -Metinin ön açıklamassı
+ -metnin türü (teknoloji, spor, biyoloji.. )
+
+ 
+ */
 struct Story: Identifiable {
     var id = UUID()
     var storynumber: Int
     var name: String
     var images: String
     var level: String
+    var contentnames: [String]
     var content: [String]
     var translate: [String]
-    
-    
 
-    
     static var stories: [Story] = [
         Story(
             storynumber: 0,
             name: "İstanbul Gezisi",
               images: "istanbul_img",
               level:  "Orta Düzey",
+                contentnames: ["Yerebatan Sarnıcı", "Ayasofyanın Gizemler", "Boğazın Donması" ],
               content: [
                 "The Basilica Cistern, located in Istanbul, Turkey, is an ancient underground water storage structure. It was built during the reign of Emperor Justinian I in the 6th century AD and served as a reservoir for the Byzantine Great Palace.",
                 "Covering an area of approximately 9,800 square meters, the Basilica Cistern is an impressive architectural wonder. It consists of a vast chamber supported by a forest of 336 marble columns, each measuring about 9 meters in height. These columns were mostly recycled from older structures, giving the cistern a unique and eclectic appearance."
@@ -39,11 +48,12 @@ struct Story: Identifiable {
                 name: "Krallar Mezarlığı",
                 images: "egyptian.piramide",
                 level: "Orta Düzey",
+                contentnames: ["Kral Mezarlığı", "Nil Nehri", "Firavun Tutankomon" ],
                 content: [
-        "Thousands of years ago, the Ancient Egyptian civilization flourished on the fertile lands of the Nile River. During this time, Pharaohs were considered divine rulers and were revered throughout their lives. However, death was not seen as an end for them, but rather as the beginning of an eternal journey.The royal necropolis in Ancient Egypt was one of the places constructed to facilitate this eternal transition. This necropolis is famous for its enchanting silhouette of pyramids. These pyramids were magnificent monuments built to protect the souls and bodies of the Pharaohs. They served as a kind of afterlife home for them."
-        
-        ], translate: [
-        "Binlerce yıl önce, Nil Nehri'nin verimli topraklarında Antik Mısır uygarlığı yükseldi. Bu dönemde Firavunlar, tanrısal krallar olarak kabul edilir ve hayatta oldukları sürece büyük bir saygı görürlerdi. Ancak ölüm, onlar için sadece bir son değil, aynı zamanda ebedi bir yaşama geçişin başlangıcıydı. Antik Mısır'daki krallar mezarlığı, bu ebedi geçişi sağlamak için inşa edilen yerlerden biriydi. Bu mezarlık, piramitlerin büyülü siluetleriyle tanınır. Piramitler, Firavunların ruhlarını ve bedenlerini korumak için yapılan muhteşem anıtlardı. Onlar için bir nevi ölümden sonraki evdi."
+                "Thousands of years ago, the Ancient Egyptian civilization flourished on the fertile lands of the Nile River. During this time, Pharaohs were considered divine rulers and were revered throughout their lives. However, death was not seen as an end for them, but rather as the beginning of an eternal journey.The royal necropolis in Ancient Egypt was one of the places constructed to facilitate this eternal transition. This necropolis is famous for its enchanting silhouette of pyramids. These pyramids were magnificent monuments built to protect the souls and bodies of the Pharaohs. They served as a kind of afterlife home for them."
+                
+                ], translate: [
+                "Binlerce yıl önce, Nil Nehri'nin verimli topraklarında Antik Mısır uygarlığı yükseldi. Bu dönemde Firavunlar, tanrısal krallar olarak kabul edilir ve hayatta oldukları sürece büyük bir saygı görürlerdi. Ancak ölüm, onlar için sadece bir son değil, aynı zamanda ebedi bir yaşama geçişin başlangıcıydı. Antik Mısır'daki krallar mezarlığı, bu ebedi geçişi sağlamak için inşa edilen yerlerden biriydi. Bu mezarlık, piramitlerin büyülü siluetleriyle tanınır. Piramitler, Firavunların ruhlarını ve bedenlerini korumak için yapılan muhteşem anıtlardı. Onlar için bir nevi ölümden sonraki evdi."
     
     ])
     ]

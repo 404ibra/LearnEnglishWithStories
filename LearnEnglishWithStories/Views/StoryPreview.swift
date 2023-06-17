@@ -23,14 +23,8 @@ struct StoryPreview: View {
             NavigationStack {
                     VStack{
                         StoryPreviewHeader(PageName: StoryModel[index].name, isActiveted: $isActivate)
-                        Button {
-                            isActivate = true
-                        } label: {
-                            Text("buton")
-                        }
-
+                       
                         ScrollView {
-                          
                             HStack{
                                 Text(StoryModel[index].level)
                                     .font(.system(size: 18, weight: .light, design: .rounded))
@@ -40,9 +34,8 @@ struct StoryPreview: View {
                             }
                             .padding(.horizontal, 16)
 
+
                             ZStack{
-                            
-                                //fix
                                 Image(StoryModel[index].images)
                                     .resizable()
                                     .frame(height: 240)
@@ -68,8 +61,9 @@ struct StoryPreview: View {
                             }
                             Text("Bu serimizle birlikte üç imparatorluğun başkentliğni yapmış avrupanın en büyük metropolü olan İstanbul'un geçmişine ve geleceğine ışık tutuyoruz")
                                 .DescriptionFont()
-                                .padding(.horizontal, 4)
-                                .padding(.vertical, 8)
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 5)
+                                
                            
                             Text("İçerik:")
                                 .alignH(alignment: .leading)
@@ -94,6 +88,7 @@ struct StoryPreview: View {
         
     }
 }
+
 
 struct StoryPreview_Previews: PreviewProvider {
     static var previews: some View {

@@ -48,7 +48,7 @@ struct StoryPreviewHeader: View {
                 
                 Spacer()
                 Button {
-                    
+                    isActiveted = true
            //         rectangleIsShown = false
                     
                     //MainVM.readButton = true
@@ -77,8 +77,8 @@ struct StoryPreviewHeader: View {
 
  
 
-/*struct StoryPreviewHeader_Previews: PreviewProvider {
+struct StoryPreviewHeader_Previews: PreviewProvider {
     static var previews: some View {
-        StoryPreviewHeader(PageName: "İstanbul'u Keşfediyoruz", rectangleIsShown: true)
+        StoryPreviewHeader(PageName: "İstanbul'u Keşfediyoruz", isActiveted:.constant(true))
     }
-}*/
+}

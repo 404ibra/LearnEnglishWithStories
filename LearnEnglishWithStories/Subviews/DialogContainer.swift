@@ -13,29 +13,12 @@ struct DialogContainer: View {
     
     var body: some View {
         VStack{
-            Text("Upss")
+            Text("Upsss..")
                 .font(.title2)
                 .bold()
                 .padding()
-            Text("Bu içerik premium kullanıcılar için istersen bir adet reklam izleyerek ilk sayfasını okuyabilirsin. İstersen de bu içerikle birlikte tüm içeriklere sınırsız erişim için premium hesaba geçiş yapabilirsin")
-                .font(.body)
-            
-            Button {
-                print("")
-            } label: {
-                ZStack{
-                    RoundedRectangle(cornerRadius: 20)
-                        .foregroundColor(.mainlightblue)
-                    Text("Reklam İzle")
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundColor(.white)
-                        .padding()
-                    
-                }
-                .padding(.top, 5)
-                .padding(.horizontal)
-                .padding(.vertical, 0)
-            }
+            Text("Bu içerik yalnızca Premium Üyelerimiz için. Dilersen ilk sayfayı reklam izleyerek erişebilirsin.")
+                .font(.system(size: 17, design: .rounded))
             
             Button {
                 print("")
@@ -43,18 +26,18 @@ struct DialogContainer: View {
                 ZStack{
                     RoundedRectangle(cornerRadius: 20)
                         .foregroundColor(.mainorange)
-                    Text("Premium Hesaba Yükselt")
+                    Text("Hesabımı Yükselt")
                         .font(.system(size: 16, weight: .bold))
                         .foregroundColor(.white)
                         .padding()
-                    
                 }
                 .padding(.top, 5)
                 .padding(.horizontal)
                 .padding(.vertical, 0)
             }
-
-            
+            Text("Reklam izleyerek devam et")
+                .font(.system(size: 13))
+                .padding(.vertical, 8)
         }
         .fixedSize(horizontal: false, vertical: true)
         .padding()
@@ -87,12 +70,13 @@ struct DialogContainer: View {
         }
     }
     
+    
+    
     func closeDialog(MainVM: MainVievModel){
         withAnimation {
             MainVM.offset = 1000
             isActivated = false
-          // isActivated = false
-            
+          // isActivated = false 
         }
     }
     
@@ -101,9 +85,9 @@ struct DialogContainer: View {
 
 
 
-/*struct DialogContainer_Previews: PreviewProvider {
+struct DialogContainer_Previews: PreviewProvider {
     static var previews: some View {
-        DialogContainer()
+        DialogContainer(isActivated: .constant(true))
     }
 }
-*/
+

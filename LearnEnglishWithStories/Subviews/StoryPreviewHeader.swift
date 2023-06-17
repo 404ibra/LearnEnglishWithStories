@@ -9,9 +9,13 @@ import SwiftUI
 
 struct StoryPreviewHeader: View {
     var PageName: String
+    
     @StateObject private var MainVM = MainVievModel()
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.colorScheme) var colorScheme
+    
+    @Binding var isActiveted: Bool
+    
     var body: some View {
 
         ZStack(alignment: .topLeading){
@@ -43,23 +47,38 @@ struct StoryPreviewHeader: View {
                     }
                 
                 Spacer()
-                Text("Favorilerime Ekle")
-                    .font(.system(size: 18, weight: .semibold, design: .rounded))
-                    .foregroundColor(Color(hex: "fa6c38"))
-            }//HStack
+                Button {
+                    
+           //         rectangleIsShown = false
+                    
+                    //MainVM.readButton = true
+                } label: {
+                    Text("Okumaya Başla")
+                        .font(.system(size: 18, weight: .semibold, design: .rounded))
+                        .foregroundColor(Color(hex: "fa6c38"))
+                        
+                }
+
+              
+                 //   .navigationDestination(isPresented: $MainVM.readButton) {
+                   //     StoryScreen(storiesIndex: 0)
+                    }
             .padding(.horizontal, 24)
             .padding(.top, 60)
            
+            }//HStack
+         
+      
                
         }//ZStack
         
     }
-}
+//}
 
  
 
-struct StoryPreviewHeader_Previews: PreviewProvider {
+/*struct StoryPreviewHeader_Previews: PreviewProvider {
     static var previews: some View {
-        StoryPreviewHeader(PageName: "İstanbul'u Keşfediyoruz")
+        StoryPreviewHeader(PageName: "İstanbul'u Keşfediyoruz", rectangleIsShown: true)
     }
-}
+}*/

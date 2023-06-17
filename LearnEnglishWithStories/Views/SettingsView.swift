@@ -12,26 +12,20 @@ struct SettingsView: View {
     var body: some View {
         VStack {
             PageHeader(PageName: "Ayarlar", searchicon: false)
-            GeometryReader { geometry in
-                ScrollView(.vertical, showsIndicators: false) {
-                        SettingsOptionContainers(buttontext: "Premium Ol", imagename: "premium", systemIcon: false, iconcolor: .orange)
-                        SettingsOptionContainers(buttontext: "Dil Ayarları", imagename: "language", systemIcon: false, iconcolor: .orange)
-                        SettingsOptionContainers(buttontext: "Bildirim Ayarları", imagename: "bell", systemIcon: true, iconcolor: .orange)
-                        SettingsOptionContainers(buttontext: "İletişime Geç", imagename: "envelope", systemIcon: true, iconcolor: .orange)
-                        SettingsOptionContainers(buttontext: "Hesabımı Sil", imagename: "trash", systemIcon: true, iconcolor: .red)
-                        .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
-                }.frame(width: geometry.size.width)
+              
+            VStack {
+                OptionImage(imagename: "premium", circlecolor: .gray.opacity(0.2), optionname: "Premium ", systemtype1: true)
+                OptionImage(imagename: "language", circlecolor: .gray.opacity(0.2), optionname: "Dil Değiştir", systemtype1: true)
+                OptionImage(imagename: "trash", circlecolor: .gray.opacity(0.2), optionname: "Dil Değiştir", systemtype1: false)
+            }.alignH(alignment: .leading)
+                .padding(.horizontal,16)
+
+                Spacer()
+                
             }
-            
- 
-                
-                
-            
-      
         }
-        .ignoresSafeArea()
     }
-}
+
     
     struct SettingsView_Previews: PreviewProvider {
         static var previews: some View {
@@ -39,3 +33,34 @@ struct SettingsView: View {
         }
     }
 
+
+struct OptionImage: View {
+    
+    let imagename: String
+    let circlecolor: Color
+    let optionname: String
+    let systemtype1: Bool
+    var body: some View {
+        HStack{
+            ZStack{
+                if systemtype1 == true {
+                    Circle()
+                        .frame(height: 40)
+                        .foregroundColor(circlecolor)
+                    Image(imagename)
+                        .resizable()
+                        .frame(width: 25, height: 25)
+                } else {
+                    Circle()
+                        .frame(height: 40)
+                        .foregroundColor(circlecolor)
+                    Image(systemName: imagename)
+                        .resizable()
+                        .frame(width: 25, height: 25)
+                }
+            }//ZStack
+            Text(optionname)
+                .font(.system(size: 17, weight: .medium, design: .rounded))
+        }
+    }
+}

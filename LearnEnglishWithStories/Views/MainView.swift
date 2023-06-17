@@ -16,7 +16,7 @@ struct MainView: View {
 
     
     var body: some View {
-        
+         
         NavigationStack{
             VStack(alignment: .leading, spacing: 0){
                 PageHeader(PageName: "Kütüphanem", searchicon: true)

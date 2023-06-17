@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import AVFoundation
+
+
+
 
 struct StoryView: View {
     @StateObject private var MainVM = MainVievModel()
     
     @State private var selectedWord: String?
-    
+    let synthesizer = AVSpeechSynthesizer()
     
     let geometry = UIScreen.main.bounds
     let maxCharactersPerLine = 35
@@ -58,7 +62,7 @@ struct StoryView: View {
                                     let impactMed = UIImpactFeedbackGenerator(style: .heavy)
                                     impactMed.impactOccurred()
                                     // check true
-                                   MainVM.isLongPressWord = true
+                                    MainVM.isLongPressWord = true
                                     selectedWord = word
                                 }
                                 
@@ -101,6 +105,12 @@ struct StoryView: View {
                                 HStack{
                                     Image(systemName: "waveform")
                                     Text("Dinle")
+                                }.onTapGesture {
+                                    
+                                    let uttarance = AVSpeechUtterance(string: selectedWord ?? "")
+                                    uttarance.voice = AVSpeechSynthesisVoice(language: "en-US")
+                                    uttarance.rate = 0.45
+                                    synthesizer.speak(uttarance)
                                 }
                                 Spacer()
                                 HStack{

@@ -14,6 +14,9 @@ class MainVievModel: ObservableObject {
     @Published var readButton = false
     @Published var playbutton = false
     @Published var isLongPressWord = false
+    @Published var offset: CGFloat = 1000
+    @Published var rectangleIsShown = false
+    
 }
       
 

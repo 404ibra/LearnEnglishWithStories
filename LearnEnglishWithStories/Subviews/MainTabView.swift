@@ -24,9 +24,17 @@ struct MainTabView: View {
                 }
               
             }
+        }.onAppear {
+            let tabBarAppearance = UITabBarAppearance()
+            tabBarAppearance.configureWithDefaultBackground()
+            UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
         }
-             
+      
+        
             .accentColor(.orange)
+       
+            
+            
             
             }
         

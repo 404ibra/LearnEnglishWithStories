@@ -28,5 +28,4 @@ struct StoryScreenViewModel {
         }
         return Story.stories[storiesIndex].translate[pageIndex].components(separatedBy: " ")
     }
-
 }

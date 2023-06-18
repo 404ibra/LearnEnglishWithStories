@@ -12,15 +12,22 @@ import SwiftUI
 struct MainView: View {
     
     @StateObject private var MainVM = MainVievModel()
+ 
     @State var SelectedTab : Int = 0
+    
 
     
+
     var body: some View {
-         
+       
         NavigationStack{
             VStack(alignment: .leading, spacing: 0){
                 PageHeader(PageName: "Kütüphanem", searchicon: true)
                 
+                 
+                
+                
+
                 // TO DO eğer alt taraf yazılan texte göre değişebilirse yap yoksa yeni sayfaya yönlendir
                 if MainVM.isSearchVisible == true {
                     
@@ -46,6 +53,8 @@ struct MainView: View {
                             }
                         .padding(.bottom,25)
                         .padding(.top, 12)
+                        
+                       
                     LastlyAddedView(HeadlineText: "En Günceller")
                     //FeaturedView.v2 --film dialogları, şarkı sözleri gibi
                     DialogsFeatured(HeadlineText: "Diyaloglar")

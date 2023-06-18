@@ -21,8 +21,8 @@ struct FeatuderImages: View {
                             
                             //StoryScreen(storiesIndex: index.storynumber)
                             
-                            StoryPreview(index: index.storynumber)
-                            
+                           // StoryPreview(index: index.storynumber)
+                            StoryScreen(storiesIndex: 0)
                           
                                 
                         //    StoryScreen(storiesIndex: index.storynumber) hikayenin sayfası

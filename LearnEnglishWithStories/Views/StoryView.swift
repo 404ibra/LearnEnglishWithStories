@@ -8,23 +8,26 @@
 import SwiftUI
 import AVFoundation
 
-
-
+let synthesizer = AVSpeechSynthesizer()
 
 struct StoryView: View {
     @StateObject private var MainVM = MainVievModel()
+    @ObservedObject private var ArticleVM = ArticleViewModel()
+    
+   
     
     @State private var selectedWord: String?
-    let synthesizer = AVSpeechSynthesizer()
+    
     
     let geometry = UIScreen.main.bounds
     let maxCharactersPerLine = 35
     var words: [String]
-    
-    
+
+ 
     init(words: [String]) {
             self.words = words
         }
+
 
     
     var body: some View {
@@ -32,18 +35,23 @@ struct StoryView: View {
         var currentLine: [String] = []
         var lineLength = 0
         
-        for word in words {
-            let wordLength = word.count
+        
+ 
             
-            if lineLength + wordLength > maxCharactersPerLine {
-                lines.append(currentLine)
-                currentLine = [word]
-                lineLength = wordLength + 1 // +1 for space
-            } else {
-                currentLine.append(word)
-                lineLength += wordLength + 1 // +1 for space
+      
+            for word in words {
+                let wordLength = word.count
+                if lineLength + wordLength > maxCharactersPerLine {
+                    lines.append(currentLine)
+                    currentLine = [word]
+                    lineLength = wordLength + 1 // +1 for space
+                } else {
+                    currentLine.append(word)
+                    lineLength += wordLength + 1 // +1 for space
+                }
             }
-        }
+        
+        
         
         if !currentLine.isEmpty {
             lines.append(currentLine)
@@ -64,6 +72,7 @@ struct StoryView: View {
                                     // check true
                                     MainVM.isLongPressWord = true
                                     selectedWord = word
+                                    
                                 }
                                 
                         }
@@ -133,10 +142,11 @@ struct StoryView: View {
 }
 
 
-struct StoryView_Previews: PreviewProvider {
+/*struct StoryView_Previews: PreviewProvider {
+   
     static var previews: some View {
-        StoryView(words: Story.stories[0].content[1].components(separatedBy: " "))
+        StoryView(words: ArticleVM.getContent(for: 0, storyIndex: 1))
     }
-}
+}*/
 
 

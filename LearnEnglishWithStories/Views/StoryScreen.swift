@@ -12,6 +12,8 @@ var player: AVAudioPlayer!
 
 struct StoryScreen: View {
     @StateObject private var MainVM = MainVievModel()
+    @ObservedObject private var ArticleVM = ArticleViewModel()
+    
     
     @State var DarkTheme: Bool = false
     @State var NightShift: Bool = false
@@ -21,9 +23,11 @@ struct StoryScreen: View {
     let storiesIndex: Int
     
      var StoryScreenVM = StoryScreenViewModel.self
+     
     
     init(storiesIndex: Int) {
             self.storiesIndex = storiesIndex
+           
         }
 
     var body: some View {
@@ -46,9 +50,11 @@ struct StoryScreen: View {
                 //HStack
                 
                 
-                StoryView(words: StoryScreenVM.getWords(for: currentPageIndex, storiesIndex: 1))
+           /*     StoryView(words: StoryScreenVM.getWords(for: currentPageIndex, storiesIndex: 1))*/
+                StoryView(words: ArticleVM.getContent(for: currentPageIndex, storyIndex: 1))
                 Divider()
-                StoryView(words: StoryScreenVM.getTranslateWords(for: currentPageIndex, storiesIndex: 1))
+                StoryView(words: ArticleVM.getTranslate(for: currentPageIndex, storyIndex: 1))
+          //      StoryView(words: StoryScreenVM.getTranslateWords(for: currentPageIndex, storiesIndex: 1))
              //   Story.stories[0].translate[1].components(separatedBy: " ")
             }
             .frame(height: 600)
@@ -70,7 +76,7 @@ struct StoryScreen: View {
                 if currentPageIndex >= 0 && currentPageIndex < Story.stories[0].content.count {
                     currentPageIndex += 1
                 }else {
-                    print("ileri sayfa yok ki")
+                 //   return
                 }
             }
 

@@ -6,13 +6,27 @@
 //
 
 import SwiftUI
+import AVFoundation
+
 
 struct PlayBackControlButtons: View {
     @StateObject private var MainVM = MainVievModel()
+    @StateObject private var SoundVM = SoundManager()
+
+    
+
     
     let backpage: () -> Void
     let nextpage: () -> Void
     
+    let audioURL: String
+    
+    init(backpage: @escaping () -> Void, nextpage: @escaping () -> Void, audioURL: String) {
+        self.backpage = backpage
+        self.nextpage = nextpage
+        self.audioURL = audioURL
+    }
+   
     var body: some View {
         HStack{
             Image(systemName: "arrow.backward")
@@ -27,7 +41,10 @@ struct PlayBackControlButtons: View {
             }, iconname: "gobackward.10")
             Button {
                 MainVM.playbutton.toggle()
-                playSound(status: MainVM.playbutton)
+                //playSound(status: MainVM.playbutton)
+                SoundVM.downloadAndPlay(audio: audioURL, stopButton: MainVM.playbutton)
+                 
+               
             } label: {
                 ZStack{
                     Circle()

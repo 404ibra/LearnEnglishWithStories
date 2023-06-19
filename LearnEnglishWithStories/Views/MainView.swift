@@ -12,9 +12,12 @@ import SwiftUI
 struct MainView: View {
     
     @StateObject private var MainVM = MainVievModel()
- 
+    @ObservedObject private var ArticleVM = ArticleViewModel()
     @State var SelectedTab : Int = 0
     
+    init(){
+        ArticleVM.getData()
+    }
 
     
 
@@ -24,9 +27,7 @@ struct MainView: View {
             VStack(alignment: .leading, spacing: 0){
                 PageHeader(PageName: "Kütüphanem", searchicon: true)
                 
-                 
-                
-                
+               
 
                 // TO DO eğer alt taraf yazılan texte göre değişebilirse yap yoksa yeni sayfaya yönlendir
                 if MainVM.isSearchVisible == true {

@@ -6,31 +6,38 @@
 //
 
 import SwiftUI
+import Kingfisher
+
 
 struct FeatuderImages: View {
+    @StateObject var MainVM = MainVievModel()
+    @ObservedObject private var ArticleVM = ArticleViewModel()
+    
+    
+    init() {
+        ArticleVM.getData()
+    }
+    
+    let StoryVM = Story.stories
+    
     var body: some View {
-        @StateObject var MainVM = MainVievModel()
-        
-      
-        let StoryVM = Story.stories
         NavigationStack{
             ScrollView(.horizontal, showsIndicators:  false) {
                 HStack{
-                    ForEach(StoryVM) { index in
+                    ForEach(Array(ArticleVM.article.indices), id: \.self) { index in
                         NavigationLink {
-                            
                             //StoryScreen(storiesIndex: index.storynumber)
                             
                            // StoryPreview(index: index.storynumber)
-                            StoryScreen(storiesIndex: 0)
+                          //  StoryScreen(storiesIndex: index)
                           
                                 
-                        //    StoryScreen(storiesIndex: index.storynumber) hikayenin sayfası
+                            StoryScreen(storiesIndex:index, audioURL: ArticleVM.article[index].sounds[0])
                         } label: {
                             ZStack{
                                 VStack{
                                     ZStack(alignment: .bottom){
-                                        Image(index.images)
+                                        KFImage(URL(string: ArticleVM.article[index].images))
                                             .resizable()
                                             .frame(height: 207)
                                             .frame(width: 249)
@@ -46,14 +53,14 @@ struct FeatuderImages: View {
                                             //.indigo.opacity(0.5)
                                                 .roundedCornerRectangle(radius: 12, corners: [.bottomRight, .bottomLeft])
                                                 .padding(.trailing, 6)
-                                            Text(index.level)
+                                            Text(ArticleVM.article[index].level)
                                                 .font(.system(size: 18, weight: .bold, design: .rounded))
                                                 .foregroundColor(.white)
                                         }
                                     }
                                     .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 2)
                                     //ZStack
-                                    Text(index.name)
+                                    Text(ArticleVM.article[index].name)
                                         .font(.system(size: 18, weight: .light, design: .rounded))
                                 }
                             }//Label inside VStack

@@ -6,23 +6,32 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct LastlyAdded: View {
+    @StateObject var MainVM = MainVievModel()
+    @ObservedObject private var ArticleVM = ArticleViewModel()
+    
+    let StoryVM = Story.stories
+    
+    init(){
+        ArticleVM.getData()
+    }
+    
+    
     var body: some View {
-        @StateObject var MainVM = MainVievModel()
-     
-        let StoryVM = Story.stories
         NavigationStack{
             ScrollView(.horizontal, showsIndicators:  false) {
                 HStack{
-                    ForEach(StoryVM.reversed().prefix(1)) { index in
+                    ForEach(ArticleVM.article.prefix(1)) { index in
                         NavigationLink {
-                            StoryScreen(storiesIndex: index.storynumber)
+                         //   StoryScreen(storiesIndex: index.storynumber)
                         } label: {
                             ZStack{
                                 VStack{
                                     ZStack(alignment: .bottom){
-                                        Image(index.images)
+                                        
+                                        KFImage(URL(string: index.images))
                                             .resizable()
                                             .frame(height: 207)
                                             .frame(width: 249)

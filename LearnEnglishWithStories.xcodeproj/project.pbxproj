@@ -38,7 +38,7 @@
 		6C3816B02A30A22C000E498F /* DialogsFeatured.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3816AF2A30A22C000E498F /* DialogsFeatured.swift */; };
 		6C44ECB82A3DAF6600053B8F /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C44ECB72A3DAF6600053B8F /* UserModel.swift */; };
 		6C55FC362A348320000DFCEC /* TextFieldAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C55FC352A348320000DFCEC /* TextFieldAnimation.swift */; };
-		6C6583542A37B046008AB4AB /* 1_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6C6583532A37B046008AB4AB /* 1_1.mp3 */; };
+		6C59AAE32A40862F00CBAAE9 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6C59AAE22A40862F00CBAAE9 /* Kingfisher */; };
 		6C701AEC2A3DFF1F00D21E2E /* DialogContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C701AEB2A3DFF1F00D21E2E /* DialogContainer.swift */; };
 		6C701AEE2A3F02BC00D21E2E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C701AED2A3F02BC00D21E2E /* GoogleService-Info.plist */; };
 		6C701AF12A3F038B00D21E2E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6C701AF02A3F038B00D21E2E /* FirebaseAuth */; };
@@ -93,7 +93,7 @@
 		6C3816AF2A30A22C000E498F /* DialogsFeatured.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsFeatured.swift; sourceTree = "<group>"; };
 		6C44ECB72A3DAF6600053B8F /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		6C55FC352A348320000DFCEC /* TextFieldAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldAnimation.swift; sourceTree = "<group>"; };
-		6C6583532A37B046008AB4AB /* 1_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = 1_1.mp3; path = ../../../../../Downloads/1_1.mp3; sourceTree = "<group>"; };
+		6C59AAE42A40E2AA00CBAAE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6C701AEB2A3DFF1F00D21E2E /* DialogContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogContainer.swift; sourceTree = "<group>"; };
 		6C701AED2A3F02BC00D21E2E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6C701AF82A3F12C000D21E2E /* ArticlesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesViewModel.swift; sourceTree = "<group>"; };
@@ -120,6 +120,7 @@
 				6C701AF72A3F038B00D21E2E /* FirebaseStorage in Frameworks */,
 				6C701AF12A3F038B00D21E2E /* FirebaseAuth in Frameworks */,
 				6C701AF52A3F038B00D21E2E /* FirebaseFirestore in Frameworks */,
+				6C59AAE32A40862F00CBAAE9 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,7 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				6CDA2A922A39F61B00535EDA /* 1_2.mp3 */,
-				6C6583532A37B046008AB4AB /* 1_1.mp3 */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -192,6 +192,7 @@
 		6C1B49BC2A0D263700428512 /* LearnEnglishWithStories */ = {
 			isa = PBXGroup;
 			children = (
+				6C59AAE42A40E2AA00CBAAE9 /* Info.plist */,
 				6C701AED2A3F02BC00D21E2E /* GoogleService-Info.plist */,
 				6CDD15C52A3B4FB200C40080 /* ViewModes */,
 				6C55FC342A348310000DFCEC /* Utils */,
@@ -313,6 +314,7 @@
 				6C701AF22A3F038B00D21E2E /* FirebaseDatabase */,
 				6C701AF42A3F038B00D21E2E /* FirebaseFirestore */,
 				6C701AF62A3F038B00D21E2E /* FirebaseStorage */,
+				6C59AAE22A40862F00CBAAE9 /* Kingfisher */,
 			);
 			productName = LearnEnglishWithStories;
 			productReference = 6C1B49BA2A0D263700428512 /* LearnEnglishWithStories.app */;
@@ -344,6 +346,7 @@
 			mainGroup = 6C1B49B12A0D263700428512;
 			packageReferences = (
 				6C701AEF2A3F038B00D21E2E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				6C59AAE12A40862F00CBAAE9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 6C1B49BB2A0D263700428512 /* Products */;
 			projectDirPath = "";
@@ -359,7 +362,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6C6583542A37B046008AB4AB /* 1_1.mp3 in Resources */,
 				6C1B49C52A0D263800428512 /* Preview Assets.xcassets in Resources */,
 				6C701AEE2A3F02BC00D21E2E /* GoogleService-Info.plist in Resources */,
 				6C1B49C22A0D263800428512 /* Assets.xcassets in Resources */,
@@ -547,6 +549,7 @@
 				DEVELOPMENT_TEAM = KC9Z5ZJF65;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LearnEnglishWithStories/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -576,6 +579,7 @@
 				DEVELOPMENT_TEAM = KC9Z5ZJF65;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LearnEnglishWithStories/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -618,6 +622,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6C59AAE12A40862F00CBAAE9 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		6C701AEF2A3F038B00D21E2E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -629,6 +641,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6C59AAE22A40862F00CBAAE9 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6C59AAE12A40862F00CBAAE9 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		6C701AF02A3F038B00D21E2E /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6C701AEF2A3F038B00D21E2E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

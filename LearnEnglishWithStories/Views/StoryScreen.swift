@@ -12,34 +12,33 @@ var player: AVAudioPlayer!
 
 struct StoryScreen: View {
     @StateObject private var MainVM = MainVievModel()
-    @ObservedObject private var ArticleVM = ArticleViewModel()
+    @ObservedObject private var ArticleMan = ArticleManager()
+    @ObservedObject private var TranslateMan = TranslateManager()
     
     
     @State var DarkTheme: Bool = false
     @State var NightShift: Bool = false
     @State private var timing: Double = 0.0
     @State private var currentPageIndex = 0
+    var storiesIndex: Int
+    var audioURL: String
     
-    let storiesIndex: Int
-    
-     var StoryScreenVM = StoryScreenViewModel.self
-     
-    
-    init(storiesIndex: Int) {
+    init(storiesIndex: Int, audioURL: String) {
             self.storiesIndex = storiesIndex
-           
+            self.audioURL = audioURL
         }
 
+    
     var body: some View {
         VStack{
             ScrollView(showsIndicators: false) {
                 HStack{
-                  
                     Spacer()
                     Image(systemName: DarkTheme ? "moon" : "moon.fill")
                         .onTapGesture {
                             DarkTheme.toggle()
                             NightShift.toggle()
+                            
                     }
                     Image(systemName: "list.bullet")
                     Image(systemName: "book")
@@ -50,13 +49,12 @@ struct StoryScreen: View {
                 //HStack
                 
                 
-           /*     StoryView(words: StoryScreenVM.getWords(for: currentPageIndex, storiesIndex: 1))*/
-                StoryView(words: ArticleVM.getContent(for: currentPageIndex, storyIndex: 1))
+         
+                StoryView(words: ArticleMan.getContent(for: currentPageIndex, storyIndex: storiesIndex))
                 Divider()
-                StoryView(words: ArticleVM.getTranslate(for: currentPageIndex, storyIndex: 1))
-          //      StoryView(words: StoryScreenVM.getTranslateWords(for: currentPageIndex, storiesIndex: 1))
-             //   Story.stories[0].translate[1].components(separatedBy: " ")
+                StoryView(words: TranslateMan.getTranslate(for: currentPageIndex, storyIndex: storiesIndex))
             }
+            
             .frame(height: 600)
             .padding(.bottom, 24)
             .background(
@@ -66,19 +64,22 @@ struct StoryScreen: View {
             )
             
             Spacer()
-            PlayBackControlButtons {
+          
+            
+            PlayBackControlButtons(backpage: {
                 if currentPageIndex > 0 {
                     currentPageIndex -= 1
                 } else {
                     print("önceki sayfa mevcut deil")
                 }
-            } nextpage: {
+            }, nextpage: {
                 if currentPageIndex >= 0 && currentPageIndex < Story.stories[0].content.count {
                     currentPageIndex += 1
                 }else {
                  //   return
                 }
-            }
+            }, audioURL: audioURL)
+            
 
 //HStack
             VStack{
@@ -133,9 +134,9 @@ func playSound(status: Bool) {
 
 
 
-struct StoryScreen_Previews: PreviewProvider {
+/*Ωstruct StoryScreen_Previews: PreviewProvider {
     static var previews: some View {
-        StoryScreen(storiesIndex: 0)
+        StoryScreen(storiesIndex: 1)
     }
-}
+}*/
 

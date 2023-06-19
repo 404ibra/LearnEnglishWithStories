@@ -23,7 +23,6 @@ struct ProfileView: View {
                         .padding(.leading, 16)
                         .padding(.vertical, 32)
                     VStack {
-                        
                             Image("istanbul_img")
                                 .resizable()
                                 .frame(height: 240)

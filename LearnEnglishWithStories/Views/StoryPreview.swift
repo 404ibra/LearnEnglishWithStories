@@ -13,6 +13,8 @@ struct StoryPreview: View {
     @State var isActivate: Bool = false
     
     var StoryModel = Story.stories
+    @ObservedObject private var ArticleVM = ArticleViewModel()
+    
     let index: Int
     init(index: Int) {
         self.index = index

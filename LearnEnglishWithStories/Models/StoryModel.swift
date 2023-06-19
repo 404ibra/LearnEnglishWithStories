@@ -17,6 +17,7 @@ import Foundation
 
  
  */
+
 struct Story: Identifiable {
     var id = UUID()
     var storynumber: Int

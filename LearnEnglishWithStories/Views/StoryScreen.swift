@@ -11,15 +11,19 @@ import AVFoundation
 var player: AVAudioPlayer!
 
 struct StoryScreen: View {
-    @StateObject private var MainVM = MainVievModel()
+    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.colorScheme) var colorScheme
+    
     @ObservedObject private var ArticleMan = ArticleManager()
     @ObservedObject private var TranslateMan = TranslateManager()
-    @Environment(\.presentationMode) var presentationMode
+    
+    @StateObject private var MainVM = MainVievModel()
     
     @State var DarkTheme: Bool = false
     @State var NightShift: Bool = false
     @State private var currentPageIndex = 0
 
+    let geometry = UIScreen.main.bounds
     
     var articleIndex: Int
     var articleData: String
@@ -33,54 +37,75 @@ struct StoryScreen: View {
             self.audioURL = audioURL
         }
 
-    
     var body: some View {
         VStack{
             //Learning Language
             ZStack(alignment: .topLeading){
                 Rectangle()
-                    .frame(height: 140)
-                    .foregroundColor(.mainlightblue)
+                    .frame(height: 100)
+                    .foregroundColor(colorScheme == .dark
+                                     ? .maindarkblue
+                                     : .white
+                    )
                     .ignoresSafeArea()
-                HStack{
-                    Button {
-                        presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        Image(systemName: "chevron.backward")
-                    }//Button
-                    .padding(.horizontal, 16)
-
+                VStack{
+                    HStack{
+                        Image(systemName: "arrow.backward.circle")
+                            .resizable()
+                            .frame(height: 30)
+                            .frame(width: 30)
+                            .foregroundColor(Color(hex: "fa6c38"))
+                            .onTapGesture {
+                               presentationMode.wrappedValue.dismiss()
+                            }
+                        
+                        Spacer()
+                        Button {
+                            //TO DO
+                        } label: {
+                            Text("Sayfa Ayarları")
+                                .font(.system(size: 18, weight: .semibold, design: .rounded))
+                                .foregroundColor(Color(hex: "fa6c38"))
+                        }
+                            }
+              
+                    HStack{
+                        Text(articleData)
+                            .font(.system(size: 20, weight: .medium, design: .rounded))
+                            .foregroundColor(.mainorange)
+                        Text("(Ortalama 15 dakika)")
+                            .font(.system(size: 14.5, weight: .light, design: .rounded))
+                            .foregroundColor(.gray.opacity(0.8))
+                            .padding(.leading,15)
+                    }
+                        .alignH(alignment: .leading)
+                        .padding(.top, 25)
+                    
                 }
+                .padding(.horizontal, 24)
+                .padding(.top, 30)
             }
             
-            HStack{
-                Text(articleData)
-                    .font(.system(size: 17.5, weight: .semibold, design: .rounded))
-                    .foregroundColor(.mainorange)
-                Spacer()
-                Image(systemName: "gear")
-                    .font(.system(size: 15, weight: .light, design: .rounded))
-                    .foregroundColor(.gray)
-                    .clipShape(Circle())
-            }
-            .padding(.horizontal, 16)
+       
             
                 ScrollView {
-                        StoryView(words: ArticleMan.getContent(for: currentPageIndex, storyIndex: articleIndex))
+                    StoryView(words: ArticleMan.getContent(for: currentPageIndex, storyIndex: articleIndex), isTranslate: false)
                 }
-                .frame(height: 240)
+                .frame(height: geometry.size.height/4)
             
             Divider()
                 .padding(.vertical,15)
-        
             
             //Main Language
             ScrollView {
-                StoryView(words: TranslateMan.getTranslate(for: currentPageIndex, storyIndex: articleIndex))
+                StoryView(words: TranslateMan.getTranslate(for: currentPageIndex, storyIndex: articleIndex), isTranslate: true)
             }
-            .frame(height: 240)
+            .frame(height: geometry.size.height/4)
             
+            Divider()
+                .padding(.top,20)
             Spacer()
+                
             
             PlayBackControlButtons(backpage: {
                 if currentPageIndex > 0 {

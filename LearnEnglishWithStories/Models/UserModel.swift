@@ -9,6 +9,7 @@ import Foundation
 
 
 struct UserModel {
+    var isPremium: Bool
     var lastStories: [String]
     var favWords: [String]
     var favStories: [String]
@@ -17,12 +18,12 @@ struct UserModel {
     var history: [String]
     
     static var currentUser: UserModel =
-    UserModel(lastStories: ["a", "b"],
+    UserModel(
+              isPremium: false,
+              lastStories: ["a", "b"],
               favWords: ["ss", "dd"],
               favStories: ["ali"],
               medals: [MedalModel.medals[0]],
               level: 10/5,
               history: ["hiç okumadı"])
-    
-    
 }

@@ -74,7 +74,6 @@ class TranslateManager: ArticleViewModel {
 
 
 class SoundManager: ObservableObject{
-    
     var player = AVPlayer()
 
     func downloadAndPlay(audio: String, stopButton: Bool){

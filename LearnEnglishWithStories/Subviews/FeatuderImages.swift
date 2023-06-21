@@ -32,7 +32,7 @@ struct FeatuderImages: View {
                           //  StoryScreen(storiesIndex: index)
                           
                                 
-                            StoryScreen(storiesIndex:index, audioURL: ArticleVM.article[index].sounds[0])
+                            StoryScreen(articleIndex:index, articleData: ArticleVM.article[index].name, contentCount: ArticleVM.article[index].content.count, audioURL: ArticleVM.article[index].sounds[0])
                         } label: {
                             ZStack{
                                 VStack{
@@ -72,7 +72,6 @@ struct FeatuderImages: View {
                 //Hstack
             }//scrollview
         }//NavStack
-        
  
       
 

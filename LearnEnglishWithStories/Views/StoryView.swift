@@ -12,9 +12,7 @@ let synthesizer = AVSpeechSynthesizer()
 
 struct StoryView: View {
     @StateObject private var MainVM = MainVievModel()
-    @ObservedObject private var ArticleVM = ArticleViewModel()
     
-   
     
     @State private var selectedWord: String?
     

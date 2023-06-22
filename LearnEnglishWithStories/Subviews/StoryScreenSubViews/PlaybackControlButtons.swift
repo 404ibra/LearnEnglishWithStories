@@ -21,14 +21,16 @@ struct PlayBackControlButtons: View {
     
     let audioURL: String
     let contentCount: Int
+    let currentPageIndex: Int
     
     let geometry = UIScreen.main.bounds
     
-    init(backpage: @escaping () -> Void, nextpage: @escaping () -> Void, contentCount: Int, audioURL: String) {
+    init(backpage: @escaping () -> Void, nextpage: @escaping () -> Void, contentCount: Int, currentPageIndex: Int, audioURL: String) {
         self.backpage = backpage
         self.nextpage = nextpage
         self.contentCount = contentCount
         self.audioURL = audioURL
+        self.currentPageIndex = currentPageIndex
     }
     
     var body: some View {
@@ -59,13 +61,18 @@ struct PlayBackControlButtons: View {
                 }//Button finish with label
                 .padding(.horizontal,8)
                 
-                
+
                 HStack{
-                    ForEach(0...contentCount-1, id:\.self){_ in
+                    ForEach(0...contentCount-1, id:\.self){i in
                         Rectangle()
                             .frame(width: geometry.size.width * 0.5/CGFloat(contentCount), height: 4)
-                            .foregroundColor(.gray)
+                            .foregroundColor(
+                                currentPageIndex == i
+                                ? .mainorange.opacity(0.7)
+                                : .gray.opacity(0.5)
+                            )
                             .padding(.trailing, 4)
+                            .animation(.spring(), value: currentPageIndex)
                     }
                     
                 }

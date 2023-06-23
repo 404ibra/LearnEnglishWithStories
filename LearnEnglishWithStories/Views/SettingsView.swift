@@ -9,12 +9,19 @@ import SwiftUI
 
 struct SettingsView: View {
     
+    @State private var loginSheet: Bool = false
+    
     var body: some View {
         VStack {
             PageHeader(PageName: "Ayarlar", searchicon: false)
               
             VStack {
-                OptionImage(imagename: "premium", circlecolor: .gray.opacity(0.2), optionname: "Premium ", systemtype1: true)
+                Button {
+                    loginSheet = true
+                } label: {
+                    OptionImage(imagename: "premium", circlecolor: .gray.opacity(0.2), optionname: "Premium ", systemtype1: true)
+                }
+
                 OptionImage(imagename: "language", circlecolor: .gray.opacity(0.2), optionname: "Dil Değiştir", systemtype1: true)
                 OptionImage(imagename: "trash", circlecolor: .gray.opacity(0.2), optionname: "Dil Değiştir", systemtype1: false)
             }.alignH(alignment: .leading)
@@ -22,7 +29,12 @@ struct SettingsView: View {
 
                 Spacer()
                 
-            }
+        }.sheet(isPresented: $loginSheet) {
+            AuthenticationWithMail()
+                .presentationDetents([.large])
+                    .presentationDragIndicator(.visible)    
+        }
+       
         }
     }
 

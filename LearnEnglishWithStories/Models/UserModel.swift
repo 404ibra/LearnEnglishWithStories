@@ -7,23 +7,16 @@
 
 import Foundation
 
-
-struct UserModel {
-    var isPremium: Bool
-    var lastStories: [String]
-    var favWords: [String]
-    var favStories: [String]
-    var medals: [MedalModel]
-    var level: Double
-    var history: [String]
-    
-    static var currentUser: UserModel =
-    UserModel(
-              isPremium: false,
-              lastStories: ["a", "b"],
-              favWords: ["ss", "dd"],
-              favStories: ["ali"],
-              medals: [MedalModel.medals[0]],
-              level: 10/5,
-              history: ["hiç okumadı"])
+//Buradaki codable encode, decode yapmamızı sağlıyor
+struct UserModel: Identifiable, Codable {
+    let id: String
+    let fullName: String
+    let isEmail: String
+    let isPremium: Bool
+    let lastStories: [String]?
+    let favWords: [String]?
+    let favStories: [String]?
+    let medals: [String]?
+    let level: Double?
+    let history: [String]?
 }

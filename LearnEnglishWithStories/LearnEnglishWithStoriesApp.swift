@@ -19,14 +19,18 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct LearnEnglishWithStoriesApp: App {
-  // register app delegate for Firebase setup
-  @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
 
+  // register app delegate for Firebase setup
+    
+  @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+  @StateObject var AuthVM = AuthViewModel()
 
   var body: some Scene {
     WindowGroup {
 
         MainTabView()
+            .environmentObject(AuthVM)
       
     }
   }

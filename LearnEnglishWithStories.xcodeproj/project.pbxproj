@@ -66,6 +66,7 @@
 		6CE7081F2A3752DA00B8C853 /* MedalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE7081E2A3752DA00B8C853 /* MedalModel.swift */; };
 		6CEFB6022A45EE6E0024AFFF /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEFB6012A45EE6E0024AFFF /* AuthViewModel.swift */; };
 		6CEFB6052A45FF470024AFFF /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6CEFB6042A45FF470024AFFF /* FirebaseFirestoreSwift */; };
+		6CEFB6072A4622E40024AFFF /* SlidingWelcomes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEFB6062A4622E40024AFFF /* SlidingWelcomes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +125,7 @@
 		6CE7081C2A374AF700B8C853 /* MedalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedalView.swift; sourceTree = "<group>"; };
 		6CE7081E2A3752DA00B8C853 /* MedalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedalModel.swift; sourceTree = "<group>"; };
 		6CEFB6012A45EE6E0024AFFF /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		6CEFB6062A4622E40024AFFF /* SlidingWelcomes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingWelcomes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,6 +296,7 @@
 				6CAE86D82A4443F300F2DE58 /* PageSettingsDialogView.swift */,
 				6C3DF1DD2A44714B00A3EFCC /* AuthHeader.swift */,
 				6CC9E9902A457AA500B0926A /* LabelDivider.swift */,
+				6CEFB6062A4622E40024AFFF /* SlidingWelcomes.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				6CD728E12A2B5BA200A9A110 /* FeaturedView.swift in Sources */,
 				6CE7081B2A374A7000B8C853 /* LevelBar.swift in Sources */,
 				6C17B6472A30FCB100552CB7 /* Icons.swift in Sources */,
+				6CEFB6072A4622E40024AFFF /* SlidingWelcomes.swift in Sources */,
 				6C3DF1DE2A44714B00A3EFCC /* AuthHeader.swift in Sources */,
 				6C15FAEA2A31D83300C77AB1 /* ContinueSection.swift in Sources */,
 				6C3816B02A30A22C000E498F /* DialogsFeatured.swift in Sources */,

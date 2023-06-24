@@ -60,7 +60,10 @@ struct MainView: View {
                     //FeaturedView.v2 --film dialogları, şarkı sözleri gibi
                  //   DialogsFeatured(HeadlineText: "Diyaloglar")
                        //.padding(.top,10)
-                }//ScrollVeiw
+                    }
+                    .padding(.bottom, 60)
+                    
+                    //ScrollVeiw
                     //TabView
                 }
             }

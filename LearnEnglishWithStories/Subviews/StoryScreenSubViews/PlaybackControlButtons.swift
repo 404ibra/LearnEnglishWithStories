@@ -12,6 +12,7 @@ import AVFoundation
 struct PlayBackControlButtons: View {
     @StateObject private var MainVM = MainVievModel()
     @StateObject private var SoundVM = SoundManager()
+     
     
     @State private var timing: Double = 0.0
     
@@ -34,12 +35,12 @@ struct PlayBackControlButtons: View {
     }
     
     var body: some View {
-    
+        ZStack{
             HStack{
                 Button {
                     MainVM.playbutton.toggle()
-                    //playSound(status: MainVM.playbutton)
-                    SoundVM.downloadAndPlay(audio: audioURL, stopButton: MainVM.playbutton)
+                   SoundVM.downloadAndPlay(from: audioURL, stopButton: MainVM.playbutton)
+                    
                 } label: {
                     ZStack{
                         Circle()
@@ -100,6 +101,12 @@ struct PlayBackControlButtons: View {
                 
               
             }//HStack
+            
+            if SoundVM.isDownloading {
+                ProgressView()
+            }
+        }
+           
         }
     
 }

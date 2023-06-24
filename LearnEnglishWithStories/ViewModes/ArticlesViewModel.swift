@@ -73,20 +73,49 @@ class TranslateManager: ArticleViewModel {
 
 
 
+
 class SoundManager: ObservableObject{
     var player = AVPlayer()
-
-    func downloadAndPlay(audio: String, stopButton: Bool){
-        let storage = Storage.storage().reference(forURL: audio)
-        storage.downloadURL { [self] (url, error) in
-            if error != nil {
-                print("error var \(String(describing: error?.localizedDescription))")
-            } else if stopButton {
-                player = AVPlayer(playerItem: AVPlayerItem(url: url!))
-                player.play()
-            }else {
-                player.pause()
-            }
+    @Published var isDownloading = false
+    
+    func downloadAndPlay(from url: String, stopButton: Bool) {
+        isDownloading = true
+        let storageRef = Storage.storage().reference(forURL: url)
+        let localURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("audioFile.mp3")
+        print("indirme başladı")
+        storageRef.write(toFile: localURL!) { url, error in
+            print("indirme bitt")
+            if let error = error {
+                print("Error when downloading mp3 file \(error)")
+                return
+            } else {self.isDownloading = false}
+            if stopButton {
+                self.player = AVPlayer(playerItem: AVPlayerItem(url: url!))
+                self.player.play()
+               }else {
+                   self.player.pause()
+               }
         }
     }
 }
+
+
+/*
+ 
+ func downloadAndPlay(audio: String, stopButton: Bool){
+     let storage = Storage.storage().reference(forURL: audio)
+     storage.downloadURL { [self] (url, error) in
+         if error != nil {
+             print("error var \(String(describing: error?.localizedDescription))")
+         } else if stopButton {
+             player = AVPlayer(playerItem: AVPlayerItem(url: url!))
+             player.play()
+         }else {
+             player.pause()
+         }
+     }
+ }
+ 
+ 
+ 
+ */

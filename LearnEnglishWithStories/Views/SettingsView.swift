@@ -17,111 +17,114 @@ struct SettingsView: View {
             PageHeader(PageName: "Ayarlar", searchicon: false)
 
               
-            VStack(spacing: 0) {
-                Button {
-                    loginSheet = true
-                } label: {
+            ScrollView {
+                Group{
+                    Button {
+                        loginSheet = true
+                    } label: {
+                        ZStack{
+                            Rectangle()
+                            .frame(width: geometry.size.width, height: 65)
+                            .foregroundColor(.mainorange.opacity(0.75))
+                            HStack{
+                                Text("Premium Ol")
+                                    .font(.system(size: 17, weight: .light, design: .rounded))
+                                Spacer()
+                                Image(systemName: "chevron.forward")
+                            }
+                                .padding(.horizontal, 32)
+                        }
+                    }
+                    Divider()
                     ZStack{
                         Rectangle()
                         .frame(width: geometry.size.width, height: 65)
-                        .foregroundColor(.mainorange.opacity(0.75))
+                        .foregroundColor(.white)
                         HStack{
-                            Text("Premium Ol")
+                            Text("Dili Değiştir")
                                 .font(.system(size: 17, weight: .light, design: .rounded))
                             Spacer()
                             Image(systemName: "chevron.forward")
                         }
                             .padding(.horizontal, 32)
                     }
-                }
-                Divider()
-                ZStack{
-                    Rectangle()
-                    .frame(width: geometry.size.width, height: 65)
-                    .foregroundColor(.white)
-                    HStack{
-                        Text("Dili Değiştir")
-                            .font(.system(size: 17, weight: .light, design: .rounded))
-                        Spacer()
-                        Image(systemName: "chevron.forward")
+                    Divider()
+                    ZStack{
+                        Rectangle()
+                        .frame(width: geometry.size.width, height: 65)
+                        .foregroundColor(.white)
+                        HStack{
+                            Text("Uygulama Hakkında")
+                                .font(.system(size: 17, weight: .light, design: .rounded))
+                            Spacer()
+                            Image(systemName: "chevron.forward")
+                        }
+                            .padding(.horizontal, 32)
                     }
-                        .padding(.horizontal, 32)
-                }
-                Divider()
-                ZStack{
-                    Rectangle()
-                    .frame(width: geometry.size.width, height: 65)
-                    .foregroundColor(.white)
-                    HStack{
-                        Text("Uygulama Hakkında")
-                            .font(.system(size: 17, weight: .light, design: .rounded))
-                        Spacer()
-                        Image(systemName: "chevron.forward")
+                    Divider()
+                    ZStack{
+                        Rectangle()
+                        .frame(width: geometry.size.width, height: 65)
+                        .foregroundColor(.white)
+                        HStack{
+                            Text("Destek")
+                                .font(.system(size: 17, weight: .light, design: .rounded))
+                            Spacer()
+                            Image(systemName: "chevron.forward")
+                        }
+                            .padding(.horizontal, 32)
                     }
-                        .padding(.horizontal, 32)
-                }
-                Divider()
-                ZStack{
-                    Rectangle()
-                    .frame(width: geometry.size.width, height: 65)
-                    .foregroundColor(.white)
-                    HStack{
-                        Text("Destek")
-                            .font(.system(size: 17, weight: .light, design: .rounded))
-                        Spacer()
-                        Image(systemName: "chevron.forward")
+                    Divider()
+                    ZStack{
+                        Rectangle()
+                        .frame(width: geometry.size.width, height: 65)
+                        .foregroundColor(.white)
+                        HStack{
+                            Text("Bizi Değerlendir")
+                                .font(.system(size: 17, weight: .light, design: .rounded))
+                            Spacer()
+                            Image(systemName: "chevron.forward")
+                        }
+                            .padding(.horizontal, 32)
                     }
-                        .padding(.horizontal, 32)
+                   
+                    
+                    
                 }
-                Divider()
-                ZStack{
-                    Rectangle()
-                    .frame(width: geometry.size.width, height: 65)
-                    .foregroundColor(.white)
-                    HStack{
-                        Text("Bizi Değerlendir")
-                            .font(.system(size: 17, weight: .light, design: .rounded))
-                        Spacer()
-                        Image(systemName: "chevron.forward")
-                    }
-                        .padding(.horizontal, 32)
-                }
-                Divider()
                 
-            }.alignH(alignment: .leading)
-                .padding(.horizontal,16)
+                Group{
+                    Divider()
+                    ZStack{
+                        Rectangle()
+                        .frame(width: geometry.size.width, height: 65)
+                        .foregroundColor(.white)
+                        HStack{
+                            Text("Çıkış Yap")
+                                .font(.system(size: 17, weight: .light, design: .rounded))
+                            Spacer()
+                            Image(systemName: "chevron.forward")
+                        }
+                            .padding(.horizontal, 32)
+                    }
+                    Divider()
+                    ZStack{
+                        Rectangle()
+                        .frame(width: geometry.size.width, height: 65)
+                        .foregroundColor(.white)
+                        HStack{
+                            Text("Hesabımı Sil")
+                                .font(.system(size: 17, weight: .light, design: .rounded))
+                            Spacer()
+                            Image(systemName: "chevron.forward")
+                        }
+                            .padding(.horizontal, 32)
+                    }
 
+                }
             
-            
-            Spacer()
-            
-            
-                     ZStack{
-                         Rectangle()
-                         .frame(width: geometry.size.width, height: 65)
-                         .foregroundColor(.red.opacity(0.8))
-                             Text("Hesabımdan Çıkış Yap")
-                             .font(.system(size: 20, weight: .semibold, design: .rounded))
-                             .foregroundColor(.white)
-                         
-                             .padding(.horizontal, 32)
-                     }
-                     .padding(.bottom, 35)
-            ZStack{
-                Rectangle()
-                .frame(width: geometry.size.width, height: 65)
-                .foregroundColor(.red)
-                    Text("Hesabı Sil")
-                    .font(.system(size: 20, weight: .semibold, design: .rounded))
-                    .foregroundColor(.white)
                 
-                    .padding(.horizontal, 32)
-            }
-     
-              
-           Spacer()
-            
-    
+        
+            }.padding(.bottom, 50)
             
         }
       

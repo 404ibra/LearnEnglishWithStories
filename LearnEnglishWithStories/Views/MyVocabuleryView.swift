@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct MyVocabuleryView: View {
+    @EnvironmentObject private var userData: AuthViewModel
+    
     var body: some View {
 
             ScrollView(.vertical) {
-                VocabuleryBoxes()
-                VocabuleryBoxes()
-                VocabuleryBoxes()
-                VocabuleryBoxes()
-                VocabuleryBoxes()
+                ForEach(userData.currentUser?.favWords ?? [""], id:\.self) { favWord in
+                    VocabuleryBoxes(savingWord: favWord)
+                }
+
                 
             }
     }

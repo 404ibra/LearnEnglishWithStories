@@ -8,32 +8,129 @@
 import SwiftUI
 
 struct SettingsView: View {
-    
     @State private var loginSheet: Bool = false
+    
+    let geometry = UIScreen.main.bounds
     
     var body: some View {
         VStack {
             PageHeader(PageName: "Ayarlar", searchicon: false)
+
               
-            VStack {
+            VStack(spacing: 0) {
                 Button {
                     loginSheet = true
                 } label: {
-                    OptionImage(imagename: "premium", circlecolor: .gray.opacity(0.2), optionname: "Premium ", systemtype1: true)
+                    ZStack{
+                        Rectangle()
+                        .frame(width: geometry.size.width, height: 65)
+                        .foregroundColor(.mainorange.opacity(0.75))
+                        HStack{
+                            Text("Premium Ol")
+                                .font(.system(size: 17, weight: .light, design: .rounded))
+                            Spacer()
+                            Image(systemName: "chevron.forward")
+                        }
+                            .padding(.horizontal, 32)
+                    }
                 }
-
-                OptionImage(imagename: "language", circlecolor: .gray.opacity(0.2), optionname: "Dil Değiştir", systemtype1: true)
-                OptionImage(imagename: "trash", circlecolor: .gray.opacity(0.2), optionname: "Dil Değiştir", systemtype1: false)
+                Divider()
+                ZStack{
+                    Rectangle()
+                    .frame(width: geometry.size.width, height: 65)
+                    .foregroundColor(.white)
+                    HStack{
+                        Text("Dili Değiştir")
+                            .font(.system(size: 17, weight: .light, design: .rounded))
+                        Spacer()
+                        Image(systemName: "chevron.forward")
+                    }
+                        .padding(.horizontal, 32)
+                }
+                Divider()
+                ZStack{
+                    Rectangle()
+                    .frame(width: geometry.size.width, height: 65)
+                    .foregroundColor(.white)
+                    HStack{
+                        Text("Uygulama Hakkında")
+                            .font(.system(size: 17, weight: .light, design: .rounded))
+                        Spacer()
+                        Image(systemName: "chevron.forward")
+                    }
+                        .padding(.horizontal, 32)
+                }
+                Divider()
+                ZStack{
+                    Rectangle()
+                    .frame(width: geometry.size.width, height: 65)
+                    .foregroundColor(.white)
+                    HStack{
+                        Text("Destek")
+                            .font(.system(size: 17, weight: .light, design: .rounded))
+                        Spacer()
+                        Image(systemName: "chevron.forward")
+                    }
+                        .padding(.horizontal, 32)
+                }
+                Divider()
+                ZStack{
+                    Rectangle()
+                    .frame(width: geometry.size.width, height: 65)
+                    .foregroundColor(.white)
+                    HStack{
+                        Text("Bizi Değerlendir")
+                            .font(.system(size: 17, weight: .light, design: .rounded))
+                        Spacer()
+                        Image(systemName: "chevron.forward")
+                    }
+                        .padding(.horizontal, 32)
+                }
+                Divider()
+                
             }.alignH(alignment: .leading)
                 .padding(.horizontal,16)
 
-                Spacer()
+            
+            
+            Spacer()
+            
+            
+                     ZStack{
+                         Rectangle()
+                         .frame(width: geometry.size.width, height: 65)
+                         .foregroundColor(.red.opacity(0.8))
+                             Text("Hesabımdan Çıkış Yap")
+                             .font(.system(size: 20, weight: .semibold, design: .rounded))
+                             .foregroundColor(.white)
+                         
+                             .padding(.horizontal, 32)
+                     }
+                     .padding(.bottom, 35)
+            ZStack{
+                Rectangle()
+                .frame(width: geometry.size.width, height: 65)
+                .foregroundColor(.red)
+                    Text("Hesabı Sil")
+                    .font(.system(size: 20, weight: .semibold, design: .rounded))
+                    .foregroundColor(.white)
                 
-        }.sheet(isPresented: $loginSheet) {
+                    .padding(.horizontal, 32)
+            }
+     
+              
+           Spacer()
+            
+    
+            
+        }
+      
+        .sheet(isPresented: $loginSheet) {
             AuthenticationWithMail()
                 .presentationDetents([.large])
                     .presentationDragIndicator(.visible)    
         }
+        .ignoresSafeArea()
        
         }
     }

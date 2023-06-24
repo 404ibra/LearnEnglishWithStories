@@ -5,9 +5,11 @@
 //  Created by İbrahim Aktaş on 23.06.2023.
 //
 
-import Foundation
-import Firebase
 import FirebaseFirestoreSwift
+import Firebase
+import Foundation
+
+
 
 
 protocol AuthenticationProtocol {
@@ -21,14 +23,16 @@ protocol UserFetchProtocol {
 }
 
 @MainActor
-class AuthViewModel: ObservableObject, AuthenticationProtocol {
- 
+class AuthViewModel: ObservableObject, AuthenticationProtocol, UserFetchProtocol {
+  
+
     @Published var userSession: FirebaseAuth.User?
     @Published var currentUser: UserModel?
     
-   /* init(userSession: FirebaseAuth.User? ) {
+    init() {
         self.userSession = Auth.auth().currentUser
-    }*/
+        Task { await fetchUser() }
+    }
 
     func signIn(withEmail email: String, password: String) async throws {
         do{
@@ -44,9 +48,20 @@ class AuthViewModel: ObservableObject, AuthenticationProtocol {
         do {
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
             self.userSession = result.user
-            let user = UserModel(id: result.user.uid, fullName: fullname, isEmail: email, isPremium: false, lastStories: nil, favWords: nil, favStories: nil, medals: nil, level: nil, history: nil)
+            let user = UserModel(
+                id: result.user.uid,
+                fullName: fullname,
+                isEmail: email,
+                isPremium: false,
+                lastStories: nil,
+                favWords: nil,
+                favStories: nil,
+                medals: nil,
+                level: nil,
+                history: nil)
             let encodedUser = try Firestore.Encoder().encode(user)
             try await Firestore.firestore().collection("Users").document(user.id).setData(encodedUser)
+            await fetchUser()
         } catch {
             
         }
@@ -62,8 +77,24 @@ class AuthViewModel: ObservableObject, AuthenticationProtocol {
         }
     }
     
-    
+    func fetchUser() async {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        do {
+            guard let snapshot = try? await Firestore.firestore().collection("Users").document(uid).getDocument() else { return }
+            self.currentUser = try snapshot.data(as: UserModel.self)
+        } catch {
+            print("Fetch user data error: \(error.localizedDescription)")
+        }
+    }
 }
+
+
+
+
+
+
+
 
 
 

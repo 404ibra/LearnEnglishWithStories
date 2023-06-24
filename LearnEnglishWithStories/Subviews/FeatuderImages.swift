@@ -37,12 +37,23 @@ struct FeatuderImages: View {
                             ZStack{
                                 VStack{
                                     ZStack(alignment: .bottom){
-                                        KFImage(URL(string: ArticleVM.article[index].images))
-                                            .resizable()
-                                            .frame(height: 207)
-                                            .frame(width: 249)
-                                            .cornerRadius(12)
-                                            .padding(.trailing, 6)
+                                        ZStack{
+                                            Rectangle()
+                                                .frame(height: 207)
+                                                .frame(width: 249)
+                                                .cornerRadius(12)
+                                                .padding(.trailing, 6)
+                                                .foregroundColor(.mainorange.opacity(0.6))
+
+                                            KFImage(URL(string: ArticleVM.article[index].images))
+                                                .resizable()
+                                                .frame(height: 207)
+                                                .frame(width: 249)
+                                                .cornerRadius(12)
+                                                .padding(.trailing, 6)
+
+                                        }
+                                        
                                         ZStack(alignment: .center){
                                             Rectangle()
                                                 .foregroundColor(Color(hex: "fa6c38").opacity(0.8))

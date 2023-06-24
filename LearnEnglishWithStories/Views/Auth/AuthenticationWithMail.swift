@@ -51,6 +51,7 @@ struct AuthenticationWithMail: View {
                 Button {
                     //TO DO
                     Task{try await AuthVM.signIn(withEmail: email,  password:password)}
+                   
                 } label: {
                     ZStack{
                         Rectangle()

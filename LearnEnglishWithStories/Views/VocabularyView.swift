@@ -8,28 +8,37 @@
 import SwiftUI
 
 struct VocabularyView: View {
+    @EnvironmentObject private var UserVM: AuthViewModel
+    
     @State private var currentTab = 0
+    
     var body: some View {
-        VStack(alignment: .center, spacing: 0){
-            PageHeader(PageName: "Kelimelerim", searchicon: false)
-            TabBarView(currentTab: self.$currentTab)
-            ZStack{
-                TabView(selection: self.$currentTab) {
-                    MyVocabuleryView().tag(0)
-                    MyNotesView().tag(1)
+        Group{
+            if UserVM.currentUser?.isPremium ?? false {
+                VStack(alignment: .center, spacing: 0){
+                    PageHeader(PageName: "Kelimelerim", searchicon: false)
+                    TabBarView(currentTab: self.$currentTab)
+                    ZStack{
+                        TabView(selection: self.$currentTab) {
+                            MyVocabuleryView().tag(0)
+                            MyNotesView().tag(1)
+                        }
+                        .tabViewStyle(.page(indexDisplayMode: .never))
+                        .edgesIgnoringSafeArea(.all)
+                    }//ZStack
+                    .padding(.top, 16)
+                    
                 }
-                .tabViewStyle(.page(indexDisplayMode: .never))
-                .edgesIgnoringSafeArea(.all)
-            }//ZStack
-            .padding(.top, 16)
-            
-        }
-            .padding(.top, 0)
-            .ignoresSafeArea()
-            .refreshable {
-                print("refresh")
+                    .padding(.top, 0)
+                    .ignoresSafeArea()
+                    .refreshable {
+                        Task { await UserVM.fetchUser() }
+                    }
+                //VStack
+            } else {
+                Text("Sadece premium kullanıcılar için")
             }
-        //VStack
+        }//Group
     }
  }
 
@@ -38,7 +47,7 @@ struct TabBarView: View {
     @Binding var currentTab: Int
     @Namespace var namespace
     
-    var tabBarOptions: [String] = ["Kelimelerim", "Hedeflerim"]
+    var tabBarOptions: [String] = ["Kelimelerim", "Kaydettiklerim"]
     
     var body: some View {
        

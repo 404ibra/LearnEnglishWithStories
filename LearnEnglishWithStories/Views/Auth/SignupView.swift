@@ -56,9 +56,7 @@ struct SignupView: View {
             
             Button {
                 //TO DO
-                Task{ try await AuthVM.signUp(email: email,
-                                              password: password,
-                                              fullname: fullname)}
+                Task{try await AuthVM.signUp(email: email, password: password, fullname: fullname)}
             } label: {
                 ZStack{
                     Rectangle()
@@ -82,7 +80,30 @@ struct SignupView: View {
             .padding(.horizontal, 32)
             
             //LabelledDivider(label: "Veya")
-
+            LabelledDivider(label: "Veya")
+            
+            ZStack{
+                Rectangle()
+                    .frame(width: geometry.size.width * 0.85, height: 55)
+                HStack{
+                    Image(systemName: "apple.logo")
+                        .foregroundColor(.white)
+                    Text("Apple ile Devam Et")
+                        .font(.system(size: 16, weight: .semibold, design: .rounded))
+                        .foregroundColor(.white)
+                }
+            }//Apple zstack
+ 
+            ZStack{
+                Rectangle()
+                    .frame(width: geometry.size.width * 0.85, height: 55)
+                    .foregroundColor(Color(hex: "4285f4"))
+                HStack{
+                    Text("Google ile Devam Et")
+                        .font(.system(size: 16, weight: .semibold, design: .rounded))
+                        .foregroundColor(.white)
+                }
+            }
 
         }
     }

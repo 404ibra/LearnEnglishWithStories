@@ -9,6 +9,10 @@ import SwiftUI
 
 struct VocabuleryBoxes: View {
     let geometry = UIScreen.main.bounds
+    let savingWord: String
+    
+  
+    
     var body: some View {
       
             ZStack(alignment: .top){
@@ -28,7 +32,7 @@ struct VocabuleryBoxes: View {
                 }
                 .frame(width: geometry.size.width * 0.8, height: 120)
                 VStack{
-                    Text("Cistern")
+                    Text(savingWord)
                         .padding(.top, 6)
                     Divider()
                         .frame(width: geometry.size.width * 0.8)
@@ -58,9 +62,10 @@ struct VocabuleryBoxes: View {
     }
 }
 
-
+/*
 struct VocabuleryBoxes_Previews: PreviewProvider {
     static var previews: some View {
         VocabuleryBoxes()
     }
 }
+*/

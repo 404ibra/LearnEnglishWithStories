@@ -58,8 +58,8 @@ struct MainView: View {
                        
                     LastlyAddedView(HeadlineText: "En Günceller")
                     //FeaturedView.v2 --film dialogları, şarkı sözleri gibi
-                    DialogsFeatured(HeadlineText: "Diyaloglar")
-                        .padding(.top,10)
+                 //   DialogsFeatured(HeadlineText: "Diyaloglar")
+                       //.padding(.top,10)
                 }//ScrollVeiw
                     //TabView
                 }

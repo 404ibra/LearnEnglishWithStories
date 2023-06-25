@@ -73,32 +73,84 @@ class TranslateManager: ArticleViewModel {
 
 
 
+// Protocol for downloading files
+protocol Downloadable {
+    func download(from url: String, completion: @escaping (URL?, Error?) -> Void)
+}
 
-class SoundManager: ObservableObject{
-    var player = AVPlayer()
-    @Published var isDownloading = false
-    
-    func downloadAndPlay(from url: String, stopButton: Bool) {
-        isDownloading = true
+// Protocol for playing audio files
+protocol Playable {
+    func play(from url: URL?, isStop: Bool)
+}
+
+// Concrete implementation of Downloadable protocol
+class DownloadManager: Downloadable {
+    func download(from url: String, completion: @escaping (URL?, Error?) -> Void) {
         let storageRef = Storage.storage().reference(forURL: url)
         let localURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("audioFile.mp3")
-        print("indirme başladı")
+        
+        print("Downloading started")
         storageRef.write(toFile: localURL!) { url, error in
-            print("indirme bitt")
-            if let error = error {
-                print("Error when downloading mp3 file \(error)")
-                return
-            } else {self.isDownloading = false}
-            if stopButton {
-                self.player = AVPlayer(playerItem: AVPlayerItem(url: url!))
-                self.player.play()
-               }else {
-                   self.player.pause()
-               }
+            print("Downloading finished")
+            completion(url, error)
         }
     }
 }
 
+// Concrete implementation of Playable protocol
+class PlayManager: Playable {
+    private var player = AVPlayer()
+    
+    func play(from url: URL?, isStop: Bool) {
+        if let url = url, isStop {
+            self.player = AVPlayer(playerItem: AVPlayerItem(url: url))
+            self.player.play()
+        } else {
+            self.player.pause()
+        }
+    }
+}
+
+// SoundManager adhering to SRP and DIP
+class SoundManager: ObservableObject {
+    @Published var isDownloading = false
+    private let downloadManager: Downloadable
+    private let playManager: Playable
+    var localURL: URL?
+    
+    init(downloadManager: Downloadable = DownloadManager(), playManager: Playable = PlayManager()) {
+        self.downloadManager = downloadManager
+        self.playManager = playManager
+    }
+    
+    func downloadAndPlay(from url: String, completion: @escaping () -> Void) {
+        isDownloading = true
+        downloadManager.download(from: url) { [weak self] url, error in
+            print("Downloading started")
+            if let error = error {
+                print("Error when downloading mp3 file \(error)")
+                return
+            } else {
+                self?.localURL = url
+                self?.isDownloading = false
+                print(self?.localURL)
+                print("Downloading finished")
+                completion()
+            }
+           
+        }
+    }
+    
+    func playAfterDownload(isStop: Bool) {
+        DispatchQueue.main.async {
+            if self.isDownloading == false {
+               
+                self.playManager.play(from: self.localURL, isStop: isStop)
+            } else {return}
+          
+        }
+    }
+}
 
 /*
  

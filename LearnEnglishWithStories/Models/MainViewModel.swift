@@ -16,6 +16,7 @@ class MainVievModel: ObservableObject {
     @Published var isLongPressWord = false
     @Published var offset: CGFloat = 1000
     @Published var rectangleIsShown = false
+    @Published var localURL: URL?
     
 }
       

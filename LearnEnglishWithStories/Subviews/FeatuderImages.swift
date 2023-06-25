@@ -23,7 +23,7 @@ struct FeatuderImages: View {
     var body: some View {
         NavigationStack{
             ScrollView(.horizontal, showsIndicators:  false) {
-                HStack{
+                LazyHStack{
                     ForEach(Array(ArticleVM.article.indices), id: \.self) { index in
                         NavigationLink {
                             //StoryScreen(storiesIndex: index.storynumber)
@@ -51,6 +51,7 @@ struct FeatuderImages: View {
                                                 .frame(width: 249)
                                                 .cornerRadius(12)
                                                 .padding(.trailing, 6)
+                                             
 
                                         }
                                         

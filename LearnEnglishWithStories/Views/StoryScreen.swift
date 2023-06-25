@@ -18,10 +18,11 @@ struct StoryScreen: View {
     @ObservedObject private var TranslateMan = TranslateManager()
     
     @StateObject private var MainVM = MainVievModel()
+    @StateObject private var SoundVM = SoundManager()
     
-
     @State private var pageSettings = false
     @State private var currentPageIndex = 0
+
 
     let geometry = UIScreen.main.bounds
     
@@ -30,14 +31,21 @@ struct StoryScreen: View {
     var audioURL: String
     var contentCount: Int
     
+    
     init(articleIndex: Int, articleData: String, contentCount: Int, audioURL: String) {
-            self.articleIndex = articleIndex
-            self.articleData = articleData
-            self.contentCount = contentCount
-            self.audioURL = audioURL
-        }
-
+        self.articleIndex = articleIndex
+        self.articleData = articleData
+        self.contentCount = contentCount
+        self.audioURL = audioURL 
+    }
+    
+    
+    
+    
     var body: some View {
+        
+        
+        
         ZStack{
             VStack{
                 ZStack(alignment: .topLeading){
@@ -56,7 +64,7 @@ struct StoryScreen: View {
                                 .frame(width: 30)
                                 .foregroundColor(Color(hex: "fa6c38"))
                                 .onTapGesture {
-                                   presentationMode.wrappedValue.dismiss()
+                                    presentationMode.wrappedValue.dismiss()
                                 }
                             
                             Spacer()
@@ -70,8 +78,8 @@ struct StoryScreen: View {
                                         self.pageSettings = true
                                     }
                             }
-                                }
-                  
+                        }
+                        
                         HStack{
                             Text(articleData)
                                 .font(.system(size: 20, weight: .medium, design: .rounded))
@@ -81,20 +89,20 @@ struct StoryScreen: View {
                                 .foregroundColor(.gray.opacity(0.8))
                                 .padding(.leading,15)
                         }
-                            .alignH(alignment: .leading)
-                            .padding(.top, 25)
+                        .alignH(alignment: .leading)
+                        .padding(.top, 25)
                         
                     }
                     .padding(.horizontal, 24)
                     .padding(.top, 30)
                 }
                 
-           
+                
                 //Learning Language
                 ScrollView {
-                     StoryView(words: ArticleMan.getContent(for: currentPageIndex, storyIndex: articleIndex), isTranslate: false)
-                    }
-                    .frame(height: geometry.size.height/4)
+                    StoryView(words: ArticleMan.getContent(for: currentPageIndex, storyIndex: articleIndex), isTranslate: false)
+                }
+                .frame(height: geometry.size.height/4)
                 
                 Divider()
                     .padding(.vertical,15)
@@ -108,7 +116,7 @@ struct StoryScreen: View {
                 Divider()
                     .padding(.top,20)
                 Spacer()
-                    
+                
                 
                 
                 
@@ -122,27 +130,48 @@ struct StoryScreen: View {
                     if currentPageIndex >= 0 && currentPageIndex < Story.stories[0].content.count {
                         currentPageIndex += 1
                     }else {
-                     //   return
+                        //   return
                     }
                 },
-                   contentCount: contentCount,
-                   currentPageIndex: currentPageIndex,
-                   audioURL: audioURL)
+                                       contentCount: contentCount,
+                                       currentPageIndex: currentPageIndex,
+                                       audioURL: audioURL
+                                     
+                )
                 
                 
-                    .padding(.vertical, 16)
-                    .padding(.horizontal, 16)
-                 }//Page big VStack
+                .padding(.vertical, 16)
+                .padding(.horizontal, 16)
+            }//Page big VStack
+            
+            if SoundVM.isDownloading {
+                ProgressView()
+            }
+            
+            
             
             if pageSettings {
                 PageSettingsDialogView(isActivated: $pageSettings)
                     .padding(.horizontal, 16)
             }
             
+        
+            
+            
         }//Page big zstack
         .navigationBarBackButtonHidden(true)
-    }
-}
+      /*  .onAppear {
+            if SoundVM.localURL == nil {
+                SoundVM.downloadAndPlay(from: audioURL){
+                    url = SoundVM.localURL
+                   
+                }*/
+                    
+                    
+                
+            }
+        }
+    
 
 
 

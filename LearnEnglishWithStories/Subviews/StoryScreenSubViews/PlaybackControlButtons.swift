@@ -32,6 +32,7 @@ struct PlayBackControlButtons: View {
         self.contentCount = contentCount
         self.audioURL = audioURL
         self.currentPageIndex = currentPageIndex
+
     }
     
     var body: some View {
@@ -39,7 +40,22 @@ struct PlayBackControlButtons: View {
             HStack{
                 Button {
                     MainVM.playbutton.toggle()
-                   SoundVM.downloadAndPlay(from: audioURL, stopButton: MainVM.playbutton)
+                    //SoundVM.downloadAndPlay(from: audioURL)
+                    
+                    if SoundVM.localURL != nil {
+                        print("localden geliyor artık")
+                        SoundVM.playAfterDownload(isStop: MainVM.playbutton)
+                    }
+                    else {SoundVM.downloadAndPlay(from: audioURL){
+                        SoundVM.playAfterDownload(isStop: MainVM.playbutton)
+                        
+                    }
+                        
+                    }
+
+                    
+                    
+                    
                     
                 } label: {
                     ZStack{
@@ -102,9 +118,7 @@ struct PlayBackControlButtons: View {
               
             }//HStack
             
-            if SoundVM.isDownloading {
-                ProgressView()
-            }
+      
         }
            
         }

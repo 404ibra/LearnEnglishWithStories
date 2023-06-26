@@ -12,12 +12,13 @@ import Kingfisher
 struct FeatuderImages: View {
     @StateObject var MainVM = MainVievModel()
     @ObservedObject private var ArticleVM = ArticleViewModel()
-    
+    @ObservedObject private var SoundVM: SoundManager
     
     init() {
+        self.SoundVM = SoundManager()
         ArticleVM.getData()
     }
-    
+   
     let StoryVM = Story.stories
     
     var body: some View {
@@ -31,29 +32,37 @@ struct FeatuderImages: View {
                            // StoryPreview(index: index.storynumber)
                           //  StoryScreen(storiesIndex: index)
                           
+                         //DİKKAT
+                            StoryScreen(articleIndex:index,
+                                        audioURL: ArticleVM.article[index].sounds[0], downloadingProcess: SoundVM.isDownloading,
+                                        article: ArticleVM.article[index])
+                      /*          .onAppear{
+                                if !ArticleVM.article[index].sounds[0].isEmpty {
+                                       SoundVM.downloadAndPlay(from: ArticleVM.article[index].sounds)
+                                   }
                                 
-                            StoryScreen(articleIndex:index, articleData: ArticleVM.article[index].name, contentCount: ArticleVM.article[index].content.count, audioURL: ArticleVM.article[index].sounds[0])
+                            }*/
                         } label: {
                             ZStack{
                                 VStack{
                                     ZStack(alignment: .bottom){
-                                        ZStack{
-                                            Rectangle()
-                                                .frame(height: 207)
-                                                .frame(width: 249)
-                                                .cornerRadius(12)
-                                                .padding(.trailing, 6)
-                                                .foregroundColor(.mainorange.opacity(0.6))
-
-                                            KFImage(URL(string: ArticleVM.article[index].images))
+                                      
+                                        
+                                      
+                                        
+                                       
+                                        KFImage(URL(string: ArticleVM.article[index].images))
                                                 .resizable()
                                                 .frame(height: 207)
                                                 .frame(width: 249)
                                                 .cornerRadius(12)
                                                 .padding(.trailing, 6)
-                                             
+                                                
+                                       
+                                        
+                                        
 
-                                        }
+                                        
                                         
                                         ZStack(alignment: .center){
                                             Rectangle()

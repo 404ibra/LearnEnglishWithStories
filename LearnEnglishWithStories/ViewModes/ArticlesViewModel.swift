@@ -89,9 +89,9 @@ class DownloadManager: Downloadable {
         let storageRef = Storage.storage().reference(forURL: url)
         let localURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("audioFile.mp3")
         
-        print("Downloading started")
+     
         storageRef.write(toFile: localURL!) { url, error in
-            print("Downloading finished")
+   
             completion(url, error)
         }
     }
@@ -115,8 +115,9 @@ class PlayManager: Playable {
 class SoundManager: ObservableObject {
     @Published var isDownloading = false
     private let downloadManager: Downloadable
+
     private let playManager: Playable
-    var localURL: URL?
+    @Published var localURL: URL?
     
     init(downloadManager: Downloadable = DownloadManager(), playManager: Playable = PlayManager()) {
         self.downloadManager = downloadManager
@@ -133,19 +134,20 @@ class SoundManager: ObservableObject {
             } else {
                 self?.localURL = url
                 self?.isDownloading = false
-                print(self?.localURL)
+                print("download linki: \(self?.localURL)")
                 print("Downloading finished")
-                completion()
+
+            
+                completion() // Call the completion closure here
             }
-           
         }
     }
     
-    func playAfterDownload(isStop: Bool) {
+    func playAfterDownload(localurl: URL, isStop: Bool) {
         DispatchQueue.main.async {
             if self.isDownloading == false {
                
-                self.playManager.play(from: self.localURL, isStop: isStop)
+                self.playManager.play(from: localurl, isStop: isStop)
             } else {return}
           
         }

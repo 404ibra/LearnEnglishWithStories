@@ -16,35 +16,44 @@ struct StoryScreen: View {
     
     @ObservedObject private var ArticleMan = ArticleManager()
     @ObservedObject private var TranslateMan = TranslateManager()
+    @ObservedObject private var SoundVM: SoundManager
     
     @StateObject private var MainVM = MainVievModel()
-    @StateObject private var SoundVM = SoundManager()
+ 
     
     @State private var pageSettings = false
     @State private var currentPageIndex = 0
+    @State private var localURL: URL?
 
-
+    let article: Article
     let geometry = UIScreen.main.bounds
     
     var articleIndex: Int
-    var articleData: String
+
     var audioURL: String
-    var contentCount: Int
+
+    var downloadingProcess: Bool
     
-    
-    init(articleIndex: Int, articleData: String, contentCount: Int, audioURL: String) {
+    init(articleIndex: Int, audioURL: String, downloadingProcess: Bool, article: Article) {
         self.articleIndex = articleIndex
-        self.articleData = articleData
-        self.contentCount = contentCount
-        self.audioURL = audioURL 
+
+        self.audioURL = audioURL
+        self.article = article
+
+        
+        //SONRADAN EKLEMNDİ
+        self.SoundVM = SoundManager()
+        /*if !audioURL.isEmpty {
+               SoundVM.downloadAndPlay(from: audioURL)
+           }*/
+        self.downloadingProcess = downloadingProcess
+
     }
     
     
     
     
     var body: some View {
-        
-        
         
         ZStack{
             VStack{
@@ -68,6 +77,8 @@ struct StoryScreen: View {
                                 }
                             
                             Spacer()
+                            
+                            
                             Button {
                                 //TO DO
                             } label: {
@@ -81,7 +92,7 @@ struct StoryScreen: View {
                         }
                         
                         HStack{
-                            Text(articleData)
+                            Text(article.name)
                                 .font(.system(size: 20, weight: .medium, design: .rounded))
                                 .foregroundColor(.mainorange)
                             Text("(Ortalama 15 dakika)")
@@ -96,14 +107,12 @@ struct StoryScreen: View {
                     .padding(.horizontal, 24)
                     .padding(.top, 30)
                 }
-                
-                
+
                 //Learning Language
                 ScrollView {
                     StoryView(words: ArticleMan.getContent(for: currentPageIndex, storyIndex: articleIndex), isTranslate: false)
                 }
                 .frame(height: geometry.size.height/4)
-                
                 Divider()
                     .padding(.vertical,15)
                 
@@ -112,13 +121,10 @@ struct StoryScreen: View {
                     StoryView(words: TranslateMan.getTranslate(for: currentPageIndex, storyIndex: articleIndex), isTranslate: true)
                 }
                 .frame(height: geometry.size.height/4)
-                
                 Divider()
                     .padding(.top,20)
+                
                 Spacer()
-                
-                
-                
                 
                 PlayBackControlButtons(backpage: {
                     if currentPageIndex > 0 {
@@ -129,47 +135,51 @@ struct StoryScreen: View {
                 }, nextpage: {
                     if currentPageIndex >= 0 && currentPageIndex < Story.stories[0].content.count {
                         currentPageIndex += 1
+                        print()
                     }else {
                         //   return
                     }
                 },
-                                       contentCount: contentCount,
-                                       currentPageIndex: currentPageIndex,
-                                       audioURL: audioURL
-                                     
+                  contentCount: article.content.count,
+                  currentPageIndex: currentPageIndex,
+                                       audioURL: SoundVM.localURL
                 )
-                
-                
                 .padding(.vertical, 16)
                 .padding(.horizontal, 16)
             }//Page big VStack
+
+            .blur(radius: SoundVM.isDownloading ? 3.2 : 0)
+            
+            //PageConditions
+            if pageSettings {
+                PageSettingsDialogView(isActivated: $pageSettings)
+                    .padding(.horizontal, 16)
+            }
             
             if SoundVM.isDownloading {
                 ProgressView()
             }
             
             
-            
-            if pageSettings {
-                PageSettingsDialogView(isActivated: $pageSettings)
-                    .padding(.horizontal, 16)
-            }
-            
         
             
             
         }//Page big zstack
         .navigationBarBackButtonHidden(true)
-      /*  .onAppear {
-            if SoundVM.localURL == nil {
-                SoundVM.downloadAndPlay(from: audioURL){
-                    url = SoundVM.localURL
-                   
-                }*/
-                    
-                    
+        .onAppear{
+            SoundVM.downloadAndPlay(from: article.sounds[currentPageIndex]) {
+                print("local url onappearda \(SoundVM.localURL)")
+            }
+              
+            
+        }
+        .onChange(of: currentPageIndex) { newValue in
+            print("\(newValue) sayfa indexi")
+            SoundVM.downloadAndPlay(from: article.sounds[newValue]){
                 
             }
+        }
+}
         }
     
 

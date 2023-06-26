@@ -20,18 +20,20 @@ struct PlayBackControlButtons: View {
     let backpage: () -> Void
     let nextpage: () -> Void
     
-    let audioURL: String
+    let audioURL: URL?
     let contentCount: Int
     let currentPageIndex: Int
+
     
     let geometry = UIScreen.main.bounds
     
-    init(backpage: @escaping () -> Void, nextpage: @escaping () -> Void, contentCount: Int, currentPageIndex: Int, audioURL: String) {
+    init(backpage: @escaping () -> Void, nextpage: @escaping () -> Void, contentCount: Int, currentPageIndex: Int, audioURL: URL?) {
         self.backpage = backpage
         self.nextpage = nextpage
         self.contentCount = contentCount
         self.audioURL = audioURL
         self.currentPageIndex = currentPageIndex
+
 
     }
     
@@ -40,18 +42,18 @@ struct PlayBackControlButtons: View {
             HStack{
                 Button {
                     MainVM.playbutton.toggle()
-                    //SoundVM.downloadAndPlay(from: audioURL)
-                    
-                    if SoundVM.localURL != nil {
+                  //  SoundVM.playAfterDownload(isStop: MainVM.playbutton)
+               
+                  if audioURL != nil {
                         print("localden geliyor artık")
-                        SoundVM.playAfterDownload(isStop: MainVM.playbutton)
-                    }
-                    else {SoundVM.downloadAndPlay(from: audioURL){
+                     SoundVM.playAfterDownload(localurl: audioURL!, isStop: MainVM.playbutton)
+                 } else { print("ne oluyi") }
+                 /* else {SoundVM.downloadAndPlay(from: audioURL){
                         SoundVM.playAfterDownload(isStop: MainVM.playbutton)
                         
                     }
                         
-                    }
+                    }*/
 
                     
                     
@@ -120,6 +122,7 @@ struct PlayBackControlButtons: View {
             
       
         }
+  
            
         }
     

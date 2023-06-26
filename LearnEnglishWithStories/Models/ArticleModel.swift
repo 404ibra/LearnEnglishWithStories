@@ -1,11 +1,13 @@
 //
-//  fbmodel.swift
+//  ArticleModel.swift
 //  LearnEnglishWithStories
 //
 //  Created by İbrahim Aktaş on 18.06.2023.
 //
 
 import Foundation
+
+
 
 struct Article: Identifiable {
     var id : String

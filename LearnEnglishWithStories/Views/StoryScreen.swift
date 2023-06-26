@@ -11,8 +11,6 @@ import AVFoundation
 var player: AVAudioPlayer!
 
 struct StoryScreen: View {
-    @Environment(\.presentationMode) var presentationMode
-    @Environment(\.colorScheme) var colorScheme
     
     @ObservedObject private var ArticleMan = ArticleManager()
     @ObservedObject private var TranslateMan = TranslateManager()
@@ -20,93 +18,25 @@ struct StoryScreen: View {
     
     @StateObject private var MainVM = MainVievModel()
  
-    
     @State private var pageSettings = false
     @State private var currentPageIndex = 0
-    @State private var localURL: URL?
 
     let article: Article
     let geometry = UIScreen.main.bounds
-    
     var articleIndex: Int
 
-    var audioURL: String
-
-    var downloadingProcess: Bool
-    
-    init(articleIndex: Int, audioURL: String, downloadingProcess: Bool, article: Article) {
+    init(articleIndex: Int, article: Article) {
         self.articleIndex = articleIndex
-
-        self.audioURL = audioURL
         self.article = article
-
-        
-        //SONRADAN EKLEMNDİ
         self.SoundVM = SoundManager()
-        /*if !audioURL.isEmpty {
-               SoundVM.downloadAndPlay(from: audioURL)
-           }*/
-        self.downloadingProcess = downloadingProcess
-
     }
     
-    
-    
-    
+
     var body: some View {
         
         ZStack{
             VStack{
-                ZStack(alignment: .topLeading){
-                    Rectangle()
-                        .frame(height: 100)
-                        .foregroundColor(colorScheme == .dark
-                                         ? .maindarkblue
-                                         : .white
-                        )
-                        .ignoresSafeArea()
-                    VStack{
-                        HStack{
-                            Image(systemName: "arrow.backward.circle")
-                                .resizable()
-                                .frame(height: 30)
-                                .frame(width: 30)
-                                .foregroundColor(Color(hex: "fa6c38"))
-                                .onTapGesture {
-                                    presentationMode.wrappedValue.dismiss()
-                                }
-                            
-                            Spacer()
-                            
-                            
-                            Button {
-                                //TO DO
-                            } label: {
-                                Text("Sayfa Ayarları")
-                                    .font(.system(size: 18, weight: .semibold, design: .rounded))
-                                    .foregroundColor(Color(hex: "fa6c38"))
-                                    .onTapGesture {
-                                        self.pageSettings = true
-                                    }
-                            }
-                        }
-                        
-                        HStack{
-                            Text(article.name)
-                                .font(.system(size: 20, weight: .medium, design: .rounded))
-                                .foregroundColor(.mainorange)
-                            Text("(Ortalama 15 dakika)")
-                                .font(.system(size: 14.5, weight: .light, design: .rounded))
-                                .foregroundColor(.gray.opacity(0.8))
-                                .padding(.leading,15)
-                        }
-                        .alignH(alignment: .leading)
-                        .padding(.top, 25)
-                        
-                    }
-                    .padding(.horizontal, 24)
-                    .padding(.top, 30)
-                }
+                ArticleHeadline(articleName: article.name)
 
                 //Learning Language
                 ScrollView {
@@ -127,27 +57,24 @@ struct StoryScreen: View {
                 Spacer()
                 
                 PlayBackControlButtons(backpage: {
-                    if currentPageIndex > 0 {
+                    if currentPageIndex > 0  {
                         currentPageIndex -= 1
                     } else {
                         print("önceki sayfa mevcut deil")
                     }
                 }, nextpage: {
-                    if currentPageIndex >= 0 && currentPageIndex < Story.stories[0].content.count {
+                    if currentPageIndex >= 0 && currentPageIndex < article.content.count - 1 {
                         currentPageIndex += 1
-                        print()
-                    }else {
-                        //   return
-                    }
+                    }else { return }
+                    //TO DO ARTİCLE BİTTİ TEBRİKLERSSS DİALOGU
                 },
                   contentCount: article.content.count,
                   currentPageIndex: currentPageIndex,
-                                       audioURL: SoundVM.localURL
+                  audioURL: SoundVM.localURL
                 )
                 .padding(.vertical, 16)
                 .padding(.horizontal, 16)
             }//Page big VStack
-
             .blur(radius: SoundVM.isDownloading ? 3.2 : 0)
             
             //PageConditions
@@ -155,9 +82,9 @@ struct StoryScreen: View {
                 PageSettingsDialogView(isActivated: $pageSettings)
                     .padding(.horizontal, 16)
             }
-            
             if SoundVM.isDownloading {
                 ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .mainorange))
             }
             
             
@@ -167,17 +94,18 @@ struct StoryScreen: View {
         }//Page big zstack
         .navigationBarBackButtonHidden(true)
         .onAppear{
-            SoundVM.downloadAndPlay(from: article.sounds[currentPageIndex]) {
-                print("local url onappearda \(SoundVM.localURL)")
-            }
+            SoundVM.downloadAndPlay(from: article.sounds[currentPageIndex])
+                
+            
               
             
         }
         .onChange(of: currentPageIndex) { newValue in
             print("\(newValue) sayfa indexi")
-            SoundVM.downloadAndPlay(from: article.sounds[newValue]){
+            print(currentPageIndex)
+            SoundVM.downloadAndPlay(from: article.sounds[newValue])
                 
-            }
+            
         }
 }
         }
@@ -228,3 +156,4 @@ struct StoryScreen: View {
  
  
  */
+

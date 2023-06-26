@@ -42,39 +42,27 @@ struct PlayBackControlButtons: View {
             HStack{
                 Button {
                     MainVM.playbutton.toggle()
-                  //  SoundVM.playAfterDownload(isStop: MainVM.playbutton)
-               
                   if audioURL != nil {
                         print("localden geliyor artık")
                      SoundVM.playAfterDownload(localurl: audioURL!, isStop: MainVM.playbutton)
                  } else { print("ne oluyi") }
-                 /* else {SoundVM.downloadAndPlay(from: audioURL){
-                        SoundVM.playAfterDownload(isStop: MainVM.playbutton)
-                        
-                    }
-                        
-                    }*/
-
-                    
-                    
-                    
-                    
                 } label: {
                     ZStack{
                         Circle()
-                            .frame(height: 55)
+                            .frame(height: 50)
                             .foregroundColor(.gray.opacity(0.15))
                         withAnimation {
                             MainVM.playbutton == false
                             ? Image(systemName: "play.fill")
                                 .resizable()
-                                .frame(width: 20, height: 20)
+                                .frame(width: 13, height: 13)
                                 .foregroundColor(Color(hex: "fa6b35"))
                             : Image(systemName: "stop.fill")
                                 .resizable()
-                                .frame(width: 20, height: 20)
+                                .frame(width: 13, height: 13)
                                 .foregroundColor(Color(hex: "fa6b35"))
                         }
+                        .padding(.all, 8)
                         
                     }
                 }//Button finish with label
@@ -84,7 +72,7 @@ struct PlayBackControlButtons: View {
                 HStack{
                     ForEach(0...contentCount-1, id:\.self){i in
                         Rectangle()
-                            .frame(width: geometry.size.width * 0.5/CGFloat(contentCount), height: 4)
+                            .frame(width: geometry.size.width * 0.45/CGFloat(contentCount), height: 4)
                             .foregroundColor(
                                 currentPageIndex == i
                                 ? .mainorange.opacity(0.7)

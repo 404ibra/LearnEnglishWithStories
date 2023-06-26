@@ -4,7 +4,7 @@
 //
 //  Created by İbrahim Aktaş on 15.06.2023.
 //
-
+/*
 import Foundation
 
 
@@ -29,3 +29,4 @@ struct StoryScreenViewModel {
         return Story.stories[storiesIndex].translate[pageIndex].components(separatedBy: " ")
     }
 }
+*/

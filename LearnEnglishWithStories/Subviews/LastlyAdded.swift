@@ -12,7 +12,7 @@ struct LastlyAdded: View {
     @StateObject var MainVM = MainVievModel()
     @ObservedObject private var ArticleVM = ArticleViewModel()
     
-    let StoryVM = Story.stories
+
     
     init(){
         ArticleVM.getData()

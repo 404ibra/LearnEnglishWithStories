@@ -19,61 +19,32 @@ struct FeatuderImages: View {
         ArticleVM.getData()
     }
    
-    let StoryVM = Story.stories
-    
+
     var body: some View {
         NavigationStack{
             ScrollView(.horizontal, showsIndicators:  false) {
                 LazyHStack{
                     ForEach(Array(ArticleVM.article.indices), id: \.self) { index in
                         NavigationLink {
-                            //StoryScreen(storiesIndex: index.storynumber)
-                            
-                           // StoryPreview(index: index.storynumber)
-                          //  StoryScreen(storiesIndex: index)
-                          
-                         //DİKKAT
-                            StoryScreen(articleIndex:index,
-                                        audioURL: ArticleVM.article[index].sounds[0], downloadingProcess: SoundVM.isDownloading,
-                                        article: ArticleVM.article[index])
-                      /*          .onAppear{
-                                if !ArticleVM.article[index].sounds[0].isEmpty {
-                                       SoundVM.downloadAndPlay(from: ArticleVM.article[index].sounds)
-                                   }
-                                
-                            }*/
+                            StoryScreen(articleIndex:index, article: ArticleVM.article[index])
                         } label: {
                             ZStack{
                                 VStack{
                                     ZStack(alignment: .bottom){
-                                      
-                                        
-                                      
-                                        
-                                       
                                         KFImage(URL(string: ArticleVM.article[index].images))
                                                 .resizable()
                                                 .frame(height: 207)
                                                 .frame(width: 249)
                                                 .cornerRadius(12)
                                                 .padding(.trailing, 6)
-                                                
-                                       
-                                        
-                                        
-
-                                        
-                                        
                                         ZStack(alignment: .center){
                                             Rectangle()
                                                 .foregroundColor(Color(hex: "fa6c38").opacity(0.8))
                                                 .frame(height: 60)
                                                 .frame(width: 249)
-                                               
-                                                
-                                            //.indigo.opacity(0.5)
                                                 .roundedCornerRectangle(radius: 12, corners: [.bottomRight, .bottomLeft])
                                                 .padding(.trailing, 6)
+                                            
                                             Text(ArticleVM.article[index].level)
                                                 .font(.system(size: 18, weight: .bold, design: .rounded))
                                                 .foregroundColor(.white)
@@ -86,17 +57,13 @@ struct FeatuderImages: View {
                                 }
                             }//Label inside VStack
 
-                            }
-                    }
+                            }//label last
+                    }// for each loop
                 }//HStack
                 .padding(.leading, 16)
                 //Hstack
             }//scrollview
         }//NavStack
- 
-      
-
-
         }//View
     }
 

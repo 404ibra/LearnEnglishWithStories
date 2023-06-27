@@ -26,11 +26,13 @@ struct LearnEnglishWithStoriesApp: App {
   @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
   @StateObject var AuthVM = AuthViewModel()
 
+
   var body: some Scene {
     WindowGroup {
 
         MainTabView()
             .environmentObject(AuthVM)
+
       
     }
   }

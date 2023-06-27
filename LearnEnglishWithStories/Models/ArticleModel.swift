@@ -9,7 +9,7 @@ import Foundation
 
 
 
-struct Article: Identifiable {
+struct Article: Identifiable, Codable {
     var id : String
     var storynumber: Int
     var name: String
@@ -21,3 +21,5 @@ struct Article: Identifiable {
     var translate: [String]
     
 }
+
+

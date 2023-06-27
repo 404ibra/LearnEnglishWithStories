@@ -6,40 +6,56 @@
 //
 
 import SwiftUI
+import Kingfisher
+
 
 struct StoryPreview: View {
-    @State var isLocked: Bool = true
     @StateObject  var MainVM = MainVievModel()
-    @State var isActivate: Bool = false
-    
-    var StoryModel = Story.stories
     @ObservedObject private var ArticleVM = ArticleViewModel()
     
-    let index: Int
-    init(index: Int) {
-        self.index = index
+    @State var isLocked: Bool = true
+    @State var isActivate: Bool = false
+    
+
+   let lastArticles: String
+    
+    
+    init(lastArticles: String) {
+        self.lastArticles = lastArticles
+        
     }
     
     var body: some View {
         ZStack{
             NavigationStack {
                     VStack{
-                        StoryPreviewHeader(PageName: StoryModel[index].name, isActiveted: $isActivate)
-                       
+                        StoryPreviewHeader(PageName: ArticleVM.singleArticle?.name ?? "Error", isActiveted: $isActivate)
                         ScrollView {
                             HStack{
-                                Text(StoryModel[index].level)
+                                Text(ArticleVM.singleArticle?.level ?? "")
                                     .font(.system(size: 18, weight: .light, design: .rounded))
                                     .alignH(alignment: .leading)
                                 Spacer()
                                 Image(systemName: "bookmark")
                             }
                             .padding(.horizontal, 16)
-
-
-                            ZStack{
-                                Image(StoryModel[index].images)
+                            
+                            
+                            if ArticleVM.singleArticle?.images != nil {
+                                KFImage(URL(string: (ArticleVM.singleArticle?.images)!))
                                     .resizable()
+                                    .frame(height: 240)
+                                    .frame(width: UIScreen.main.bounds.width *  0.95)
+                                    .cornerRadius(10)
+                                    .padding(.top, 16)
+                            } else {
+                                ProgressView()
+                            }
+                            
+                          
+                        /*    ZStack{
+                                
+                                    [
                                     .frame(height: 240)
                                     .frame(width: UIScreen.main.bounds.width *  0.95)
                                     .cornerRadius(10)
@@ -57,10 +73,10 @@ struct StoryPreview: View {
                                         .frame(width: 40)
                                         .frame(height: 50)
                                         .foregroundColor(Color(hex: "#184b74").opacity(0.85))
-                                }
+                                }}*/
                               
 
-                            }
+                            
                             Text("Bu serimizle birlikte üç imparatorluğun başkentliğni yapmış avrupanın en büyük metropolü olan İstanbul'un geçmişine ve geleceğine ışık tutuyoruz")
                                 .DescriptionFont()
                                 .padding(.horizontal, 10)
@@ -72,7 +88,7 @@ struct StoryPreview: View {
                                 .padding(.horizontal, 16)
                                 .font(.system(size: 17, weight: .medium, design: .rounded))
                            
-                            ForEach(StoryModel[index].contentnames, id: \.self) { contentnames in
+                            ForEach(ArticleVM.singleArticle?.contentnames ?? [""], id: \.self) { contentnames in
                                 Text("-\(contentnames)")
                             }
                             .alignH(alignment: .leading)
@@ -86,17 +102,20 @@ struct StoryPreview: View {
             if isActivate {
                       DialogContainer(isActivated: $isActivate)
           }
+        }//ZStack
+        .onAppear{
+            ArticleVM.getLastDataArticles(documentID: lastArticles)
         }
-        
+                                }
     }
-}
 
 
+/*
 struct StoryPreview_Previews: PreviewProvider {
     static var previews: some View {
         StoryPreview(index: 0)
     }
-}
+}*/
 
 
 
@@ -126,3 +145,4 @@ struct ReadButton: View {
             
     }
 }*/
+

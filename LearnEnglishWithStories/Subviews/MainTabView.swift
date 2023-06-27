@@ -24,7 +24,9 @@ struct MainTabView: View {
                 }
               
             }
-        }.onAppear {
+        }
+        
+        .onAppear {
             let tabBarAppearance = UITabBarAppearance()
             tabBarAppearance.configureWithDefaultBackground()
             UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance

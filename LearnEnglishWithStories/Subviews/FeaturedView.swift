@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct FeaturedView: View {
+    
+    @ObservedObject private var ArticleVM = ArticleViewModel()
+    
     let DeviceSize = UIScreen.main.bounds
     let HeadlineText: String
     var body: some View {
@@ -26,8 +29,10 @@ struct FeaturedView: View {
                 }
             }//HStack
             .padding(.horizontal, 16)
-            FeatuderImages()
-        }
+                FeatuderImages()
+            }
+            
+        
     }
 }
 

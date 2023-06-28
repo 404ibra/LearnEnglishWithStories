@@ -38,7 +38,7 @@ struct ContinueSection: View {
                     
                     Rectangle()
                         .foregroundColor(.red.opacity(0.8))
-                        .frame(height: 60)
+                        .frame(height: 30)
                         .frame(width: UIScreen.main.bounds.width * 0.9)
                         .roundedCornerRectangle(radius: 12, corners: [.bottomLeft, .bottomRight])
                     
@@ -62,15 +62,15 @@ struct ContinueSection: View {
                     ZStack(alignment: .bottomLeading){
                         Rectangle()
                             .foregroundColor(.red.opacity(0.8))
-                            .frame(height: 60)
+                            .frame(height: 30)
                             .frame(width: UIScreen.main.bounds.width * 0.9)
                             .roundedCornerRectangle(radius: 12, corners: [.bottomLeft, .bottomRight])
                         
                         Text(ArticleVM.singleArticle?.name ?? "")
-                            .font(.system(size: 18, weight: .semibold, design: .rounded))
+                            .font(.system(size: 17, weight: .semibold, design: .rounded))
                             .foregroundColor(.white)
                             .padding(.horizontal, 8)
-                            .padding(.vertical, 16)
+                            .padding(.bottom, 5)
                     }
                 }
                 .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 2)

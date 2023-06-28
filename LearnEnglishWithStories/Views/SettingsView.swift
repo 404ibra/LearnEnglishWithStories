@@ -19,13 +19,14 @@ struct SettingsView: View {
               
             ScrollView {
                 Group{
+                    Divider()
                     Button {
                         loginSheet = true
                     } label: {
                         ZStack{
                             Rectangle()
                             .frame(width: geometry.size.width, height: 65)
-                            .foregroundColor(.mainorange.opacity(0.75))
+                            .foregroundColor(.white)
                             HStack{
                                 Text("Premium Ol")
                                     .font(.system(size: 17, weight: .light, design: .rounded))

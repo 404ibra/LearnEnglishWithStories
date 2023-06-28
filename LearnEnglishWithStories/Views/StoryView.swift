@@ -69,10 +69,10 @@ struct StoryView: View {
                                         VStack{
                                             Text(selectedWord!)
                                             Divider()
-                                                .frame(width:geometry.size.width * 0.8 )
+                                                
                                             Text("Anlam")
                                             Divider()
-                                                .frame(width:geometry.size.width * 0.8 )
+                                                
                                             HStack{
                                                 HStack{
                                                     Image(systemName: "waveform")
@@ -84,16 +84,22 @@ struct StoryView: View {
                                                     synthesizer.speak(uttarance)
                                                 }
                                                 Spacer()
-                                                HStack{
-                                                    Image(systemName: "bookmark")
-                                                    Text("Kaydet")
+                                                Button {
+                                                    //TO DO
+                                                    
+                                                } label: {
+                                                    HStack{
+                                                        Image(systemName: "bookmark")
+                                                        Text("Kaydet")
+                                                    }.foregroundColor(.black)
                                                 }
+
                                             }
                                             .padding(.horizontal, 32)
                                             .padding(.vertical, 8)
                                             .frame(width: geometry.size.width * 0.8)
                                         }
-                                        .presentationDetents([.fraction(0.3)])
+                                        .presentationDetents([.fraction(0.23)])
                                         .presentationDragIndicator(.visible)
                                     }
                             }

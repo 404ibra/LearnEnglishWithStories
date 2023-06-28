@@ -89,6 +89,17 @@ class AuthViewModel: ObservableObject, AuthenticationProtocol, UserFetchProtocol
     }
 }
 
+protocol FavWordViewModelInterface {
+    func newFavWord(currentUserID: String)
+}
+
+class FavWordViewModel: FavWordViewModelInterface {
+    func newFavWord(currentUserID: String){
+        Firestore.firestore().collection("Users").document(currentUserID)
+    }
+    
+    
+}
 
 
 

@@ -1,15 +1,16 @@
 //
-//  HomePage.swift
+//  FeaturedNews.swift
 //  LearnEnglishWithStories
 //
-//  Created by İbrahim Aktaş on 11.05.2023.
+//  Created by İbrahim Aktaş on 28.06.2023.
 //
+
 
 import SwiftUI
 import Kingfisher
 
 
-struct FeatuderImages: View {
+struct FeaturedNews: View {
     @StateObject var MainVM = MainVievModel()
     @ObservedObject private var ArticleVM = ArticleViewModel()
     @ObservedObject private var SoundVM: SoundManager
@@ -32,8 +33,8 @@ struct FeatuderImages: View {
                                 ZStack(alignment: .bottom){
                                     
                                    Rectangle()
-                                        .frame(height: 155)
-                                        .frame(width: 220)
+                                        .frame(height: 160)
+                                        .frame(width: 110)
                                         .cornerRadius(8)
                                         .padding(.trailing, 6)
                                         .foregroundColor(.mainorange.opacity(0.6))
@@ -67,52 +68,37 @@ struct FeatuderImages: View {
                             } label: {
                                 ZStack{
                                     VStack{
-                                      
-                                            ZStack(alignment: .leading){
-                                                
-                                                KFImage(URL(string: ArticleVM.article[index].images))
-                                                    .resizable()
-                                                    .aspectRatio(contentMode: .fill)
-                                                    .frame(height: 155)
-                                                    .frame(width: 220)
-                                                    .cornerRadius(8)
-                                                    .padding(.trailing, 6)
-                                                
-                                                ZStack{
-                                                    Rectangle()
-                                                        .frame(width: 20, height: 60)
-                                                        .foregroundColor(.white.opacity(0.75))
-                                                        .alignH(alignment: .leading)
-                                                    Text("Ücretsiz")
-                                                        .font(.system(size: 10, weight: .light, design: .rounded))
-                                                        .foregroundColor(.black)
-                                                    
-                                                        .rotationEffect(.degrees(90))
-                                                        .alignH(alignment: .leading)
-                                                        .padding(.leading, -8)
-                                                    
-                                                }}
+                                        ZStack(alignment: .leading){
                                             
-                                       /*     ZStack(alignment: .center){
-                                                 Rectangle()
-                                                     .foregroundColor(Color(hex: "fa6c38").opacity(0.8))
-                                                     .frame(height: 30)
-                                                     .frame(width: 220)
-                                                     .roundedCornerRectangle(radius: 12, corners: [.bottomRight, .bottomLeft])
-                                                     .padding(.trailing, 6)
-                                                 
-                                                 Text(ArticleVM.article[index].level)
-                                                     .font(.system(size: 18, weight: .bold, design: .rounded))
-                                                     .foregroundColor(.white)
-                                             }*/
-                                        
+                                            KFImage(URL(string: ArticleVM.article[index].images))
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(height: 152.5)
+                                                .frame(width: 135)
+                                                .cornerRadius(8)
+                                                .padding(.trailing, 6)
                                             
-                                       
-                                        
+                                            ZStack{
+                                                Rectangle()
+                                                    .frame(width: 20, height: 60)
+                                                    .foregroundColor(.white.opacity(0.75))
+                                                    .alignH(alignment: .leading)
+                                                Text("Ücretsiz")
+                                                    .font(.system(size: 10, weight: .light, design: .rounded))
+                                                    .foregroundColor(.black)
+                                                    
+                                                    .rotationEffect(.degrees(90))
+                                                    .alignH(alignment: .leading)
+                                                    .padding(.leading, -8)
+                                                   
+                                                
+
+                                            }
+                                        }
                                         .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 2)
                                         //ZStack
-                                        Text("\(ArticleVM.article[index].name) (\(ArticleVM.article[index].level))")
-                                            .font(.system(size: 16.5, weight: .light, design: .rounded))
+                                        Text(ArticleVM.article[index].name)
+                                            .font(.system(size: 16, weight: .light, design: .rounded))
                                             .foregroundColor(.black)
                                     }
                                 }//Label inside VStack
@@ -129,8 +115,8 @@ struct FeatuderImages: View {
     }
 
 
-struct HomePage_Previews: PreviewProvider {
+struct FeaturedNews_Previews: PreviewProvider {
     static var previews: some View {
-        FeatuderImages()
+        FeaturedNews()
     }
 }

@@ -36,40 +36,46 @@ struct MainView: View {
                                                 .padding(.top,16)
                              }
                            }
-                        } else {
-                            ZStack(alignment: .bottomLeading){
-                                Rectangle()
-                                    .frame(height: 230)
-                                    .frame(width: UIScreen.main.bounds.width * 0.9)
-                                    .cornerRadius(12)
-                                    .foregroundColor(.mainlightblue.opacity(0.6))
-                                    .redacted(reason: .placeholder)
-                                
-                                Rectangle()
-                                    .foregroundColor(.red.opacity(0.8))
-                                    .frame(height: 60)
-                                    .frame(width: UIScreen.main.bounds.width * 0.9)
-                                    .roundedCornerRectangle(radius: 12, corners: [.bottomLeft, .bottomRight])
-                                
-                                Text("Brush: Learning")
-                                    .font(.system(size: 18, weight: .semibold, design: .rounded))
-                                    .foregroundColor(.white)
-                                    .padding(.horizontal, 8)
-                                    .padding(.vertical, 16)
-                                    .redacted(reason: .placeholder)
-                            }
-                            .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 2)
                         }
+                            else {
+                                ZStack(alignment: .bottomLeading){
+                                    Rectangle()
+                                        .frame(height: 230)
+                                        .frame(width: UIScreen.main.bounds.width * 0.9)
+                                        .cornerRadius(12)
+                                        .foregroundColor(.mainlightblue.opacity(0.6))
+                                        .redacted(reason: .placeholder)
+                                    
+                                    Rectangle()
+                                        .foregroundColor(.red.opacity(0.8))
+                                        .frame(height: 30)
+                                        .frame(width: UIScreen.main.bounds.width * 0.9)
+                                        .roundedCornerRectangle(radius: 12, corners: [.bottomLeft, .bottomRight])
+                                    
+                                    Text("Brush: Learning")
+                                        .font(.system(size: 18, weight: .semibold, design: .rounded))
+                                        .foregroundColor(.white)
+                                        .padding(.horizontal, 8)
+                                        .padding(.bottom, 5)
+                                        .redacted(reason: .placeholder)
+                                }
+                                .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 2)
+                            }
                         
-           
+    
                     Divider()
                         .background(.gray)
                         .padding(.top,10)
-                    FeaturedView(HeadlineText: "Seriler")
+                    FeaturedView(HeadlineText: "Seviyenize Göre")
                         .padding(.bottom,25)
                         .padding(.top, 12)
                         
-                       
+                    
+                     Divider()
+                       FeaturedNewsiew(HeadlineText: "Haberler")
+                        
+                        
+                    Divider()
                     LastlyAddedView(HeadlineText: "En Günceller")
                     }
                     .padding(.bottom, 60)

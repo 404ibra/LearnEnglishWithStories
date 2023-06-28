@@ -11,13 +11,13 @@ import SwiftUI
 extension View {
     func FeaturedStoriesHeadline() -> some View {
         self
-            .font(.system(size: 20, weight: .bold, design: .rounded))
+            .font(.system(size: 17, weight: .semibold, design: .rounded))
             .foregroundColor(.mainlightblue)
     }
     
     func SeeAll() -> some View {
         self
-            .font(.system(size: 15, weight: .medium, design: .rounded))
+            .font(.system(size: 12, weight: .medium, design: .rounded))
            // .foregroundColor(.white)
     }
     

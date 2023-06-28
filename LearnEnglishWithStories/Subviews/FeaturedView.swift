@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct FeaturedView: View {
-    
-    @ObservedObject private var ArticleVM = ArticleViewModel()
-    
+
     let DeviceSize = UIScreen.main.bounds
     let HeadlineText: String
     var body: some View {
@@ -35,4 +33,34 @@ struct FeaturedView: View {
         
     }
 }
+
+
+struct FeaturedNewsiew: View {
+
+    let DeviceSize = UIScreen.main.bounds
+    let HeadlineText: String
+    var body: some View {
+        VStack{
+            HStack {
+                Text(HeadlineText)
+                    .FeaturedStoriesHeadline()
+                    .foregroundColor(.mainlightblue)
+                Spacer()
+                HStack{
+                    Text("Tümünü Görüntüle")
+                        .SeeAll()
+                      
+                    Image(systemName: "arrow.right")
+                        //.foregroundColor(.white)
+                }
+            }//HStack
+            .padding(.horizontal, 16)
+                FeaturedNews()
+            }
+            
+        
+    }
+}
+
+
 

@@ -12,9 +12,12 @@ let synthesizer = AVSpeechSynthesizer()
 
 struct StoryView: View {
     @StateObject private var MainVM = MainVievModel()
+    @ObservedObject private var ArchiveVM = ArchiveViewModel()
     
     @State private var translateDialog: Bool = false
     @State private var selectedWord: String?
+    
+     var mean = "MeanTürkçe"
     
     var isTranslate: Bool
     var words: [String]
@@ -86,7 +89,7 @@ struct StoryView: View {
                                                 Spacer()
                                                 Button {
                                                     //TO DO
-                                                    
+                                                    ArchiveVM.addNewWord(main: selectedWord ?? "", learn: mean ?? "")
                                                 } label: {
                                                     HStack{
                                                         Image(systemName: "bookmark")

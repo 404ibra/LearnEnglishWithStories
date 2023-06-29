@@ -13,6 +13,7 @@ struct MainView: View {
     
     @EnvironmentObject private var AuthVM: AuthViewModel
     @StateObject private var MainVM = MainVievModel()
+    @ObservedObject private var ArchiveVM = ArchiveViewModel()
     
     @State var SelectedTab : Int = 0
     
@@ -20,7 +21,10 @@ struct MainView: View {
        
         NavigationStack{
             VStack(alignment: .leading, spacing: 0){
-                PageHeader(PageName: "Kütüphanem", searchicon: true)
+               // PageHeader(PageName: "Kütüphanem", searchicon: true)
+               //
+          
+                   
                 if MainVM.isSearchVisible == true {
                     ScrollView{
                         
@@ -29,13 +33,41 @@ struct MainView: View {
 
                 else{
                     ScrollView{
+                        ZStack(alignment: .topLeading){
+                            ReadNow()
+                            HStack{
+                                Text("Şimdi Oku")
+                                    .font(.system(.title))
+                                    .bold()
+                                    .foregroundColor(.white)
+                                Spacer()
+                                Image(systemName: "plus")
+                                       .font(.system(size: 12))
+                                       .foregroundColor(.white)
+                                       .frame(width: 24, height: 24)
+                                       .background(
+                                           Circle()
+                                            .foregroundColor(.gray.opacity(0.6))
+                                       )
+                                Image(systemName: "magnifyingglass.circle")
+                                    .font(.system(size: 24, weight: .light))
+                                    .foregroundColor(.white)
+                             
+                                
+                                      
+                                   
+                            } .padding(.horizontal, 16)
+                                .padding(.vertical,48)
+                                   
+                        }
                         if AuthVM.userSession != nil && ((AuthVM.currentUser?.lastStories) != nil) {
-                            ForEach((AuthVM.currentUser?.lastStories!)! , id:\.self){documentID in
+                            /*
+                           ForEach((AuthVM.currentUser?.lastStories!)! , id:\.self){documentID in
                                 NavigationLink(destination: StoryPreview(lastArticles: documentID)) {
                                     ContinueSection(documentID: documentID)
                                                 .padding(.top,16)
                              }
-                           }
+                           }*/
                         }
                             else {
                                 ZStack(alignment: .bottomLeading){
@@ -63,9 +95,13 @@ struct MainView: View {
                             }
                         
     
-                    Divider()
-                        .background(.gray)
-                        .padding(.top,10)
+                      /*  Button {
+                            ArchiveVM.addNewWord()
+                        } label: {
+                            Text("Bana gıykla")
+                        }*/
+
+
                     FeaturedView(HeadlineText: "Seviyenize Göre")
                         .padding(.bottom,25)
                         .padding(.top, 12)
@@ -84,8 +120,8 @@ struct MainView: View {
                     //TabView
                 }
             }
-           // .frame(maxWidth: .infinity, maxHeight: .infinity)
-            //.background(.black)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color(hex: "f4f2f7"))
             .padding(.top, 0)
             .ignoresSafeArea()
             //VStack

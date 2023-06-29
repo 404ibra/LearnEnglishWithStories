@@ -33,7 +33,7 @@ struct MainTabView: View {
         }
       
         
-            .accentColor(.orange)
+        .accentColor(.blue)
        
             
             

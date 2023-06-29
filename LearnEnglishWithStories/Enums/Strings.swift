@@ -10,9 +10,9 @@ import Foundation
 struct StringItems {
     
     enum TabNames: String, CaseIterable{
-        case search = "Kütüphane";
+        case search = "Şimdi Oku";
         case profile = "Profil";
-        case vocabulary = "Notlar";
+        case vocabulary = "Arşiv";
         case other = "Ayarlar";
     }
 

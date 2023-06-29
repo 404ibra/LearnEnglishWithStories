@@ -9,13 +9,24 @@ import SwiftUI
 
 struct MyVocabuleryView: View {
     @EnvironmentObject private var userData: AuthViewModel
+    @ObservedObject private var archiveVM = FavWordViewModel()
+    
     
     var body: some View {
 
             ScrollView(.vertical) {
-                ForEach(userData.currentUser?.favWords ?? [""], id:\.self) { favWord in
-                    VocabuleryBoxes(savingWord: favWord)
+                Button {
+                    archiveVM.newFavWord()
+                    
+                } label: {
+                    Text("bana bas")
                 }
+           
+
+
+               /* ForEach(userData.currentUser?.favWords ?? <#default value#>, id:\.self) { favWord in
+                    VocabuleryBoxes(savingWord: favWord)
+                }*/
 
                 
             }

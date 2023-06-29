@@ -16,13 +16,13 @@ struct FeaturedView: View {
             HStack {
                 Text(HeadlineText)
                     .FeaturedStoriesHeadline()
-                    .foregroundColor(.mainlightblue)
+                    //.foregroundColor(.mainlightblue)
                 Spacer()
                 HStack{
                     Text("Tümünü Görüntüle")
                         .SeeAll()
                       
-                    Image(systemName: "arrow.right")
+                    Image(systemName: "chevron.right")
                         //.foregroundColor(.white)
                 }
             }//HStack
@@ -50,7 +50,7 @@ struct FeaturedNewsiew: View {
                     Text("Tümünü Görüntüle")
                         .SeeAll()
                       
-                    Image(systemName: "arrow.right")
+                    Image(systemName: "chevron.right")
                         //.foregroundColor(.white)
                 }
             }//HStack

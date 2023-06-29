@@ -12,7 +12,7 @@ struct IconItems {
     enum Tabs: String, CaseIterable{
         case search = "books.vertical";
         case profile = "person";
-        case vocabulary = "book";
+        case vocabulary = "rectangle.stack";
         case other = "gear";
     }
 

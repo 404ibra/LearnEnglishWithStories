@@ -90,12 +90,25 @@ class AuthViewModel: ObservableObject, AuthenticationProtocol, UserFetchProtocol
 }
 
 protocol FavWordViewModelInterface {
-    func newFavWord(currentUserID: String)
+    func newFavWord()
 }
 
-class FavWordViewModel: FavWordViewModelInterface {
-    func newFavWord(currentUserID: String){
-        Firestore.firestore().collection("Users").document(currentUserID)
+class FavWordViewModel: ObservableObject, FavWordViewModelInterface {
+    
+    
+    @Published var favWords:  [[String: String]]?
+    func newFavWord(){
+        Firestore.firestore().collection("Users").document(Auth.auth().currentUser!.uid).getDocument { snapshot, error in
+            guard let snapshot = snapshot?.data() else {
+                return
+            }
+            let favWords = snapshot["favWords"]  as? [[String: String]]
+            DispatchQueue.main.async {
+             self.favWords = favWords
+                print(favWords)
+              
+         }
+        }
     }
     
     

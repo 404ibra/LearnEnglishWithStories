@@ -14,7 +14,7 @@ struct UserModel: Identifiable, Codable {
     let isEmail: String
     let isPremium: Bool
     let lastStories: [String]?
-    let favWords: [String]?
+    let favWords: [[String: String]]?
     let favStories: [String]?
     let medals: [String]?
     let level: Double?

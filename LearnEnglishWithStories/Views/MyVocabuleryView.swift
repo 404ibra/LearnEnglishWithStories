@@ -10,28 +10,26 @@ import SwiftUI
 struct MyVocabuleryView: View {
     @EnvironmentObject private var userData: AuthViewModel
     @ObservedObject private var archiveVM = FavWordViewModel()
+    @ObservedObject private var x = ArchiveViewModel()
     
+    init(){
+        archiveVM.newFavWord()
+    }
     
     var body: some View {
 
-            ScrollView(.vertical) {
-                Button {
-                    archiveVM.newFavWord()
-                    
-                } label: {
-                    Text("bana bas")
+                if archiveVM.favWords != nil {
+                    ScrollView {
+                        ForEach(archiveVM.favWords!, id: \.self){ word in
+                            VocabuleryBoxes(savingWord: word["MainLanguage"] ?? "")
+                        }
+                    }
+                }else {
+                    Text("err")
                 }
-           
-
-
-               /* ForEach(userData.currentUser?.favWords ?? <#default value#>, id:\.self) { favWord in
-                    VocabuleryBoxes(savingWord: favWord)
-                }*/
-
-                
-            }
     }
 }
+
 
 struct MyVocabuleryView_Previews: PreviewProvider {
     static var previews: some View {

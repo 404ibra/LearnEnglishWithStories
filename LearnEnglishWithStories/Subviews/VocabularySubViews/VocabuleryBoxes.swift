@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct VocabuleryBoxes: View {
+    
+    @ObservedObject private var archiveVM = ArchiveViewModel()
+    
     let geometry = UIScreen.main.bounds
     let savingWord: String
     
@@ -23,12 +26,17 @@ struct VocabuleryBoxes: View {
                         .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 3)
                         .shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: -2)
                         .alignH(alignment: .center)
-                    Image(systemName: "xmark.circle")
-                        .resizable()
-                        .frame(width: 18, height: 18)
-                        .foregroundColor(.red)
-                        .padding(.leading, -6)
-                        .padding(.top, -4 )
+                    Button {
+                        archiveVM.removeWord(main: savingWord, learn: "MeanTürkçe")
+                    } label: {
+                        Image(systemName: "xmark.circle")
+                            .resizable()
+                            .frame(width: 18, height: 18)
+                            .foregroundColor(.red)
+                            .padding(.leading, -6)
+                            .padding(.top, -4 )
+                    }
+
                 }
                 .frame(width: geometry.size.width * 0.8, height: 120)
                 VStack{

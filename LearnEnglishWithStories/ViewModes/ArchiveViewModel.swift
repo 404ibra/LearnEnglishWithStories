@@ -14,4 +14,8 @@ class ArchiveViewModel: ObservableObject {
     func addNewWord(main: String, learn: String ){
         service.newFavWords(MainLanguage: main, LearningLanguage: learn)
     }
+    
+    func removeWord(main: String, learn: String ){
+        service.deleteWord(MainLanguage: main, LearningLanguage: learn)
+    }
 }

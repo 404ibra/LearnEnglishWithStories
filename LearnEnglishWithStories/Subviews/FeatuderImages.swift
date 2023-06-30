@@ -28,7 +28,7 @@ struct FeatuderImages: View {
                 LazyHStack{
                     if ArticleVM.isLoading == true {
                         ForEach(0...5, id: \.self) { dummy in
-                            VStack{
+                            VStack(spacing: 0){
                                 ZStack(alignment: .bottom){
                                     
                                    Rectangle()

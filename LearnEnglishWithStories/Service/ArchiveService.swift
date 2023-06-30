@@ -19,6 +19,16 @@ struct ArchiveService {
             .updateData(["favWords" : FieldValue.arrayUnion([replyDictionary])])
     }
     
+    
+    func deleteWord(MainLanguage: String, LearningLanguage: String ){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let replyDictionary = ["MainLanguage": MainLanguage, "LearningLanguage":LearningLanguage]
+        Firestore.firestore().collection("Users")
+            .document(uid)
+            .updateData(["favWords" : FieldValue.arrayRemove([replyDictionary])])
+        
+    }
+    
 }
 /*
 class FetchWordsArchive: ObservableObject {

@@ -12,7 +12,7 @@ struct FeaturedView: View {
     let DeviceSize = UIScreen.main.bounds
     let HeadlineText: String
     var body: some View {
-        VStack{
+        VStack(spacing: 0){
             HStack {
                 Text(HeadlineText)
                     .FeaturedStoriesHeadline()
@@ -27,6 +27,9 @@ struct FeaturedView: View {
                 }
             }//HStack
             .padding(.horizontal, 16)
+
+            .frame(width: DeviceSize.size.width, height: 50)
+            .background(.white)
                 FeatuderImages()
             }
             
@@ -40,11 +43,10 @@ struct FeaturedNewsiew: View {
     let DeviceSize = UIScreen.main.bounds
     let HeadlineText: String
     var body: some View {
-        VStack{
+        VStack(spacing: 0){
             HStack {
                 Text(HeadlineText)
                     .FeaturedStoriesHeadline()
-                    .foregroundColor(.mainlightblue)
                 Spacer()
                 HStack{
                     Text("Tümünü Görüntüle")
@@ -55,6 +57,9 @@ struct FeaturedNewsiew: View {
                 }
             }//HStack
             .padding(.horizontal, 16)
+
+            .frame(width: DeviceSize.size.width, height: 50)
+            .background(.white)
                 FeaturedNews()
             }
             

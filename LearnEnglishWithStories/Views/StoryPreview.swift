@@ -11,7 +11,10 @@ import Kingfisher
 
 struct StoryPreview: View {
     @EnvironmentObject private var AuthVM: AuthViewModel
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject private var ArticleVM = ArticleViewModel()
+    
+ 
     
     let geometry = UIScreen.main.bounds
     let article: Article
@@ -50,6 +53,7 @@ struct StoryPreview: View {
                                 .foregroundColor(.white)
                                 .padding(.bottom, 1)
                             HStack{
+                                Text("Tarih ·")
                                 Text(article.level)
                                 Text("·12 dk.")
                                 
@@ -84,11 +88,11 @@ struct StoryPreview: View {
                             
                            
                      
-                            Text("hfghgfhgfhgfhgfhgfhgfhgdgh dgh  hfsgds dksajhjd ksajhdkl jsalkd jsal djsal djasl jdsald jsald jsalh fgaksjfanufıklasu nflıau j")
+                            Text("hfghgfhgfhgfhgfhgfhgfhgdgh dgh  hfsgds dksajhjd")
                                 .multilineTextAlignment(.leading)
                                 .frame(width: UIScreen.main.bounds.width)
-                                .padding(.horizontal, 64)
                                 .foregroundColor(.white)
+                                .padding(.horizontal, 16)
                             
                         }.padding(.vertical, 35)
                     }
@@ -106,7 +110,7 @@ struct StoryPreview: View {
                     .alignH(alignment: .leading)
                     .frame(width: geometry.size.width, height: 50)
                     .background(.white)
-                    
+
                     ScrollView(.horizontal, showsIndicators: false){
                         LazyHStack{
                             ForEach(Array(ArticleVM.article.indices), id: \.self) { index in
@@ -141,7 +145,11 @@ struct StoryPreview: View {
                                                             .alignH(alignment: .leading)
                                                             .padding(.leading, -10)
                                                         
-                                                    }}
+                                                    }
+                                                    
+                                                   
+                                                    
+                                                }
                                             .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 2)
                                             //ZStack
                                            
@@ -169,8 +177,52 @@ struct StoryPreview: View {
                 }//VStack
             }//Scrollview
             .navigationBarBackButtonHidden(true)
-            
+          
+           
         }
+ 
+        
+        .toolbar() {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    //
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                   
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(.white)
+                    
+                }
+
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    //
+                } label: {
+                    Image(systemName: "plus")
+                        .font(.system(size: 12))
+                        .foregroundColor(.white)
+                        .frame(width: 24, height: 24)
+                        .background(
+                            Circle()
+                                .foregroundColor(.gray.opacity(0.6))
+                        )
+                }
+
+            }
+        }
+        /*
+        .overlay(
+            ZStack{
+               
+                Text("Featured")
+                    .font(.largeTitle)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, 16)
+            }
+                .frame(height: 70)
+                .frame(maxHeight: .infinity, alignment: .top)
+        )*/
         
     }}
 

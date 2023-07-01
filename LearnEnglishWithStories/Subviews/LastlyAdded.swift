@@ -8,11 +8,13 @@
 import SwiftUI
 import Kingfisher
 
+
+
 struct LastlyAdded: View {
     @StateObject var MainVM = MainVievModel()
     @ObservedObject private var ArticleVM = ArticleViewModel()
     
-
+    let geometry = UIScreen.main.bounds
     
     init(){
         ArticleVM.getData()
@@ -22,35 +24,40 @@ struct LastlyAdded: View {
     var body: some View {
         NavigationStack{
             ScrollView(.horizontal, showsIndicators:  false) {
+                
                 HStack{
-                    ForEach(ArticleVM.article.prefix(1)) { index in
+                    ForEach(ArticleVM.article) { index in
+                        
                         NavigationLink {
-                         //   StoryScreen(storiesIndex: index.storynumber)
+                            //   StoryScreen(storiesIndex: index.storynumber)
                         } label: {
-                            ZStack{
+                            ZStack {
                                 VStack{
-                                    ZStack(alignment: .bottom){
-                                        
+                                    
+                                    ZStack(alignment: .leading){
                                         KFImage(URL(string: index.images))
                                             .resizable()
-                                            .frame(height: 207)
-                                            .frame(width: 249)
-                                            .cornerRadius(12)
+                                            .aspectRatio(contentMode: .fill)
+                                            .frame(height: 300)
+                                            .frame(width: geometry.size.width * 0.9)
+                                            .cornerRadius(8)
                                             .padding(.trailing, 6)
-                                        ZStack(alignment: .center){
+                                        
+                                        ZStack{
                                             Rectangle()
-                                                .foregroundColor(.mainorange)
-                                                .frame(height: 60)
-                                                .frame(width: 249)
-                                               
-                                                
-                                            //.indigo.opacity(0.5)
-                                                .roundedCornerRectangle(radius: 12, corners: [.bottomRight, .bottomLeft])
-                                                .padding(.trailing, 6)
-                                            Text(index.level)
-                                                .font(.system(size: 18, weight: .bold, design: .rounded))
-                                                .foregroundColor(.white)
+                                                .frame(width: 28, height: 80)
+                                                .foregroundColor(.white.opacity(0.75))
+                                                .alignH(alignment: .leading)
+                                            Text("Ücretsiz")
+                                                .font(.system(size: 14, weight: .light, design: .rounded))
+                                                .foregroundColor(.black)
+                                            
+                                                .rotationEffect(.degrees(90))
+                                                .alignH(alignment: .leading)
+                                                .padding(.leading, -15)
+                                            
                                         }
+                                        
                                     }
                                     .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 2)
                                     //ZStack
@@ -58,19 +65,31 @@ struct LastlyAdded: View {
                                         .font(.system(size: 18, weight: .light, design: .rounded))
                                 }
                             }//Label inside VStack
-
-                            }
+                            
+                        }
                     }
-                }//HStack
+                }
+                
+                
+                
+                
+                
+                //HStack
                 .padding(.leading, 16)
                 //Hstack
-            }//scrollview
-        }//NavStack
-
-
+                
+                
+                //  İNDEXLERİ TEK TEK GÖSTERMEK İÇİBN
+                .onAppear {
+                    UIScrollView.appearance().isPagingEnabled = true
+                }
+                
+            }//NavStack
+            
+            
         }//View
     }
-
+}
 
 struct LastlyAdded_Previews: PreviewProvider {
     static var previews: some View {

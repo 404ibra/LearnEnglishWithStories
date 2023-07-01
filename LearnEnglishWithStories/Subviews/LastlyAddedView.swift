@@ -12,21 +12,20 @@ struct LastlyAddedView: View {
     let DeviceSize = UIScreen.main.bounds
     let HeadlineText: String
     var body: some View {
-        VStack{
+        VStack(spacing: 0){
             HStack {
                 Text(HeadlineText)
                     .FeaturedStoriesHeadline()
-                    .foregroundColor(.mainlightblue)
+                    //.foregroundColor(.mainlightblue)
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 15))
+                    .padding(.trailing, 3)
                 Spacer()
-                HStack{
-                    Text("Tümünü Görüntüle")
-                        .SeeAll()
-                      
-                    Image(systemName: "arrow.right")
-                        //.foregroundColor(.white)
-                }
+               
             }//HStack
             .padding(.horizontal, 16)
+            .frame(width: DeviceSize.size.width, height: 50)
+            .background(.white)
             LastlyAdded()
         }
     }

@@ -24,6 +24,8 @@ struct MainView: View {
                 ScrollView{
                     VStack(spacing: 0){
                         ReadNow()
+                            
+                            
                                               /*
                         if AuthVM.userSession != nil && ((AuthVM.currentUser?.lastStories) != nil) {
 
@@ -31,18 +33,18 @@ struct MainView: View {
 
                     FeaturedView(HeadlineText: "Seviyenize Göre")
                         .padding(.bottom,12)
+                        
+                    Divider()
+                    LastlyAddedView(HeadlineText: "En Günceller")
+                    }
+                    .padding(.top,12)
                      
        
                      Divider()
                        FeaturedNewsiew(HeadlineText: "Haberler")
                             .padding(.bottom,12)
                         
-                        
-                    Divider()
-                    LastlyAddedView(HeadlineText: "En Günceller")
-                    }
-                    .padding(.top,12)
-                    .padding(.bottom, 60)
+                  
                     
                     //ScrollVeiw
                     //TabView
@@ -54,16 +56,40 @@ struct MainView: View {
     
             .ignoresSafeArea()
             //VStack
-            
-                
+           // .navigationTitle("Şimdi Oku")
+          //  .navigationBarTitleDisplayMode(.inline)
+            .toolbar  {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Text("Şimdi Oku")
+                        .font(.system(.title))
+                        .bold()
+                        .foregroundColor(.white)
+
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        //
+                    } label: {
+                        HStack{
+                            Image(systemName: "plus")
+                                .font(.system(size: 12))
+                                .foregroundColor(.white)
+                                .frame(width: 24, height: 24)
+                                .background(
+                                    Circle()
+                                        .foregroundColor(.gray.opacity(0.6))
+                                )
+                            Image(systemName: "magnifyingglass.circle")
+                                .font(.system(size: 24, weight: .light))
+                                .foregroundColor(.white)
+                        }.padding(.horizontal, 16)
+                    }
+
+                }
+            }
         }//NavigationStack
-        .safeAreaInset(edge: .top, alignment: .center, spacing: 0, content: {
-     
-                Title()
-       
-            
-        })
-        .edgesIgnoringSafeArea(.top) // I
+        
+    
  
         
         .modifier(ViewStatusHiddenModifier())
@@ -116,5 +142,30 @@ struct Title: View {
             
         }   .padding(.horizontal, 16)
             .padding(.vertical,48)
+    }
+}
+
+
+
+struct BackTitle: View {
+    var body: some View {
+        HStack{
+           Image(systemName: "chevron.left")
+                .font(.system(.title))
+                .bold()
+                .foregroundColor(.white)
+            Spacer()
+            Image(systemName: "plus")
+                .font(.system(size: 12))
+                .foregroundColor(.white)
+                .frame(width: 24, height: 24)
+                .background(
+                    Circle()
+                        .foregroundColor(.gray.opacity(0.6))
+                )
+         
+            
+        }  
+       
     }
 }

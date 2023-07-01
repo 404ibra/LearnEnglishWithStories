@@ -17,6 +17,8 @@ class MainVievModel: ObservableObject {
     @Published var offset: CGFloat = 1000
     @Published var rectangleIsShown = false
     @Published var offsetImage: CGFloat = 0
+    @Published var translateExpand = false
+    @Published var learningLanguageExpand = false
     
 }
       

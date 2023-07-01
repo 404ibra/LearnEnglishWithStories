@@ -42,8 +42,8 @@ struct StoryScreen: View {
                 ScrollView {
                     StoryView(words: ArticleMan.getContent(for: currentPageIndex, storyIndex: articleIndex), isTranslate: false)
                 }
-                .frame(height: geometry.size.height/4)
-                Divider()
+                .frame(height: MainVM.learningLanguageExpand  ? geometry.size.height/2 : geometry.size.height/4)
+               Divider()
                     .padding(.vertical,15)
                 
                 //Main Language

@@ -54,11 +54,18 @@ struct MainView: View {
     
             .ignoresSafeArea()
             //VStack
-            .navigationBarTitle("Şimdi Oku", displayMode: .inline)
-         
+            
                 
         }//NavigationStack
-      
+        .safeAreaInset(edge: .top, alignment: .center, spacing: 0, content: {
+     
+                Title()
+       
+            
+        })
+        .edgesIgnoringSafeArea(.top) // I
+ 
+        
         .modifier(ViewStatusHiddenModifier())
 
     }
@@ -86,3 +93,28 @@ struct MainView_Previews: PreviewProvider {
 
 
 
+
+struct Title: View {
+    var body: some View {
+        HStack{
+            Text("Şimdi Oku")
+                .font(.system(.title))
+                .bold()
+                .foregroundColor(.white)
+            Spacer()
+            Image(systemName: "plus")
+                .font(.system(size: 12))
+                .foregroundColor(.white)
+                .frame(width: 24, height: 24)
+                .background(
+                    Circle()
+                        .foregroundColor(.gray.opacity(0.6))
+                )
+            Image(systemName: "magnifyingglass.circle")
+                .font(.system(size: 24, weight: .light))
+                .foregroundColor(.white)
+            
+        }   .padding(.horizontal, 16)
+            .padding(.vertical,48)
+    }
+}

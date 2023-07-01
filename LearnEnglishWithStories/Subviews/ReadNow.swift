@@ -15,7 +15,7 @@ struct ReadNow: View {
             TabView(selection: $selectedIndex){
                 
                 ForEach(Read.data){ data in
-                    ZStack(alignment: .top){
+                 
                         ZStack(alignment: .bottom){
                             ZStack{
                                 
@@ -54,38 +54,19 @@ struct ReadNow: View {
                                     .multilineTextAlignment(.center)
                             }.padding(.vertical, 35)
                         }// bottom zstack for descriptions
-                        HStack{
-                            Text("Şimdi Oku")
-                                .font(.system(.title))
-                                .bold()
-                                .foregroundColor(.white)
-                            Spacer()
-                            Image(systemName: "plus")
-                                .font(.system(size: 12))
-                                .foregroundColor(.white)
-                                .frame(width: 24, height: 24)
-                                .background(
-                                    Circle()
-                                        .foregroundColor(.gray.opacity(0.6))
-                                )
-                            Image(systemName: "magnifyingglass.circle")
-                                .font(.system(size: 24, weight: .light))
-                                .foregroundColor(.white)
-                            
-                        } .padding(.horizontal, 48)
-                            .padding(.vertical,48)
-                    }.tag(data.id)
+                    
+                    .tag(data.id)
                     
                 }
                 
                 
                 
             }.offset(y: g.frame(in: .global).minY > 0 ? -g.frame(in: .global).minY : 0)
-                .frame(width: geometry.size.width,height: g.frame(in: .global).minY > 0 ? UIScreen.main.bounds.height * 0.68 + g.frame(in: .global).minY : UIScreen.main.bounds.height * 0.68)
+                .frame(width: geometry.size.width,height: g.frame(in: .global).minY > 0 ? UIScreen.main.bounds.height * 0.65 + g.frame(in: .global).minY : UIScreen.main.bounds.height * 0.65)
             
         }       .tabViewStyle(PageTabViewStyle())
         //Geometry Reader
-        .frame(width: geometry.size.width ,height: UIScreen.main.bounds.size.height * 0.68)
+        .frame(width: geometry.size.width ,height: UIScreen.main.bounds.size.height * 0.65)
         
         //Şimdi Oku kısmı
         

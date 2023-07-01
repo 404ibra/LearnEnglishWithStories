@@ -52,69 +52,82 @@ struct StoryView: View {
         }
         
         return ZStack{
-            VStack(alignment: .leading, spacing: 10) {
-                ForEach(lines.indices, id: \.self) { lineIndex in
-                    HStack(spacing: 5) {
-                        ForEach(lines[lineIndex], id: \.self) { word in
-                            if !isTranslate{
-                                Text(word)
-                                    .font(.system(size: 19, weight: .medium, design: .rounded))
-                                    .onLongPressGesture(minimumDuration: 0.6) {
-                                        translateDialog = true
-                                        // telefonu titretmesi için yazdığım kod
-                                        let impactMed = UIImpactFeedbackGenerator(style: .heavy)
-                                        impactMed.impactOccurred()
-                                        // check true
-                                        MainVM.isLongPressWord = true
-                                        selectedWord = word
-                                    }
-                                    .sheet(isPresented: $translateDialog) {
-                                        VStack{
-                                            Text(selectedWord!)
-                                            Divider()
-                                                
-                                            Text("Anlam")
-                                            Divider()
-                                                
-                                            HStack{
-                                                HStack{
-                                                    Image(systemName: "waveform")
-                                                    Text("Dinle")
-                                                }.onTapGesture {
-                                                    let uttarance = AVSpeechUtterance(string: selectedWord ?? "")
-                                                    uttarance.voice = AVSpeechSynthesisVoice(language: "en-US")
-                                                    uttarance.rate = 0.45
-                                                    synthesizer.speak(uttarance)
-                                                }
-                                                Spacer()
-                                                Button {
-                                                    //TO DO
-                                                    ArchiveVM.addNewWord(main: selectedWord ?? "", learn: mean ?? "")
-                                                } label: {
-                                                    HStack{
-                                                        Image(systemName: "bookmark")
-                                                        Text("Kaydet")
-                                                    }.foregroundColor(.black)
-                                                }
-
-                                            }
-                                            .padding(.horizontal, 32)
-                                            .padding(.vertical, 8)
-                                            .frame(width: geometry.size.width * 0.8)
+            ZStack(alignment: .topTrailing) {
+                VStack(alignment: .leading, spacing: 10) {
+                    
+                    ForEach(lines.indices, id: \.self) { lineIndex in
+                        HStack(spacing: 5) {
+                            ForEach(lines[lineIndex], id: \.self) { word in
+                                if !isTranslate{
+                                    Text(word)
+                                        .font(.system(size: 19, weight: .medium, design: .rounded))
+                                        .onLongPressGesture(minimumDuration: 0.6) {
+                                            translateDialog = true
+                                            // telefonu titretmesi için yazdığım kod
+                                            let impactMed = UIImpactFeedbackGenerator(style: .heavy)
+                                            impactMed.impactOccurred()
+                                            // check true
+                                            MainVM.isLongPressWord = true
+                                            selectedWord = word
                                         }
-                                        .presentationDetents([.fraction(0.23)])
-                                        .presentationDragIndicator(.visible)
-                                    }
+                                        .sheet(isPresented: $translateDialog) {
+                                            VStack{
+                                                Text(selectedWord!)
+                                                Divider()
+                                                    
+                                                Text("Anlam")
+                                                Divider()
+                                                    
+                                                HStack{
+                                                    HStack{
+                                                        Image(systemName: "waveform")
+                                                        Text("Dinle")
+                                                    }.onTapGesture {
+                                                        let uttarance = AVSpeechUtterance(string: selectedWord ?? "")
+                                                        uttarance.voice = AVSpeechSynthesisVoice(language: "en-US")
+                                                        uttarance.rate = 0.45
+                                                        synthesizer.speak(uttarance)
+                                                    }
+                                                    Spacer()
+                                                    Button {
+                                                        //TO DO
+                                                        ArchiveVM.addNewWord(main: selectedWord ?? "", learn: mean ?? "")
+                                                    } label: {
+                                                        HStack{
+                                                            Image(systemName: "bookmark")
+                                                            Text("Kaydet")
+                                                        }.foregroundColor(.black)
+                                                    }
+
+                                                }
+                                                .padding(.horizontal, 32)
+                                                .padding(.vertical, 8)
+                                                .frame(width: geometry.size.width * 0.8)
+                                            }
+                                            .presentationDetents([.fraction(0.23)])
+                                            .presentationDragIndicator(.visible)
+                                        }
+                                }
+                                else {
+                                    Text(word)
+                                        .font(.system(size: 19, weight: .medium, design: .rounded))
+                                }
                             }
-                            else {
-                                Text(word)
-                                    .font(.system(size: 19, weight: .medium, design: .rounded))
-                            }    
                         }
                     }
                 }
+                .padding()
+                Button {
+                    if isTranslate {
+                        MainVM.translateExpand = true
+                    } else {
+                        MainVM.learningLanguageExpand = true
+                    }
+                } label: {
+                    Image(systemName: "arrow.up.left.and.arrow.down.right")
+                }
+
             }
-            .padding()
         }
     }
 }

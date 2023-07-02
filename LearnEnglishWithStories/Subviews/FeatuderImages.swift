@@ -79,20 +79,26 @@ struct FeatuderImages: View {
                                                     .cornerRadius(8)
                                                     .padding(.trailing, 6)
                                                 
-                                                ZStack{
-                                                    Rectangle()
-                                                        .frame(width: 20, height: 60)
-                                                        .foregroundColor(.white.opacity(0.75))
-                                                        .alignH(alignment: .leading)
-                                                    Text("Ücretsiz")
-                                                        .font(.system(size: 10, weight: .light, design: .rounded))
-                                                        .foregroundColor(.black)
-                                                    
-                                                        .rotationEffect(.degrees(90))
-                                                        .alignH(alignment: .leading)
-                                                        .padding(.leading, -8)
-                                                    
-                                                }}
+                                                
+                                                if ArticleVM.article[index].free {
+                                                    ZStack{
+                                                        Rectangle()
+                                                            .frame(width: 20, height: 60)
+                                                            .foregroundColor(.white.opacity(0.75))
+                                                            .alignH(alignment: .leading)
+                                                        Text("Ücretsiz")
+                                                            .font(.system(size: 10, weight: .light, design: .rounded))
+                                                            .foregroundColor(.black)
+                                                        
+                                                            .rotationEffect(.degrees(90))
+                                                            .alignH(alignment: .leading)
+                                                            .padding(.leading, -8)
+                                                    }
+                                                }
+                                                
+                                                
+                                                
+                                            }
                                             
                                        /*     ZStack(alignment: .center){
                                                  Rectangle()

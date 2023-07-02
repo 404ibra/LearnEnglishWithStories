@@ -53,9 +53,9 @@ struct StoryPreview: View {
                                 .foregroundColor(.white)
                                 .padding(.bottom, 1)
                             HStack{
-                                Text("Tarih ·")
+                                Text("\(article.subject) ·")
                                 Text(article.level)
-                                Text("·12 dk.")
+                                Text("·\(article.duration)")
                                 
                             }
                             .font(.system(size: 15, weight: .light, design: .rounded))
@@ -66,7 +66,15 @@ struct StoryPreview: View {
                             } label: {
                                 
                                 
-                                if AuthVM.currentUser?.isPremium == false {
+                                if AuthVM.currentUser?.isPremium ?? false {
+                                    Text("Şimdi Oku")
+                                        .font(.system(size: 19, weight: .semibold, design: .rounded))
+                                        .foregroundColor(.black)
+                                        .padding(.horizontal,32)
+                                        .padding(.vertical, 12)
+                                        .background(Color(hex: "eaeaec"))
+                                        .cornerRadius(8)
+                                } else if article.free {
                                     Text("Şimdi Oku")
                                         .font(.system(size: 19, weight: .semibold, design: .rounded))
                                         .foregroundColor(.black)
@@ -88,7 +96,7 @@ struct StoryPreview: View {
                             
                            
                      
-                            Text("hfghgfhgfhgfhgfhgfhgfhgdgh dgh  hfsgds dksajhjd")
+                            Text(article.summary)
                                 .multilineTextAlignment(.leading)
                                 .frame(width: UIScreen.main.bounds.width)
                                 .foregroundColor(.white)

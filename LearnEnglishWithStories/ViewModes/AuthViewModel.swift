@@ -105,7 +105,7 @@ class FavWordViewModel: ObservableObject, FavWordViewModelInterface {
             let favWords = snapshot["favWords"]  as? [[String: String]]
             DispatchQueue.main.async {
              self.favWords = favWords
-                print(favWords)
+                
               
          }
         }

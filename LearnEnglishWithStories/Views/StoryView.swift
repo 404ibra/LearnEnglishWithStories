@@ -91,7 +91,7 @@ struct StoryView: View {
                                                     Spacer()
                                                     Button {
                                                         //TO DO
-                                                        ArchiveVM.addNewWord(main: selectedWord ?? "", learn: mean ?? "")
+                                                        ArchiveVM.addNewWord(main: selectedWord ?? "", learn: mean )
                                                     } label: {
                                                         HStack{
                                                             Image(systemName: "bookmark")

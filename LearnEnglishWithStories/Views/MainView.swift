@@ -21,7 +21,7 @@ struct MainView: View {
        
         NavigationStack{
          
-                ScrollView{
+            ScrollView(showsIndicators: false){
                     VStack(spacing: 0){
                         ReadNow()
                             

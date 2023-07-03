@@ -30,10 +30,17 @@ struct LearnEnglishWithStoriesApp: App {
   var body: some Scene {
     WindowGroup {
 
-        MainTabView()
-            .environmentObject(AuthVM)
+     
+            MainTabView()
+                .environmentObject(AuthVM)
+        
+   
+      
+             
+        }
+       
 
       
     }
   }
-}
+ 

@@ -7,57 +7,65 @@
 
 import SwiftUI
 
-import SwiftUI
+
 
 struct MainView: View {
     
     @EnvironmentObject private var AuthVM: AuthViewModel
     @StateObject private var MainVM = MainVievModel()
     @ObservedObject private var ArchiveVM = ArchiveViewModel()
+    @State private var isShow: Bool = true
+  
 
     @State var SelectedTab : Int = 0
+
+  
+    
     let geometry = UIScreen.main.bounds
-    var body: some View {
+  
+    var body: some View { 
        
         NavigationStack{
-         
-            ScrollView(showsIndicators: false){
+            
+      
+            ZStack(alignment: .bottom){
+                ScrollView(showsIndicators: false){
                     VStack(spacing: 0){
                         ReadNow()
-                            
-                            
-                                              /*
-                        if AuthVM.userSession != nil && ((AuthVM.currentUser?.lastStories) != nil) {
-
-                        }*/
-
-                    FeaturedView(HeadlineText: "Seviyenize Göre")
-                        .padding(.bottom,12)
-                        
-                    Divider()
-                    LastlyAddedView(HeadlineText: "En Günceller")
+                        FeaturedView(HeadlineText: "Seviyenize Göre")
+                            .padding(.bottom,12)
+                        Divider()
+                        LastlyAddedView(HeadlineText: "En Günceller")
                     }
                     .padding(.top,12)
-                     
-       
-                     Divider()
-                       FeaturedNewsiew(HeadlineText: "Haberler")
-                            .padding(.bottom,12)
-                        
-                  
                     
-                    //ScrollVeiw
-                    //TabView
-              
+                    Divider()
+                    FeaturedNewsiew(HeadlineText: "Haberler")
+                        .padding(.bottom,12)
+                    Spacer()
+                    
                 }
+                if AuthVM.currentUser?.isPremium == false {
+                    ZStack{
+                        Rectangle()
+                            .frame(width: geometry.width, height: 25)
+                            .foregroundColor(.maindarkblue)
+                        Text("Kesintisiz Okumak İçin Şimdi Premium Ol")
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .foregroundColor(.white)
+                    }
+                }
+                
+            }
+         
+            .sheet(isPresented: $isShow ){
+                PaywallView()
+            }
             
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color(hex: "f4f2f7"))
-    
-            .ignoresSafeArea()
-            //VStack
-           // .navigationTitle("Şimdi Oku")
-          //  .navigationBarTitleDisplayMode(.inline)
+
+       
             .toolbar  {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Text("Şimdi Oku")
@@ -90,7 +98,6 @@ struct MainView: View {
         }//NavigationStack
         
     
- 
         
         .modifier(ViewStatusHiddenModifier())
 

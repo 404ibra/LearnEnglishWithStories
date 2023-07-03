@@ -64,7 +64,7 @@ struct FeatuderImages: View {
                             
                             NavigationLink {
                                /* StoryScreen(articleIndex:index, article: ArticleVM.article[index])*/
-                                StoryPreview(article: ArticleVM.article[index])
+                                StoryPreview(article: ArticleVM.article[index], index: index)
                             } label: {
                                 ZStack{
                                     VStack{

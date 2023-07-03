@@ -8,38 +8,52 @@
 import SwiftUI
 
 struct VocabularyView: View {
-    @EnvironmentObject private var UserVM: AuthViewModel
+    @EnvironmentObject private var AuthVM: AuthViewModel
     
     @State private var currentTab = 0
     
+    let geometry = UIScreen.main.bounds
+    
     var body: some View {
-        Group{
-            if UserVM.currentUser?.isPremium ?? false {
-                VStack(alignment: .center, spacing: 0){
-                    PageHeader(PageName: "Kelimelerim", searchicon: false)
-                    TabBarView(currentTab: self.$currentTab)
-                    ZStack{
-                        TabView(selection: self.$currentTab) {
-                            MyVocabuleryView().tag(0)
-                            MyNotesView().tag(1)
-                        }
-                        .tabViewStyle(.page(indexDisplayMode: .never))
-                        .edgesIgnoringSafeArea(.all)
-                    }//ZStack
-                    .padding(.top, 16)
-                    
-                }
+        
+        ZStack(alignment: .bottom){
+            Group{
+                if AuthVM.currentUser?.isPremium ?? false {
+                    VStack(alignment: .center, spacing: 0){
+                        PageHeader(PageName: "Kelimelerim", searchicon: false)
+                        TabBarView(currentTab: self.$currentTab)
+                        ZStack{
+                            TabView(selection: self.$currentTab) {
+                                MyVocabuleryView().tag(0)
+                                MyNotesView().tag(1)
+                            }
+                            .tabViewStyle(.page(indexDisplayMode: .never))
+                            .edgesIgnoringSafeArea(.all)
+                        }//ZStack
+                        .padding(.top, 16)
+                        
+                    }
                     .padding(.top, 0)
                     .ignoresSafeArea()
                     .refreshable {
-                        Task { await UserVM.fetchUser() }
+                        Task { await AuthVM.fetchUser() }
                     }
-                //VStack
-            } else {
-                Text("Sadece premium kullanıcılar için")
-            }
-        }//Group
-    }
+                    //VStack
+                } else {
+                    Text("Sadece premium kullanıcılar için")
+                }
+                
+                
+            }//Group
+            
+        
+     
+        }
+      
+        }
+        
+ 
+        
  }
 
 

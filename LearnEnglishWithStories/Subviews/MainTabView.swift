@@ -8,34 +8,51 @@
 import SwiftUI
 
 struct MainTabView: View {
- 
+    @State var playerFrame = CGRect.zero
     /*init() {
         UITabBar.appearance().barTintColor = .black // custom color.
     }*/
     var body: some View {
-        TabView{
-            ForEach(HomeTabItem.tabItems) { item in
-                item.page.tabItem {
-                    VStack{
-                        Image(systemName: item.model.icon.rawValue)
-                        Text(item.model.title.rawValue)
-                    }
  
-                }
-              
-            }
+ 
+     
+  
+          
+            TabView{
+         
+                    
+                     
+                            ForEach(HomeTabItem.tabItems) { item in
+                                item.page.tabItem {
+                             
+                                     
+                                        VStack{
+                                            
+                                            Image(systemName: item.model.icon.rawValue)
+                                            Text(item.model.title.rawValue)
+                                        
+                                    }
+                                }
+                              
+                            }
+                
+                
+            
         }
         
+           
         .onAppear {
             let tabBarAppearance = UITabBarAppearance()
             tabBarAppearance.configureWithDefaultBackground()
             UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
         }
+     
       
         
-        .accentColor(.blue)
+        .accentColor(.maindarkblue)
        
-            
+       
+
             
             
             }
@@ -48,3 +65,5 @@ struct MainTabView_Previews: PreviewProvider {
         MainTabView()
     }
 }
+
+

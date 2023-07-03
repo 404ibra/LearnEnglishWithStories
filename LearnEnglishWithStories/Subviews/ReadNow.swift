@@ -16,12 +16,12 @@ struct ReadNow: View {
             GeometryReader{ g in
                 TabView(selection: $selectedIndex){
                     
-                    ForEach(Read.data){ data in
+                    ForEach(Read.data.indices){ i in
                      
                             ZStack(alignment: .bottom){
                                 ZStack{
                                     
-                                    Image(data.image)
+                                    Image(Read.data[i].image)
                                         .resizable()
                                         .aspectRatio(contentMode: .fill)
                                     
@@ -37,36 +37,38 @@ struct ReadNow: View {
                                     )
                                 }
                                 VStack{
-                                    Text(data.name)
+                                    Text(Read.data[i].name)
                                         .font(.system(size: 23, weight: .semibold, design: .rounded))
                                         .foregroundColor(.white)
                                         .padding(.bottom, 1)
                                     HStack{
-                                        Text(data.level)
-                                        Text(data.time)
+                                        Text(Read.data[i].level)
+                                        Text(Read.data[i].time)
                                     }
                                     .font(.system(size: 15, weight: .light, design: .rounded))
                                     .foregroundColor(.white)
                                     .padding(.bottom, 0.1)
-                                    Text(data.desc)
+                                    Text(Read.data[i].desc)
                                         .font(.system(size: 16, weight: .medium, design: .rounded))
                                         .padding(.horizontal, 60)
                                         .foregroundColor(.white)
                                         .padding(.bottom, 0)
                                         .multilineTextAlignment(.center)
                                 }.padding(.vertical, 35)
-                            }// bottom zstack for descriptions
+                            }.tag(i)// bottom zstack for descriptions
                         
-                        .tag(data.id)
+                
                         
                     }
                     
                     
                     
-                }.offset(y: g.frame(in: .global).minY > 0 ? -g.frame(in: .global).minY : 0)
+                }
+                .tabViewStyle(PageTabViewStyle())
+                .offset(y: g.frame(in: .global).minY > 0 ? -g.frame(in: .global).minY : 0)
                     .frame(width: geometry.size.width,height: g.frame(in: .global).minY > 0 ? UIScreen.main.bounds.height * 0.65 + g.frame(in: .global).minY : UIScreen.main.bounds.height * 0.65)
                     
-            }       .tabViewStyle(PageTabViewStyle())
+            }
             //Geometry Reader
             .frame(width: geometry.size.width ,height: UIScreen.main.bounds.size.height * 0.65)
           
@@ -91,7 +93,7 @@ struct Read: Identifiable {
     
     static var data : [Read] = [
         Read(image: "anubis", time: "12 dk.", desc: "Mısırın korkunç ölüm tanrısının bazı gizemleri", name: "Anubis ve Korku", level: "İleri Seviye"),
-        Read(image: "anubis", time: "16 dk.", desc: "Mısırın korkunç ölüm tanrısının bazı gizemleri", name: "Hercul'un Omzu", level: "İleri Seviye"),
-        Read(image: "anubis", time: "7 dk.", desc: "Mısırın korkunç ölüm tanrısının bazı gizemleri", name: "Van Gogh'un Kulağı", level: "Başlangıç ")
+        Read(image: "dragon", time: "16 dk.", desc: "Mısırın korkunç ölüm tanrısının bazı gizemleri", name: "Hercul'un Omzu", level: "İleri Seviye"),
+        Read(image: "gogh", time: "7 dk.", desc: "Mısırın korkunç ölüm tanrısının bazı gizemleri", name: "Van Gogh'un Kulağı", level: "Başlangıç ")
     ]
 }

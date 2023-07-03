@@ -67,7 +67,7 @@ struct FeaturedNews: View {
                                 StoryScreen(articleIndex:index, article: ArticleVM.article[index])
                             } label: {
                                 ZStack{
-                                    VStack{
+                                    VStack(spacing: 0){
                                         ZStack(alignment: .leading){
                                             
                                             KFImage(URL(string: ArticleVM.article[index].images))

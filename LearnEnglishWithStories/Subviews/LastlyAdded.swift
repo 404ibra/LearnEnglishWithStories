@@ -81,7 +81,7 @@ struct LastlyAdded: View {
                 
                 //  İNDEXLERİ TEK TEK GÖSTERMEK İÇİBN
                 .onAppear {
-                    UIScrollView.appearance().isPagingEnabled = true
+                    //UIScrollView.appearance().isPagingEnabled = true
                 }
                 
             }//NavStack

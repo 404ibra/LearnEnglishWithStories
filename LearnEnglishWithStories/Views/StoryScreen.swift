@@ -11,7 +11,7 @@ import AVFoundation
 var player: AVAudioPlayer!
 
 struct StoryScreen: View {
-    
+    @ObservedObject private var ArticleVM = ArticleViewModel()
     @ObservedObject private var ArticleMan = ArticleManager()
     @ObservedObject private var TranslateMan = TranslateManager()
     @ObservedObject private var SoundVM: SoundManager
@@ -21,14 +21,15 @@ struct StoryScreen: View {
     @State private var pageSettings = false
     @State private var currentPageIndex = 0
 
-    let article: Article
+    var article: Article
     let geometry = UIScreen.main.bounds
-    var articleIndex: Int
+     var articleIndex: Int
 
     init(articleIndex: Int, article: Article) {
         self.articleIndex = articleIndex
         self.article = article
         self.SoundVM = SoundManager()
+       
     }
     
 
@@ -39,7 +40,8 @@ struct StoryScreen: View {
                 ArticleHeadline(articleName: article.name)
 
                 //Learning Language
-                ScrollView {
+              ScrollView {
+                  
                     StoryView(words: ArticleMan.getContent(for: currentPageIndex, storyIndex: articleIndex), isTranslate: false)
                 }
                 .frame(height: MainVM.learningLanguageExpand  ? geometry.size.height/2 : geometry.size.height/4)
@@ -93,13 +95,19 @@ struct StoryScreen: View {
             
         }//Page big zstack
         .navigationBarBackButtonHidden(true)
+       
+       
         .onAppear{
+            print("nasdkjsldkjsa \(articleIndex)")
             SoundVM.downloadAndPlay(from: article.sounds[currentPageIndex])
                 
             
               
             
         }
+        
+        
+        
         .onChange(of: currentPageIndex) { newValue in
             print("\(newValue) sayfa indexi")
             print(currentPageIndex)

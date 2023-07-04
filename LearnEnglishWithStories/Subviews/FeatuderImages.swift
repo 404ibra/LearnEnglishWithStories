@@ -63,7 +63,7 @@ struct FeatuderImages: View {
                         ForEach(Array(ArticleVM.article.indices), id: \.self) { index in
                             
                             NavigationLink {
-                               /* StoryScreen(articleIndex:index, article: ArticleVM.article[index])*/
+                             /*   StoryScreen(articleIndex:index, article: ArticleVM.article[index])*/
                                 StoryPreview(article: ArticleVM.article[index], index: index)
                             } label: {
                                 ZStack{
@@ -131,7 +131,9 @@ struct FeatuderImages: View {
                 .padding(.leading, 16)
                 //Hstack
             }//scrollview
+            
         }//NavStack
+        
         }//View
     }
 

@@ -11,8 +11,10 @@ import Foundation
 
 struct Article: Identifiable, Codable {
     var id : String
+    var articleid: String
     var storynumber: Int
     var name: String
+    var readnow: Bool
     var subject: String
     var free: Bool
     var duration: String

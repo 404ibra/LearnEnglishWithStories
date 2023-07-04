@@ -15,11 +15,12 @@ struct StoryPreview: View {
     @ObservedObject private var ArticleVM = ArticleViewModel()
     
     @State private var isSheetPresented = false
-    
+    @State private var insideChange: Int?
  
     let geometry = UIScreen.main.bounds
     let article: Article
-    let index: Int
+    var index: Int
+    
     
     
     
@@ -29,9 +30,7 @@ struct StoryPreview: View {
         self.index = index
         ArticleVM.getData()
     }
-    let sentence: String = "hfghgfhgfhgfhgfhgfhgfhgdgh dgh  hfsgds dksajhjd ksajhdkl jsalkd jsal djsal djasl jdsald jsald jsalh fgaksjfanufıklasu nflıau "
-    
-   
+
 
     var body: some View {
         NavigationStack{
@@ -75,9 +74,15 @@ struct StoryPreview: View {
                                 } label: {
                                     
                                     
-                                    if AuthVM.currentUser?.isPremium ?? false {
+                                    if AuthVM.currentUser?.isPremium ?? false && index < ArticleVM.article.count {
                                         NavigationLink {
-                                            StoryScreen(articleIndex: index , article: ArticleVM.article[index])
+                                        
+               
+                                                StoryScreen(articleIndex: article.storynumber, article: ArticleVM.article[index])
+                                    
+                                       
+                                            
+                                           
                                          
                                         } label: {
                                             Text("Şimdi Oku")
@@ -89,7 +94,8 @@ struct StoryPreview: View {
                                                 .cornerRadius(8)
                                         }
 
-                                    } else if article.free {
+                                    } else if article.free    {
+
                                         Text("Şimdi Oku")
                                             .font(.system(size: 19, weight: .semibold, design: .rounded))
                                             .foregroundColor(.black)
@@ -144,50 +150,55 @@ struct StoryPreview: View {
 
                         ScrollView(.horizontal, showsIndicators: false){
                             LazyHStack{
-                                ForEach(Array(ArticleVM.article.indices), id: \.self) { index in
+                                ForEach(Array(ArticleVM.article.indices), id: \.self) { i in
+                                    
+                                    
                                     
                                     NavigationLink {
-                                       /* StoryScreen(articleIndex:index, article: ArticleVM.article[index])*/
-                                        StoryPreview(article: ArticleVM.article[index], index: index)
+                                        StoryPreview(article: ArticleVM.article[i], index: i)
                                     } label: {
                                         ZStack{
-                                            VStack{
-                                              
-                                                    ZStack(alignment: .leading){
-                                                        
-                                                        KFImage(URL(string: ArticleVM.article[index].images))
-                                                            .resizable()
-                                                            .aspectRatio(contentMode: .fill)
-                                                            .frame(height: 120)
-                                                            .frame(width: 180)
-                                                            .cornerRadius(8)
-                                                            .padding(.trailing, 6)
-                                                        
-                                                        ZStack{
-                                                            Rectangle()
-                                                                .frame(width: 16, height: 45)
-                                                                .foregroundColor(.white.opacity(0.75))
-                                                                .alignH(alignment: .leading)
-                                                            Text("Ücretsiz")
-                                                                .font(.system(size: 10, weight: .light, design: .rounded))
-                                                                .foregroundColor(.black)
-                                                            
-                                                                .rotationEffect(.degrees(90))
-                                                                .alignH(alignment: .leading)
-                                                                .padding(.leading, -10)
-                                                            
-                                                        }
-                                                        
-                                                       
-                                                        
-                                                    }
-                                                .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 2)
-                                                //ZStack
+                                             VStack{
                                                
-                                            }
-                                        }//Label inside VStack
+                                                     ZStack(alignment: .leading){
+                                                         
+                                                         KFImage(URL(string: ArticleVM.article[i].images))
+                                                             .resizable()
+                                                             .aspectRatio(contentMode: .fill)
+                                                             .frame(height: 120)
+                                                             .frame(width: 180)
+                                                             .cornerRadius(8)
+                                                             .padding(.trailing, 6)
+                                                         
+                                                         ZStack{
+                                                             Rectangle()
+                                                                 .frame(width: 16, height: 45)
+                                                                 .foregroundColor(.white.opacity(0.75))
+                                                                 .alignH(alignment: .leading)
+                                                             Text("Ücretsiz")
+                                                                 .font(.system(size: 10, weight: .light, design: .rounded))
+                                                                 .foregroundColor(.black)
+                                                             
+                                                                 .rotationEffect(.degrees(90))
+                                                                 .alignH(alignment: .leading)
+                                                                 .padding(.leading, -10)
+                                                             
+                                                         }
+                                                         
+                                                        
+                                                         
+                                                     }
+                                                 .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 2)
+                                                 //ZStack
+                                                
+                                             }
+                                         }
+                                    }
+
+                                    
+
                                         
-                                    }//label last
+                                    
                                 }// for each loop
                             }
                         }
@@ -213,7 +224,11 @@ struct StoryPreview: View {
             }
             
         }
- 
+        .onAppear{
+            print(index)
+        }
+
+      
         
         .toolbar() {
             ToolbarItem(placement: .navigationBarLeading) {

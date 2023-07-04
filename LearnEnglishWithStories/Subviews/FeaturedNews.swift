@@ -64,7 +64,7 @@ struct FeaturedNews: View {
                         ForEach(Array(ArticleVM.article.indices), id: \.self) { index in
                             
                             NavigationLink {
-                                StoryScreen(articleIndex:index, article: ArticleVM.article[index])
+                              /*  StoryScreen(articleIndex:index, article: ArticleVM.article[index]) */
                             } label: {
                                 ZStack{
                                     VStack(spacing: 0){

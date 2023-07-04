@@ -87,9 +87,11 @@ struct MainView: View {
                                     Circle()
                                         .foregroundColor(.gray.opacity(0.6))
                                 )
-                            Image(systemName: "magnifyingglass.circle")
+                            
+                            //FEATURES
+                           /* Image(systemName: "magnifyingglass.circle")
                                 .font(.system(size: 24, weight: .light))
-                                .foregroundColor(.white)
+                                .foregroundColor(.white) */
                         }.padding(.horizontal, 16)
                     }
 

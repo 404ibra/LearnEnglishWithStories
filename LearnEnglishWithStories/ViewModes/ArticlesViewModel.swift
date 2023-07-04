@@ -15,9 +15,14 @@ class ArticleViewModel: ObservableObject {
     @Published var singleArticle: Article?
     @Published var isLoading: Bool = true
     @Published var continousLoading: Bool = true
+    @Published var readnowArticles = [Article]()
     
     
     private let db = Firestore.firestore()
+    
+    
+   
+    
     
     func getData() {
         db.collection("Articles").getDocuments { snapshot, error in
@@ -26,8 +31,10 @@ class ArticleViewModel: ObservableObject {
                     DispatchQueue.main.async {
                         self.article = snapshot.documents.map { article in
                             return Article(id: article.documentID,
+                                           articleid: article["ArticleID"] as? String ?? "",
                                            storynumber: article["ArticleNumber"] as? Int ?? 0,
                                            name: article["ArticleName"] as? String ?? "",
+                                           readnow: article["ReadNow"] as? Bool ?? false,
                                            subject: article["ArticleSubject"] as? String ?? "",
                                            free: article["ArticleFree"] as? Bool ?? false,
                                            duration: article["ArticleDuration"] as? String ?? "",
@@ -48,13 +55,51 @@ class ArticleViewModel: ObservableObject {
         }// getdocuments
     }//getData func end
     
+    func readnow() {
+        db.collection("Articles").whereField("ReadNow", isEqualTo: true).getDocuments { snapshot, error in
+            if let error = error {
+                // Hata durumunu ele al
+                print("Hata: \(error.localizedDescription)")
+                return
+            }
+            
+            if let snapshot = snapshot {
+                DispatchQueue.main.async {
+                    self.readnowArticles = snapshot.documents.map { article in
+                        return Article(id: article.documentID,
+                                       articleid: article["ArticleID"] as? String ?? "",
+                                       storynumber: article["ArticleNumber"] as? Int ?? 0,
+                                       name: article["ArticleName"] as? String ?? "",
+                                       readnow: article["ReadNow"] as? Bool ?? false,
+                                       subject: article["ArticleSubject"] as? String ?? "",
+                                       free: article["ArticleFree"] as? Bool ?? false,
+                                       duration: article["ArticleDuration"] as? String ?? "",
+                                       summary: article["ArticleSummary"] as? String ?? "",
+                                       images: article["ArticleImage"] as? String ?? "",
+                                       level: article["Level"] as? String ?? "",
+                                       sounds: article["ArticleSounds"] as? [String] ?? [""],
+                                       contentnames: article["ContentNames"] as? [String] ?? [""],
+                                       content: article["Content"] as? [String] ?? [""],
+                                       translate: article["Translate"] as? [String] ?? [""])
+                    }//map
+                    self.isLoading = false
+                }//DispatchQueue.main.async
+            }
+        }// getDocuments
+    }//getData func end
+
+    
+    
+    
     func getLastDataArticles(documentID: String) {
         db.collection("Articles").document(documentID).getDocument { document, error in
             if let document = document, document.exists {
                 DispatchQueue.main.async {
                     let article = Article(id: document.documentID,
+                                          articleid: document["ArticleID"] as? String ?? "",
                                           storynumber: document["ArticleNumber"] as? Int ?? 0,
                                           name: document["ArticleName"] as? String ?? "",
+                                          readnow: document["ReadNow"] as? Bool ?? false,
                                           subject: document["ArticleSubject"] as? String ?? "",
                                           free: document["ArticleFree"] as? Bool ?? false,
                                           duration: document["ArticleDuration"] as? String ?? "",
@@ -80,12 +125,15 @@ class ArticleViewModel: ObservableObject {
         func getContent(for currentPage: Int, storyIndex: Int) -> [String]{
             getData()
             guard article.indices.contains(storyIndex) else {
+               
                 return []
             }
             guard currentPage >= 0 && currentPage < article[storyIndex].content.count
             else {
+                
                 return []
             }
+   
             return article[storyIndex].content[currentPage].components(separatedBy: " ")
         }
     }

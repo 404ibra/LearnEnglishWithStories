@@ -26,6 +26,7 @@ struct StoryView: View {
     let maxCharactersPerLine = 35
 
     init(words: [String], isTranslate: Bool) {
+        print(words)
             self.words = words
             self.isTranslate = isTranslate
         }

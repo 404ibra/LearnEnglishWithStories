@@ -124,17 +124,19 @@ class ArticleViewModel: ObservableObject {
     class ArticleManager: ArticleViewModel {
         func getContent(for currentPage: Int, storyIndex: Int) -> [String]{
             getData()
+           
             guard article.indices.contains(storyIndex) else {
-               
                 return []
             }
             guard currentPage >= 0 && currentPage < article[storyIndex].content.count
             else {
-                
                 return []
             }
-   
-            return article[storyIndex].content[currentPage].components(separatedBy: " ")
+         
+            return article.first(where: { $0.storynumber == storyIndex})?.content[currentPage].components(separatedBy: " ") ?? [""]
+           
+        
+          
         }
     }
     
@@ -149,7 +151,7 @@ class ArticleViewModel: ObservableObject {
             else {
                 return []
             }
-            return article[storyIndex].translate[currentPage].components(separatedBy: " ")
+            return article.first(where: { $0.storynumber == storyIndex})?.translate[currentPage].components(separatedBy: " ") ?? [""]
         }
     }
     

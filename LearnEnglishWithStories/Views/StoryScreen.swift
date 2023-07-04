@@ -41,7 +41,7 @@ struct StoryScreen: View {
 
                 //Learning Language
               ScrollView {
-                  
+                  Text(String(article.storynumber))
                     StoryView(words: ArticleMan.getContent(for: currentPageIndex, storyIndex: articleIndex), isTranslate: false)
                 }
                 .frame(height: MainVM.learningLanguageExpand  ? geometry.size.height/2 : geometry.size.height/4)

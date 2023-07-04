@@ -78,8 +78,8 @@ struct StoryPreview: View {
                                         NavigationLink {
                                         
                
-                                                StoryScreen(articleIndex: article.storynumber, article: ArticleVM.article[index])
-                                    
+                                            StoryScreen(articleIndex: article.storynumber , article: ArticleVM.article[index])
+                                            
                                        
                                             
                                            

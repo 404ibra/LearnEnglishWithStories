@@ -33,16 +33,19 @@ struct MainView: View {
                     VStack(spacing: 0){
                         ReadNow()
                         FeaturedView(HeadlineText: "Seviyenize Göre")
+                           
                             .padding(.bottom,12)
                         Divider()
                         LastlyAddedView(HeadlineText: "En Günceller")
+                            .padding(.bottom,4)
+                        Divider()
+                        FeaturedNewsiew(HeadlineText: "Haberler")
+                            .padding(.bottom,12)
+                        Spacer()
                     }
                     .padding(.top,12)
                     
-                    Divider()
-                    FeaturedNewsiew(HeadlineText: "Haberler")
-                        .padding(.bottom,12)
-                    Spacer()
+                 
                     
                 }
                 if AuthVM.currentUser?.isPremium == false {

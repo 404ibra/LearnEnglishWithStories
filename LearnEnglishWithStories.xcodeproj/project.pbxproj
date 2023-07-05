@@ -51,6 +51,7 @@
 		6C701AF72A3F038B00D21E2E /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 6C701AF62A3F038B00D21E2E /* FirebaseStorage */; };
 		6C701AF92A3F12C000D21E2E /* ArticlesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C701AF82A3F12C000D21E2E /* ArticlesViewModel.swift */; };
 		6C70AF882A424C1C00BA69A6 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C70AF872A424C1C00BA69A6 /* SplashView.swift */; };
+		6C96F5502A55D0340056AE9F /* SeeAnothersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C96F54F2A55D0340056AE9F /* SeeAnothersView.swift */; };
 		6CAE86D92A4443F300F2DE58 /* PageSettingsDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAE86D82A4443F300F2DE58 /* PageSettingsDialogView.swift */; };
 		6CAE86DC2A444A5000F2DE58 /* AuthenticationWithMail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAE86DB2A444A5000F2DE58 /* AuthenticationWithMail.swift */; };
 		6CC187852A26042900F9E803 /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC187842A26042900F9E803 /* StoryView.swift */; };
@@ -117,6 +118,7 @@
 		6C701AED2A3F02BC00D21E2E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6C701AF82A3F12C000D21E2E /* ArticlesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesViewModel.swift; sourceTree = "<group>"; };
 		6C70AF872A424C1C00BA69A6 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		6C96F54F2A55D0340056AE9F /* SeeAnothersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAnothersView.swift; sourceTree = "<group>"; };
 		6CAE86D82A4443F300F2DE58 /* PageSettingsDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageSettingsDialogView.swift; sourceTree = "<group>"; };
 		6CAE86DB2A444A5000F2DE58 /* AuthenticationWithMail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationWithMail.swift; sourceTree = "<group>"; };
 		6CC187842A26042900F9E803 /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 				6C0EC67A2A35E3C10058A372 /* MyNotesView.swift */,
 				6C70AF872A424C1C00BA69A6 /* SplashView.swift */,
 				6C0C1D962A52C51E00E461CC /* PaywallView.swift */,
+				6C96F54F2A55D0340056AE9F /* SeeAnothersView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				6C0EC67B2A35E3C10058A372 /* MyNotesView.swift in Sources */,
 				6CAE86DC2A444A5000F2DE58 /* AuthenticationWithMail.swift in Sources */,
 				6C55FC362A348320000DFCEC /* TextFieldAnimation.swift in Sources */,
+				6C96F5502A55D0340056AE9F /* SeeAnothersView.swift in Sources */,
 				6CEFB6022A45EE6E0024AFFF /* AuthViewModel.swift in Sources */,
 				6CC187852A26042900F9E803 /* StoryView.swift in Sources */,
 				6C44ECB82A3DAF6600053B8F /* UserModel.swift in Sources */,

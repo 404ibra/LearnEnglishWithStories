@@ -60,7 +60,7 @@ struct FeatuderImages: View {
                         .redacted(reason: .placeholder)
                     } else {
                         
-                        ForEach(Array(ArticleVM.article.indices), id: \.self) { index in
+                        ForEach(Array(ArticleVM.article.indices.shuffled()), id: \.self) { index in
                             
                             NavigationLink {
                              /*   StoryScreen(articleIndex:index, article: ArticleVM.article[index])*/

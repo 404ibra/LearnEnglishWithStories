@@ -24,7 +24,7 @@ struct LastlyAddedView: View {
                
             }//HStack
             .padding(.horizontal, 16)
-            .frame(width: DeviceSize.size.width, height: 50)
+            .frame(width: DeviceSize.size.width, height: 80)
             .background(.white)
             LastlyAdded()
         }

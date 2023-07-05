@@ -16,6 +16,7 @@ class ArticleViewModel: ObservableObject {
     @Published var isLoading: Bool = true
     @Published var continousLoading: Bool = true
     @Published var readnowArticles = [Article]()
+    @Published var samearticles = [Article]()
     
     
     private let db = Firestore.firestore()
@@ -87,6 +88,41 @@ class ArticleViewModel: ObservableObject {
             }
         }// getDocuments
     }//getData func end
+    
+    
+    func sameArticles(articleSubject: String) {
+        db.collection("Articles").whereField("ArticleSubject", isEqualTo: articleSubject).getDocuments { snapshot, error in
+            if let error = error {
+                // Hata durumunu ele al
+                print("Hata: \(error.localizedDescription)")
+                return
+            }
+            
+            if let snapshot = snapshot {
+                DispatchQueue.main.async {
+                    self.samearticles = snapshot.documents.map { article in
+                        return Article(id: article.documentID,
+                                       articleid: article["ArticleID"] as? String ?? "",
+                                       storynumber: article["ArticleNumber"] as? Int ?? 0,
+                                       name: article["ArticleName"] as? String ?? "",
+                                       readnow: article["ReadNow"] as? Bool ?? false,
+                                       subject: article["ArticleSubject"] as? String ?? "",
+                                       free: article["ArticleFree"] as? Bool ?? false,
+                                       duration: article["ArticleDuration"] as? String ?? "",
+                                       summary: article["ArticleSummary"] as? String ?? "",
+                                       images: article["ArticleImage"] as? String ?? "",
+                                       level: article["Level"] as? String ?? "",
+                                       sounds: article["ArticleSounds"] as? [String] ?? [""],
+                                       contentnames: article["ContentNames"] as? [String] ?? [""],
+                                       content: article["Content"] as? [String] ?? [""],
+                                       translate: article["Translate"] as? [String] ?? [""])
+                    }//map
+                    self.isLoading = false
+                }//DispatchQueue.main.async
+            }
+        }// getDocuments
+    }//getData func end
+
 
     
     

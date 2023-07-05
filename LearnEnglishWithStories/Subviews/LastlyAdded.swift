@@ -26,7 +26,7 @@ struct LastlyAdded: View {
             ScrollView(.horizontal, showsIndicators:  false) {
                 
                 HStack{
-                    ForEach(ArticleVM.article) { index in
+                    ForEach(ArticleVM.article.prefix(3).shuffled()) { index in
                         
                         NavigationLink {
                        //     StoryPreview(article: ArticleVM.article[index], index: index)
@@ -42,24 +42,33 @@ struct LastlyAdded: View {
                                             .frame(width: geometry.size.width * 0.9)
                                             .cornerRadius(8)
                                             .padding(.trailing, 6)
-                                        
-                                        ZStack{
-                                            Rectangle()
-                                                .frame(width: 28, height: 80)
-                                                .foregroundColor(.white.opacity(0.75))
-                                                .alignH(alignment: .leading)
-                                            Text("Ücretsiz")
-                                                .font(.system(size: 14, weight: .light, design: .rounded))
-                                                .foregroundColor(.black)
-                                            
-                                                .rotationEffect(.degrees(90))
-                                                .alignH(alignment: .leading)
-                                                .padding(.leading, -15)
-                                            
+                                        if index.free {
+                                            ZStack{
+                                                Rectangle()
+                                                    .frame(width: 28, height: 80)
+                                                    .foregroundColor(.white.opacity(0.75))
+                                                    .alignH(alignment: .leading)
+                                                
+                                                ZStack{
+                                                    Rectangle()
+                                                        .frame(width: 20, height: 60)
+                                                        .foregroundColor(.white.opacity(0.75))
+                                                        .alignH(alignment: .leading)
+                                                    Text("Ücretsiz")
+                                                        .font(.system(size: 10, weight: .light, design: .rounded))
+                                                        .foregroundColor(.black)
+                                                    
+                                                        .rotationEffect(.degrees(90))
+                                                        .alignH(alignment: .leading)
+                                                        .padding(.leading, -8)
+                                                }
+                                                
+                                            }
+                                            .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 2)
                                         }
-                                        
+                                            
                                     }
-                                    .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 2)
+                                   
                                     //ZStack
                                     Text(index.name)
                                         .font(.system(size: 18, weight: .light, design: .rounded))

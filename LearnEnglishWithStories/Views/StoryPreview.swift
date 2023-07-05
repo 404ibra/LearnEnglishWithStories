@@ -28,6 +28,7 @@ struct StoryPreview: View {
     init(article: Article, index: Int) {
         self.article = article
         self.index = index
+        ArticleVM.sameArticles(articleSubject: article.subject)
         ArticleVM.getData()
     }
 
@@ -139,7 +140,7 @@ struct StoryPreview: View {
                     .frame(height: UIScreen.main.bounds.height * 0.65)
                     VStack(alignment: .leading){
                         HStack{
-                            Text("Yeni Keşifler")
+                            Text("Benzer")
                                 .font(.system(size: 20, weight: .semibold, design: .rounded))
                                 
                             Image(systemName: "chevron.right")
@@ -150,19 +151,19 @@ struct StoryPreview: View {
 
                         ScrollView(.horizontal, showsIndicators: false){
                             LazyHStack{
-                                ForEach(Array(ArticleVM.article.indices), id: \.self) { i in
+                                ForEach(Array(ArticleVM.samearticles.indices), id: \.self) { i in
                                     
                                     
                                     
                                     NavigationLink {
-                                        StoryPreview(article: ArticleVM.article[i], index: i)
+                                        StoryPreview(article: ArticleVM.samearticles[i], index: i)
                                     } label: {
                                         ZStack{
                                              VStack{
                                                
                                                      ZStack(alignment: .leading){
                                                          
-                                                         KFImage(URL(string: ArticleVM.article[i].images))
+                                                         KFImage(URL(string: ArticleVM.samearticles[i].images))
                                                              .resizable()
                                                              .aspectRatio(contentMode: .fill)
                                                              .frame(height: 120)

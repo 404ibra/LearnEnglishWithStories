@@ -53,8 +53,10 @@ struct ReadNow: View {
                                         .foregroundColor(.white)
                                         .padding(.bottom, 1)
                                     HStack{
+                                        Text("\(ArticleVM.readnowArticles[index].subject) ·")
                                         Text(ArticleVM.readnowArticles[index].level)
-                                        Text(ArticleVM.readnowArticles[index].duration)
+                                        Text("·\(ArticleVM.readnowArticles[index].duration)")
+                                        
                                     }
                                     .font(.system(size: 15, weight: .light, design: .rounded))
                                     .foregroundColor(.white)

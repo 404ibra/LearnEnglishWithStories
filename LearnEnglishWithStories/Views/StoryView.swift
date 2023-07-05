@@ -23,7 +23,7 @@ struct StoryView: View {
     var words: [String]
     
     let geometry = UIScreen.main.bounds
-    let maxCharactersPerLine = 35
+    let maxCharactersPerLine = 38
 
     init(words: [String], isTranslate: Bool) {
         
@@ -64,6 +64,7 @@ struct StoryView: View {
                                     Text(word)
                                         .font(.system(size: 19, weight: .medium, design: .rounded))
                                         .onLongPressGesture(minimumDuration: 0.6) {
+                                            
                                             translateDialog = true
                                             // telefonu titretmesi için yazdığım kod
                                             let impactMed = UIImpactFeedbackGenerator(style: .heavy)
@@ -119,19 +120,10 @@ struct StoryView: View {
                     }
                 }
                 .padding()
-                Button {
-                    if isTranslate {
-                        MainVM.translateExpand = true
-                    } else {
-                        MainVM.learningLanguageExpand = true
-                    }
-                } label: {
-                    Image(systemName: "arrow.up.left.and.arrow.down.right")
-                }
+              
 
             }
-        }
-    }
+        }       }
 }
 
 

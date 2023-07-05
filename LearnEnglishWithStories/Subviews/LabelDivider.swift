@@ -35,12 +35,13 @@ struct LabelledDivider: View {
 
 struct IconLaballedDivider: View {
 
-    let label: String
+
     let horizontalPadding: CGFloat
     let color: Color
+    let iconName: String
 
-    init(label: String, horizontalPadding: CGFloat = 20, color: Color = .gray) {
-        self.label = label
+    init(iconName: String, horizontalPadding: CGFloat = 16, color: Color = .gray) {
+        self.iconName = iconName
         self.horizontalPadding = horizontalPadding
         self.color = color
     }
@@ -48,9 +49,10 @@ struct IconLaballedDivider: View {
     var body: some View {
         HStack {
             line
-                Image(systemName: "rectangle.expand.vertical").foregroundColor(color)
+                Image(systemName: iconName).foregroundColor(color)
+                .padding(.horizontal, 0)
             line
-        }
+        }.frame(height: 16)
     }
 
     var line: some View {

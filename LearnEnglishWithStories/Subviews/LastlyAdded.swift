@@ -29,7 +29,7 @@ struct LastlyAdded: View {
                     ForEach(ArticleVM.article) { index in
                         
                         NavigationLink {
-                            //   StoryScreen(storiesIndex: index.storynumber)
+                       //     StoryPreview(article: ArticleVM.article[index], index: index)
                         } label: {
                             ZStack {
                                 VStack{

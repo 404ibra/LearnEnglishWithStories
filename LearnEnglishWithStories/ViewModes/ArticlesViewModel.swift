@@ -128,11 +128,11 @@ class ArticleViewModel: ObservableObject {
             guard article.indices.contains(storyIndex) else {
                 return []
             }
-            guard currentPage >= 0 && currentPage < article[storyIndex].content.count
+            guard currentPage >= 0 && currentPage < article.first(where: { $0.storynumber == storyIndex})?.content.count ?? 0
             else {
                 return []
             }
-         
+           
             return article.first(where: { $0.storynumber == storyIndex})?.content[currentPage].components(separatedBy: " ") ?? [""]
            
         
@@ -147,7 +147,7 @@ class ArticleViewModel: ObservableObject {
             guard article.indices.contains(storyIndex) else {
                 return []
             }
-            guard currentPage >= 0 && currentPage < article[storyIndex].translate.count
+            guard currentPage >= 0 && currentPage < article.first(where: { $0.storynumber == storyIndex})?.translate.count ?? 0
             else {
                 return []
             }

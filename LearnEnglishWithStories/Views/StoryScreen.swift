@@ -11,11 +11,12 @@ import AVFoundation
 var player: AVAudioPlayer!
 
 struct StoryScreen: View {
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject private var ArticleVM = ArticleViewModel()
     @ObservedObject private var ArticleMan = ArticleManager()
     @ObservedObject private var TranslateMan = TranslateManager()
     @ObservedObject private var SoundVM: SoundManager
-    
+   
     @StateObject private var MainVM = MainVievModel()
  
     @State private var pageSettings = false
@@ -29,6 +30,7 @@ struct StoryScreen: View {
         self.articleIndex = articleIndex
         self.article = article
         self.SoundVM = SoundManager()
+        SoundVM.downloadAndPlay(from: article.sounds[currentPageIndex])
        
     }
     
@@ -36,25 +38,66 @@ struct StoryScreen: View {
     var body: some View {
         
         ZStack{
-            VStack{
-                ArticleHeadline(articleName: article.name)
+            VStack(spacing: 0){
+               // ArticleHeadline(articleName: article.name)
+                /*VStack{
+                    HStack {
+                        Button {
+                            
+                        } label: {
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(.black)
+                    }
+                        
+                        Spacer()
+                        Button {
+                            //TO DO
+                        } label: {
+                            Text("Sayfa Ayarları")
+                                .font(.system(size: 18, weight: .semibold, design: .rounded))
+                                .foregroundColor(Color(hex: "fa6c38"))
+                                .onTapGesture {
+                                    //self.pageSettings = true
+                                }
+                        }
 
+                    }.padding(.horizontal, 16)
+
+                }
+                 */
                 //Learning Language
-              ScrollView {
-                  Text(String(article.storynumber))
-                    StoryView(words: ArticleMan.getContent(for: currentPageIndex, storyIndex: articleIndex), isTranslate: false)
-                }
-                .frame(height: MainVM.learningLanguageExpand  ? geometry.size.height/2 : geometry.size.height/4)
-               Divider()
-                    .padding(.vertical,15)
-                
-                //Main Language
+           
                 ScrollView {
-                    StoryView(words: TranslateMan.getTranslate(for: currentPageIndex, storyIndex: articleIndex), isTranslate: true)
+                    
+                    StoryView(words: ArticleMan.getContent(for: currentPageIndex, storyIndex: articleIndex), isTranslate: false)
+                        .frame(width:geometry.width, height: geometry.height / 2.4)
+                       
                 }
-                .frame(height: geometry.size.height/4)
+
+                Button {
+                    MainVM.learningLanguageExpand.toggle()
+                } label: {
+                    if MainVM.learningLanguageExpand {
+                        IconLaballedDivider(iconName: "chevron.up.square")
+                       
+                    } else {
+                        IconLaballedDivider(iconName: "chevron.down.square")
+                    }
+                }.padding(.vertical, 0)
+       
+               
+                if MainVM.learningLanguageExpand {
+                    
+                } else {
+                    ScrollView {
+                        StoryView(words: TranslateMan.getTranslate(for: currentPageIndex, storyIndex: articleIndex), isTranslate: true)
+                            .frame(width:geometry.width, height: geometry.height / 2.4)
+                           
+                    }
+                }
+       
                 Divider()
-                    .padding(.top,20)
+                    .padding(.top,12)
                 
                 Spacer()
                 
@@ -74,7 +117,7 @@ struct StoryScreen: View {
                   currentPageIndex: currentPageIndex,
                   audioURL: SoundVM.localURL
                 )
-                .padding(.vertical, 16)
+                .padding(.bottom, 6)
                 .padding(.horizontal, 16)
             }//Page big VStack
             .blur(radius: SoundVM.isDownloading ? 3.2 : 0)
@@ -94,26 +137,52 @@ struct StoryScreen: View {
             
             
         }//Page big zstack
+        .toolbar(.hidden, for: .tabBar)
         .navigationBarBackButtonHidden(true)
-       
-       
-        .onAppear{
-            print("nasdkjsldkjsa \(articleIndex)")
-            SoundVM.downloadAndPlay(from: article.sounds[currentPageIndex])
-                
-            
-              
-            
+        .toolbar() {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    
+                 presentationMode.wrappedValue.dismiss()
+                } label: {
+                   
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(.black)
+                    
+                }
+
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+               
+                Button {
+                    //TO DO
+                } label: {
+                    Text("Sayfa Ayarları")
+                        .font(.system(size: 18, weight: .semibold, design: .rounded))
+                        .foregroundColor(.gray.opacity(0.6))
+                        .onTapGesture {
+                            //self.pageSettings = true
+                        }
+                }
+
+            }
         }
+       
+       
+     /*   .onAppear{
+          
+            SoundVM.downloadAndPlay(from: article.sounds[currentPageIndex])
+
+        }*/
         
         
         
         .onChange(of: currentPageIndex) { newValue in
             print("\(newValue) sayfa indexi")
             print(currentPageIndex)
+        
             SoundVM.downloadAndPlay(from: article.sounds[newValue])
-                
-            
+       
         }
 }
         }

@@ -70,10 +70,10 @@ struct StoryScreen: View {
                 ScrollView {
                     
                     StoryView(words: ArticleMan.getContent(for: currentPageIndex, storyIndex: articleIndex), isTranslate: false)
-                        .frame(width:geometry.width, height: geometry.height / 2.4)
+                        
                        
-                }
-
+                }.frame(width:geometry.width, height: MainVM.learningLanguageExpand ?  geometry.height
+                        / 1.3 : geometry.height / 2.4 )
                 Button {
                     MainVM.learningLanguageExpand.toggle()
                 } label: {
@@ -91,9 +91,9 @@ struct StoryScreen: View {
                 } else {
                     ScrollView {
                         StoryView(words: TranslateMan.getTranslate(for: currentPageIndex, storyIndex: articleIndex), isTranslate: true)
-                            .frame(width:geometry.width, height: geometry.height / 2.4)
                            
-                    }
+                           
+                    } .frame(width:geometry.width, height: 230)
                 }
        
                 Divider()

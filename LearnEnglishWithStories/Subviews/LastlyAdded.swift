@@ -26,23 +26,21 @@ struct LastlyAdded: View {
             ScrollView(.horizontal, showsIndicators:  false) {
                 
                 HStack{
-                    ForEach(ArticleVM.article.prefix(3).shuffled()) { index in
-                        
+                    ForEach(ArticleVM.article.prefix(3).indices.shuffled(), id: \.self) { index in
                         NavigationLink {
-                       //     StoryPreview(article: ArticleVM.article[index], index: index)
+                           StoryPreview(article: ArticleVM.article[index], index: index)
                         } label: {
                             ZStack {
                                 VStack{
-                                    
                                     ZStack(alignment: .leading){
-                                        KFImage(URL(string: index.images))
+                                        KFImage(URL(string: ArticleVM.article[index].images))
                                             .resizable()
                                             .aspectRatio(contentMode: .fill)
                                             .frame(height: 300)
                                             .frame(width: geometry.size.width * 0.9)
                                             .cornerRadius(8)
                                             .padding(.trailing, 6)
-                                        if index.free {
+                                        if ArticleVM.article[index].free {
                                             ZStack{
                                                 Rectangle()
                                                     .frame(width: 28, height: 80)
@@ -70,29 +68,16 @@ struct LastlyAdded: View {
                                     }
                                    
                                     //ZStack
-                                    Text(index.name)
+                                    Text(ArticleVM.article[index].name)
                                         .font(.system(size: 18, weight: .light, design: .rounded))
+                                        .foregroundColor(.black)
                                 }
                             }//Label inside VStack
                             
                         }
                     }
                 }
-                
-                
-                
-                
-                
-                //HStack
                 .padding(.leading, 16)
-                //Hstack
-                
-                
-                //  İNDEXLERİ TEK TEK GÖSTERMEK İÇİBN
-                .onAppear {
-                    //UIScrollView.appearance().isPagingEnabled = true
-                }
-                
             }//NavStack
             
             

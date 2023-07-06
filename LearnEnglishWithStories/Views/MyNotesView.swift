@@ -8,12 +8,20 @@
 import SwiftUI
 
 struct MyNotesView: View {
+    @ObservedObject private var archiveVM = FavArticlesViewModel()
+    
+    init(){
+        archiveVM.fetchFavArticles()
+    }
+    
     let geometry = UIScreen.main.bounds.size
     var body: some View {
         
         ScrollView {
             VStack{
-                
+                ForEach(archiveVM.favArticles ?? [""], id:\.self) {i in
+                    Text(i)
+                }
             }
         }
         

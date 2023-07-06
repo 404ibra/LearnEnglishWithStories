@@ -29,6 +29,22 @@ struct ArchiveService {
         
     }
     
+    func addFavArticle(ArticleID: String){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Firestore.firestore().collection("Users")
+            .document(uid)
+            .updateData(["favStories" : FieldValue.arrayUnion([ArticleID])])
+    }
+    
+    func removeFavArticle(ArticleID: String){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Firestore.firestore().collection("Users")
+            .document(uid)
+            .updateData(["favStories" : FieldValue.arrayRemove([ArticleID])])
+    }
+
+    
+    
 }
 /*
 class FetchWordsArchive: ObservableObject {

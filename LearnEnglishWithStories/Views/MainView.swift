@@ -31,7 +31,12 @@ struct MainView: View {
             ZStack(alignment: .bottom){
                 ScrollView(showsIndicators: false){
                     VStack(spacing: 0){
-                        ReadNow()
+                        
+                      
+                            ReadNow()
+
+                      
+                        
                         FeaturedView(HeadlineText: "Seviyenize Göre")
                            
                             .padding(.bottom,12)
@@ -69,37 +74,7 @@ struct MainView: View {
             .background(Color(hex: "f4f2f7"))
 
        
-            .toolbar  {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Text("Şimdi Oku")
-                        .font(.system(.title))
-                        .bold()
-                        .foregroundColor(.white)
-
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        //
-                    } label: {
-                        HStack{
-                            Image(systemName: "plus")
-                                .font(.system(size: 12))
-                                .foregroundColor(.white)
-                                .frame(width: 24, height: 24)
-                                .background(
-                                    Circle()
-                                        .foregroundColor(.gray.opacity(0.6))
-                                )
-                            
-                            //FEATURES
-                           /* Image(systemName: "magnifyingglass.circle")
-                                .font(.system(size: 24, weight: .light))
-                                .foregroundColor(.white) */
-                        }.padding(.horizontal, 16)
-                    }
-
-                }
-            }
+            
         }//NavigationStack
         
     

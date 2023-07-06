@@ -13,10 +13,14 @@ struct StoryPreview: View {
     @EnvironmentObject private var AuthVM: AuthViewModel
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject private var ArticleVM = ArticleViewModel()
+    @ObservedObject private var ArchiveVM = ArchiveViewModel()
+    
     
     @State private var isSheetPresented = false
     @State private var insideChange: Int?
- 
+    @State private var iconChange: Bool?
+    
+    
     let geometry = UIScreen.main.bounds
     let article: Article
     var index: Int
@@ -217,8 +221,10 @@ struct StoryPreview: View {
                         }
                         .alignH(alignment: .leading)
                         .padding(.horizontal, 16)
+                        
                     }//VStack
                 }//Scrollview
+                .padding(.bottom, 48)
                 .navigationBarBackButtonHidden(true)
               
                
@@ -244,22 +250,51 @@ struct StoryPreview: View {
                 }
 
             }
+            
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    //
-                } label: {
-                    Image(systemName: "plus")
-                        .font(.system(size: 12))
-                        .foregroundColor(.white)
-                        .frame(width: 24, height: 24)
-                        .background(
-                            Circle()
-                                .foregroundColor(.gray.opacity(0.6))
-                        )
+                if AuthVM.currentUser!.favStories!.contains(article.articleid) {
+                    Button {
+                   
+                        ArchiveVM.removeFavArticle(articleID: article.articleid)
+                        iconChange = false
+                       
+                    } label: {
+                        Image(systemName: "checkmark")
+                            .font(.system(size: 12))
+                            .foregroundColor(.white)
+                            .frame(width: 24, height: 24)
+                            .background(
+                                Circle()
+                                    .foregroundColor(.gray.opacity(0.6))
+                            )
+                    }
+
+                } else {
+                    Button {
+                       
+                        ArchiveVM.addFavArticle(articleID: article.articleid)
+                        iconChange = true
+                        
+                    } label: {
+                        Image(systemName: "plus")
+                            .font(.system(size: 12))
+                            .foregroundColor(.white)
+                            .frame(width: 24, height: 24)
+                            .background(
+                                Circle()
+                                    .foregroundColor(.gray.opacity(0.6))
+                            )
+                    }
+
                 }
 
-            }
-        }  .sheet(isPresented: $isSheetPresented) {
+                }
+        }
+        .onChange(of: iconChange, perform: { _ in
+
+            Task { await AuthVM.fetchUser() }
+        })
+        .sheet(isPresented: $isSheetPresented) {
             VStack{
                 HStack(alignment:.center, spacing: 0){
                
@@ -312,3 +347,34 @@ func getShortenedText(text: String) -> String {
 }
 
  
+/* Button {
+
+     if AuthVM.currentUser!.favStories!.contains(article.articleid){
+         ArchiveVM.removeFavArticle(articleID: article.articleid)
+         iconChange = false
+     }else {
+         ArchiveVM.addFavArticle(articleID: article.articleid)
+         iconChange = true
+     }
+ } label: {
+     if AuthVM.currentUser!.favStories!.contains(article.articleid) || iconChange == true {
+         Image(systemName: "checkmark")
+             .font(.system(size: 12))
+             .foregroundColor(.white)
+             .frame(width: 24, height: 24)
+             .background(
+                 Circle()
+                     .foregroundColor(.gray.opacity(0.6))
+             )
+     }
+     else {
+         Image(systemName: "plus")
+             .font(.system(size: 12))
+             .foregroundColor(.white)
+             .frame(width: 24, height: 24)
+             .background(
+                 Circle()
+                     .foregroundColor(.gray.opacity(0.6))
+             )
+     
+ }}*/

@@ -105,15 +105,45 @@ class FavWordViewModel: ObservableObject, FavWordViewModelInterface {
             let favWords = snapshot["favWords"]  as? [[String: String]]
             DispatchQueue.main.async {
              self.favWords = favWords
-                
-              
          }
         }
     }
-    
-    
 }
 
+class FavArticlesViewModel: ObservableObject {
+    @Published var favArticlesID: [String]?
+    @Published var favArticles: [Article]?
+    
+    
+    func fetchFavArticles(){
+        Firestore.firestore().collection("Users").document(Auth.auth().currentUser!.uid).getDocument { snapshot, error in
+            guard let snapshot = snapshot?.data() else { return }
+            let favArticlesID = snapshot["favStories"] as? [String]
+            DispatchQueue.main.async {
+                self.favArticlesID = favArticlesID
+            }
+        }
+        
+    }
+   
+    
+    
+    //TO DO append articles in favArticles
+    func showFavArticles(){
+        fetchFavArticles()
+        guard let favArticlesID = favArticlesID else { return }
+        for documentID in favArticlesID {
+            Firestore.firestore().collection("Articles").document(documentID).getDocument { snapshot, error in
+                guard let snapshot = snapshot?.data() else { return }
+                
+                
+            }
+        }
+        
+    }
+        
+    
+}
 
 
 

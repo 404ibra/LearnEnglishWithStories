@@ -72,6 +72,7 @@ struct StoryView: View {
                                             // check true
                                             MainVM.isLongPressWord = true
                                             selectedWord = word
+                                            print(selectedWord)
                                         }
                                         .sheet(isPresented: $translateDialog) {
                                             VStack{

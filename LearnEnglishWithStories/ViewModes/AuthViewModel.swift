@@ -112,16 +112,22 @@ class FavWordViewModel: ObservableObject, FavWordViewModelInterface {
 
 class FavArticlesViewModel: ObservableObject {
     @Published var favArticlesID: [String]?
-    @Published var favArticles: [Article]?
+    @Published var article : [Article]?
+    
+    init(){
+        article = []
+    }
     
     
-    func fetchFavArticles(){
+    func fetchFavArticles(completion: @escaping ([String]?) -> Void){
         Firestore.firestore().collection("Users").document(Auth.auth().currentUser!.uid).getDocument { snapshot, error in
-            guard let snapshot = snapshot?.data() else { return }
-            let favArticlesID = snapshot["favStories"] as? [String]
-            DispatchQueue.main.async {
-                self.favArticlesID = favArticlesID
-            }
+            guard let snapshot = snapshot?.data() else {
+                       completion(nil)
+                       return
+                   }
+                   
+                   let favArticlesID = snapshot["favStories"] as? [String]
+                   completion(favArticlesID)
         }
         
     }
@@ -129,17 +135,46 @@ class FavArticlesViewModel: ObservableObject {
     
     
     //TO DO append articles in favArticles
-    func showFavArticles(){
-        fetchFavArticles()
-        guard let favArticlesID = favArticlesID else { return }
-        for documentID in favArticlesID {
-            Firestore.firestore().collection("Articles").document(documentID).getDocument { snapshot, error in
-                guard let snapshot = snapshot?.data() else { return }
-                
-                
-            }
-        }
+        func showFavArticles(){
+            
+            fetchFavArticles { [weak self] favArticlesID in
+            
         
+            guard let favArticlesID = favArticlesID else { return }
+       
+                for documentID in favArticlesID {
+                  
+                    Firestore.firestore().collection("Articles").document(documentID).getDocument { snapshot, error in
+                        if  error == nil {
+                            if let snapshot = snapshot {
+                                DispatchQueue.main.async {
+                                    let favArticle = Article(id: snapshot.documentID,
+                                                             articleid: snapshot["ArticleID"] as? String ?? "",
+                                                             storynumber: snapshot["ArticleNumber"] as? Int ?? 0,
+                                                             name: snapshot["ArticleName"] as? String ?? "",
+                                                             readnow: snapshot["ReadNow"] as? Bool ?? false,
+                                                             subject: snapshot["ArticleSubject"] as? String ?? "",
+                                                             free: snapshot["ArticleFree"] as? Bool ?? false,
+                                                             duration: snapshot["ArticleDuration"] as? String ?? "",
+                                                             summary: snapshot["ArticleSummary"] as? String ?? "",
+                                                             images: snapshot["ArticleImage"] as? String ?? "",
+                                                             level: snapshot["Level"] as? String ?? "",
+                                                             sounds: snapshot["ArticleSounds"] as? [String] ?? [""],
+                                                             contentnames: snapshot["ContentNames"] as? [String] ?? [""],
+                                                             content: snapshot["Content"] as? [String] ?? [""],
+                                                             translate: snapshot["Translate"] as? [String] ?? [""])
+                                    
+                                    self?.article!.append(favArticle)
+                                }
+                            } else {
+                                print("snapshot boşa attı \(error?.localizedDescription)")
+                            }
+                        }
+                        
+                        
+                    }}
+            }
+            
     }
         
     

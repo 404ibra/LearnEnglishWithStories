@@ -18,15 +18,15 @@ struct VocabuleryBoxes: View {
     
     var body: some View {
       
-            ZStack(alignment: .top){
+        ZStack(alignment: .center){
                 ZStack(alignment: .topLeading){
                     Rectangle()
                         .foregroundColor(.white)
                         .cornerRadius(15)
                         .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 3)
                         .shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: -2)
-                        .alignH(alignment: .center)
-                    Button {
+                     
+                 Button {
                         archiveVM.removeWord(main: savingWord, learn: "MeanTürkçe")
                     } label: {
                         Image(systemName: "xmark.circle")
@@ -38,42 +38,43 @@ struct VocabuleryBoxes: View {
                     }
 
                 }
-                .frame(width: geometry.size.width * 0.8, height: 120)
-                VStack{
-                    Text(savingWord)
-                        .padding(.top, 6)
-                    Divider()
-                        .frame(width: geometry.size.width * 0.8)
-                        .alignH(alignment: .center)
-                    Text("Sarnıç")
-                    Divider()
-                        .frame(width: geometry.size.width * 0.8)
-                    HStack{
-                        HStack{
-                            Image(systemName: "waveform")
-                            Text("Dinle")
-                        }
-                        Spacer()
-                        HStack{
-                            Image(systemName: "flag")
-                            Text("Diğerleri")
-                        }
+                .frame(width: geometry.size.width * 0.9, height: 180)
+            VStack(alignment: .leading){
+                    HStack(alignment: .center){
+                        Image(systemName: "waveform.circle")
+                            .font(.system(size: 23))
+                            .foregroundColor(.maindarkblue)
+                            .padding(.top, 5)
+                        Text(savingWord)
+                            .font(.system(size: 22, weight: .semibold, design: .rounded))
+                            .foregroundColor(.mainlightblue)
+                            .padding(.top, 6)
                     }
+                   
+                    Text("Sarnıç")
+                        .font(.system(size: 15, weight: .medium, design: .rounded))
+                        .padding(.top, 6)
+                        .padding(.leading, 32)
+                
+                       Divider()
                     
-                    .padding(.horizontal, 32)
-                    .frame(width: geometry.size.width * 0.8)
+                        
+                
                     
                 }
+            .padding(.horizontal, 16)
+            .frame(width: geometry.size.width * 0.9, height: 180)
             }
             .padding(.vertical, 16)
+           
         
     }
 }
 
-/*
+
 struct VocabuleryBoxes_Previews: PreviewProvider {
     static var previews: some View {
-        VocabuleryBoxes()
+        VocabuleryBoxes(savingWord: "Astronaut")
     }
 }
-*/
+

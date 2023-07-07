@@ -20,7 +20,7 @@ struct PageHeader: View {
                 .frame(height: 140)
                 .foregroundColor(colorScheme == .dark
                                  ? .maindarkblue
-                                 : .white
+                                 :  Color(hex: "f4f2f7")
                 )
             HStack{
                 MainVM.isSearchVisible ? nil :  Text(PageName)

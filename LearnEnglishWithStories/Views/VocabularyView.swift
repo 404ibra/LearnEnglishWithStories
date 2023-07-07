@@ -15,41 +15,49 @@ struct VocabularyView: View {
     let geometry = UIScreen.main.bounds
     
     var body: some View {
-        
-        ZStack(alignment: .bottom){
-            Group{
-                if AuthVM.currentUser?.isPremium ?? false {
-                    VStack(alignment: .center, spacing: 0){
-                        PageHeader(PageName: "Kelimelerim", searchicon: false)
-                        TabBarView(currentTab: self.$currentTab)
-                        ZStack{
-                            TabView(selection: self.$currentTab) {
-                                MyVocabuleryView().tag(0)
-                                MyNotesView().tag(1)
-                            }
-                            .tabViewStyle(.page(indexDisplayMode: .never))
-                            .edgesIgnoringSafeArea(.all)
-                        }//ZStack
-                        .padding(.top, 16)
-                        
+        NavigationStack{
+            ZStack(alignment: .bottom)
+            {
+                Group{
+                    if AuthVM.currentUser?.isPremium ?? false {
+                        VStack(alignment: .center, spacing: 0){
+                            PageHeader(PageName: "Arşiv", searchicon: false)
+                            TabBarView(currentTab: self.$currentTab)
+                            ZStack{
+                                TabView(selection: self.$currentTab) {
+                                    MyVocabuleryView().tag(0)
+                                    MyNotesView().tag(1)
+                                }
+                                
+                                .tabViewStyle(.page(indexDisplayMode: .never))
+                                .edgesIgnoringSafeArea(.all)
+                            }//ZStack
+                            .padding(.top, 16)
+                          
+                    
+                            
+                        }
+                        .padding(.top, 0)
+                        .ignoresSafeArea()
+                        .refreshable {
+                            Task { await AuthVM.fetchUser() }
+                        }
+                        //VStack
+                    } else {
+                        Text("Sadece premium kullanıcılar için")
                     }
-                    .padding(.top, 0)
-                    .ignoresSafeArea()
-                    .refreshable {
-                        Task { await AuthVM.fetchUser() }
-                    }
-                    //VStack
-                } else {
-                    Text("Sadece premium kullanıcılar için")
-                }
+                    
+                    
+                }//Group
                 
-                
-            }//Group
             
-        
-     
+         
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+          .background(Color(hex: "f4f2f7"))
+            
         }
-      
+
         }
         
  
@@ -79,8 +87,12 @@ struct TabBarView: View {
         }
         .padding(.horizontal, 16 )
         .frame(height: 50)
+        
+                
         .edgesIgnoringSafeArea(.all)
+      
     }
+          
 }
 
 
@@ -98,6 +110,7 @@ struct TabBarItem: View {
             VStack{
                 Spacer()
                 Text(tabBarItemName)
+                    .bold()
                 if currentTab == tab {
                         (colorScheme  == .light ? Color.black : .white)
                             .frame(height: 2)
@@ -109,6 +122,7 @@ struct TabBarItem: View {
                     }
             }
             .animation(.spring(), value: self.currentTab)
+           
         }
         .buttonStyle(.plain)
         }

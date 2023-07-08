@@ -252,7 +252,7 @@ struct StoryPreview: View {
             }
             
             ToolbarItem(placement: .navigationBarTrailing) {
-                if AuthVM.currentUser!.favStories!.contains(article.articleid) {
+                if AuthVM.currentUser!.favStories != nil && AuthVM.currentUser!.favStories!.contains(article.articleid) {
                     Button {
                    
                         ArchiveVM.removeFavArticle(articleID: article.articleid)

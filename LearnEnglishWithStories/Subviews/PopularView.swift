@@ -1,15 +1,17 @@
 //
-//  HomePage.swift
+//  PopularView.swift
 //  LearnEnglishWithStories
 //
-//  Created by İbrahim Aktaş on 11.05.2023.
+//  Created by İbrahim Aktaş on 8.07.2023.
 //
+
+
 
 import SwiftUI
 import Kingfisher
 
 
-struct FeatuderImages: View {
+struct PopularView: View {
     @StateObject var MainVM = MainVievModel()
     @ObservedObject private var ArticleVM = ArticleViewModel()
     @ObservedObject private var SoundVM: SoundManager
@@ -60,7 +62,7 @@ struct FeatuderImages: View {
                         .redacted(reason: .placeholder)
                     } else {
                         
-                        ForEach(Array(ArticleVM.article.indices.shuffled()), id: \.self) { index in
+                        ForEach(Array(ArticleVM.article.indices), id: \.self) { index in
                             
                             NavigationLink {
                              /*   StoryScreen(articleIndex:index, article: ArticleVM.article[index])*/
@@ -78,7 +80,7 @@ struct FeatuderImages: View {
                                                     .frame(width: 220)
                                                     .cornerRadius(8)
                                                     .padding(.trailing, 6)
-                                                   
+                                                 
                                                 
                                                 if ArticleVM.article[index].free {
                                                     ZStack{
@@ -118,9 +120,21 @@ struct FeatuderImages: View {
                                         
                                         .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 2)
                                         //ZStack
-                                        Text("\(ArticleVM.article[index].name) (\(ArticleVM.article[index].level))")
-                                            .font(.system(size: 16.5, weight: .light, design: .rounded))
-                                            .foregroundColor(.black)
+                                        HStack{
+                                            Text(String(index + 1))
+                                                .font(.system(size: 28, weight: .medium, design: .rounded))
+                                                .foregroundColor(.gray)
+                                                .padding(.trailing, 5)
+                                            VStack(alignment: .leading){
+                                                Text(ArticleVM.article[index].name)
+                                                    .font(.system(size: 14, weight: .light))
+                                                    .foregroundColor(.black)
+                                                Text("\(ArticleVM.article[index].subject) · \(ArticleVM.article[index].duration) ")
+                                                    .font(.system(size: 13, weight: .light))
+                                                    .foregroundColor(.gray)
+                                            }
+                                            Spacer()
+                                        }
                                     }
                                 }//Label inside VStack
                                 
@@ -138,8 +152,10 @@ struct FeatuderImages: View {
     }
 
 
-struct HomePage_Previews: PreviewProvider {
+
+
+struct PopularView_Previews: PreviewProvider {
     static var previews: some View {
-        FeatuderImages()
+        PopularView()
     }
 }

@@ -42,7 +42,10 @@ struct MainView: View {
                             .padding(.bottom,12)
                         Divider()
                         LastlyAddedView(HeadlineText: "En Günceller")
-                            .padding(.bottom,4)
+                            .padding(.bottom,20)
+                        Divider()
+                        FeaturedPopularView(HeadlineText: "Son Zamanlarda Popüler")
+                            .padding(.bottom,12)
                         Divider()
                         FeaturedNewsiew(HeadlineText: "Haberler")
                             .padding(.bottom,12)
@@ -66,9 +69,9 @@ struct MainView: View {
                 
             }
          
-            .sheet(isPresented: $isShow ){
-                PaywallView()
-            }
+            .fullScreenCover(isPresented: $isShow) {
+                        PaywallView()
+ }
             
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color(hex: "f4f2f7"))

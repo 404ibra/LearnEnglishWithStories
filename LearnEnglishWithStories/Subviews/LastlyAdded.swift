@@ -40,6 +40,7 @@ struct LastlyAdded: View {
                                             .frame(width: geometry.size.width * 0.9)
                                             .cornerRadius(8)
                                             .padding(.trailing, 6)
+                                             
                                         if ArticleVM.article[index].free {
                                             ZStack{
                                                 Rectangle()
@@ -62,15 +63,13 @@ struct LastlyAdded: View {
                                                 }
                                                 
                                             }
-                                            .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 2)
+                                          
                                         }
                                             
                                     }
                                    
                                     //ZStack
-                                    Text(ArticleVM.article[index].name)
-                                        .font(.system(size: 18, weight: .light, design: .rounded))
-                                        .foregroundColor(.black)
+                         
                                 }
                             }//Label inside VStack
                             

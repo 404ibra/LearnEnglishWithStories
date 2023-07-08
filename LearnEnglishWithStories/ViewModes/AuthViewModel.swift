@@ -94,10 +94,12 @@ protocol FavWordViewModelInterface {
 }
 
 class FavWordViewModel: ObservableObject, FavWordViewModelInterface {
-    
-    
     @Published var favWords:  [[String: String]]?
+    @Published var isLoading: Bool = false
+
+    
     func newFavWord(){
+        isLoading = true
         Firestore.firestore().collection("Users").document(Auth.auth().currentUser!.uid).getDocument { snapshot, error in
             guard let snapshot = snapshot?.data() else {
                 return
@@ -105,8 +107,11 @@ class FavWordViewModel: ObservableObject, FavWordViewModelInterface {
             let favWords = snapshot["favWords"]  as? [[String: String]]
             DispatchQueue.main.async {
              self.favWords = favWords
+                self.objectWillChange.send()
+            
          }
         }
+        isLoading = false
     }
 }
 

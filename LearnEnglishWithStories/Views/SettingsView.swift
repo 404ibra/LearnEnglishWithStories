@@ -13,13 +13,13 @@ struct SettingsView: View {
     let geometry = UIScreen.main.bounds
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             PageHeader(PageName: "Ayarlar", searchicon: false)
 
               
             ScrollView {
                 Group{
-                    Divider()
+                 
                     Button {
                         loginSheet = true
                     } label: {
@@ -36,7 +36,7 @@ struct SettingsView: View {
                                 .padding(.horizontal, 32)
                         }
                     }
-                    Divider()
+            
                     ZStack{
                         Rectangle()
                         .frame(width: geometry.size.width, height: 65)
@@ -49,7 +49,7 @@ struct SettingsView: View {
                         }
                             .padding(.horizontal, 32)
                     }
-                    Divider()
+                  
                     ZStack{
                         Rectangle()
                         .frame(width: geometry.size.width, height: 65)
@@ -62,7 +62,7 @@ struct SettingsView: View {
                         }
                             .padding(.horizontal, 32)
                     }
-                    Divider()
+          
                     ZStack{
                         Rectangle()
                         .frame(width: geometry.size.width, height: 65)
@@ -75,7 +75,7 @@ struct SettingsView: View {
                         }
                             .padding(.horizontal, 32)
                     }
-                    Divider()
+                 
                     ZStack{
                         Rectangle()
                         .frame(width: geometry.size.width, height: 65)
@@ -94,7 +94,7 @@ struct SettingsView: View {
                 }
                 
                 Group{
-                    Divider()
+            
                     ZStack{
                         Rectangle()
                         .frame(width: geometry.size.width, height: 65)
@@ -107,7 +107,7 @@ struct SettingsView: View {
                         }
                             .padding(.horizontal, 32)
                     }
-                    Divider()
+                
                     ZStack{
                         Rectangle()
                         .frame(width: geometry.size.width, height: 65)
@@ -127,7 +127,8 @@ struct SettingsView: View {
         
             }.padding(.bottom, 50)
             
-        }
+        }      .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color(hex: "f4f2f7"))
       
         .sheet(isPresented: $loginSheet) {
             AuthenticationWithMail()

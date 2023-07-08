@@ -27,6 +27,7 @@ struct LastlyAddedView: View {
             .frame(width: DeviceSize.size.width, height: 80)
             .background(.white)
             LastlyAdded()
+                .shadow(color: .black.opacity(0.3), radius: 4, x: 0, y: 4)
         }
     }
 }

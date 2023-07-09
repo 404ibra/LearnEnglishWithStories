@@ -25,15 +25,12 @@ struct StoryPreview: View {
     let article: Article
     var index: Int
     
-    
-    
-    
+
     
     init(article: Article, index: Int) {
         self.article = article
         self.index = index
-       // ArticleVM.sameArticles(articleSubject: article.subject)
-      //  ArticleVM.getData()
+
     }
 
 
@@ -162,14 +159,14 @@ struct StoryPreview: View {
                                         
                                         
                                         NavigationLink {
-                                            StoryPreview(article: ArticleVM.samearticles[i], index: i)
+                                            StoryPreview(article: ArticleVM.article.filter({ $0.subject["Turkish"]! == article.subject["Turkish"]})[i], index: i)
                                         } label: {
                                             ZStack{
                                                 VStack{
                                                     
                                                     ZStack(alignment: .leading){
                                                         
-                                                        KFImage(URL(string: ArticleVM.samearticles[i].images))
+                                                        KFImage(URL(string: ArticleVM.article.filter({ $0.subject["Turkish"]! == article.subject["Turkish"]})[i].images))
                                                             .resizable()
                                                             .aspectRatio(contentMode: .fill)
                                                             .frame(height: 120)

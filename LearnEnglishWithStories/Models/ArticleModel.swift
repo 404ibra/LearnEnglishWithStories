@@ -23,8 +23,6 @@ struct Article: Identifiable, Codable {
     var level: [String : String]
     var sounds: [String]
     var content: [String: [String]]
-   // var translate: [String]
-    
 }
 
 

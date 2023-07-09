@@ -4,7 +4,7 @@
 //
 //  Created by İbrahim Aktaş on 8.06.2023.
 //
-
+/*
 import SwiftUI
 import Kingfisher
 
@@ -86,4 +86,5 @@ struct ContinueSection_Previews: PreviewProvider {
         ContinueSection()
     }
 }
+*/
 */

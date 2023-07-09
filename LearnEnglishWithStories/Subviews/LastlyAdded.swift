@@ -12,12 +12,12 @@ import Kingfisher
 
 struct LastlyAdded: View {
     @StateObject var MainVM = MainVievModel()
-    @ObservedObject private var ArticleVM = ArticleViewModel()
+    @EnvironmentObject private var ArticleVM : ArticleViewModel
     
     let geometry = UIScreen.main.bounds
     
     init(){
-        ArticleVM.getData()
+      //  ArticleVM.getData()
     }
     
     

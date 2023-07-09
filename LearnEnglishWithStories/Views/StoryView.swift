@@ -57,9 +57,13 @@ struct StoryView: View {
             ZStack(alignment: .topTrailing) {
                 VStack(alignment: .leading, spacing: 10) {
                     
+                    
+                    
                     ForEach(lines.indices, id: \.self) { lineIndex in
                         HStack(spacing: 5) {
-                            ForEach(lines[lineIndex], id: \.self) { word in
+                            //BURADA  .indicies koyma sebebim id'de yaşanan problem bu sekilde cozuldu ogren
+                            ForEach(lines[lineIndex].indices, id: \.self) { wordIndex in
+                                let word = lines[lineIndex][wordIndex]
                                 if !isTranslate{
                                     Text(word)
                                         .font(.system(size: 19, weight: .medium, design: .rounded))

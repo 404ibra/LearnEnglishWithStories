@@ -66,11 +66,11 @@ struct ContinueSection: View {
                             .frame(width: UIScreen.main.bounds.width * 0.9)
                             .roundedCornerRectangle(radius: 12, corners: [.bottomLeft, .bottomRight])
                         
-                        Text(ArticleVM.singleArticle?.name ?? "")
+                      /*  Text(ArticleVM.singleArticle?.name ?? "")
                             .font(.system(size: 17, weight: .semibold, design: .rounded))
                             .foregroundColor(.white)
                             .padding(.horizontal, 8)
-                            .padding(.bottom, 5)
+                            .padding(.bottom, 5)*/
                     }
                 }
                 .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 2)

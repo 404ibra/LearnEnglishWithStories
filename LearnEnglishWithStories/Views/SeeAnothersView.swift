@@ -10,12 +10,12 @@ import Kingfisher
 
 struct SeeAnothersView: View {
     
-    @ObservedObject private var ArticleVM = ArticleViewModel()
+    @EnvironmentObject private var ArticleVM : ArticleViewModel
     
     let geometry = UIScreen.main.bounds
     
     init() {
-        ArticleVM.getData()
+      //  ArticleVM.getData()
     }
     
     
@@ -60,7 +60,7 @@ struct SeeAnothersView: View {
                                             }
                                         .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 2)
                                         //ZStack
-                                        Text("\(ArticleVM.article[index].name)")
+                                        Text("\(ArticleVM.article[index].name["Spanish"]!)")
                                             .font(.system(size: 16.5, weight: .light, design: .rounded))
                                             .foregroundColor(.black)
                                     }

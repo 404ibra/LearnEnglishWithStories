@@ -58,7 +58,7 @@ struct MyNotesView: View {
                                             } 
                                           
                                         //ZStack
-                                        Text("\(archiveVM.article![index].name)")
+                                        Text("\(archiveVM.article![index].name["Spanish"]!)")
                                             .font(.system(size: 16.5, weight: .light, design: .rounded))
                                             .foregroundColor(.black)
                                     }

@@ -13,12 +13,12 @@ import Kingfisher
 
 struct PopularView: View {
     @StateObject var MainVM = MainVievModel()
-    @ObservedObject private var ArticleVM = ArticleViewModel()
+    @EnvironmentObject private var ArticleVM : ArticleViewModel
     @ObservedObject private var SoundVM: SoundManager
     
     init() {
         self.SoundVM = SoundManager()
-        ArticleVM.getData()
+        //ArticleVM.getData()
     }
    
 
@@ -126,10 +126,10 @@ struct PopularView: View {
                                                 .foregroundColor(.gray)
                                                 .padding(.trailing, 5)
                                             VStack(alignment: .leading){
-                                                Text(ArticleVM.article[index].name)
+                                                Text(ArticleVM.article[index].name["Spanish"]!)
                                                     .font(.system(size: 14, weight: .light))
                                                     .foregroundColor(.black)
-                                                Text("\(ArticleVM.article[index].subject) · \(ArticleVM.article[index].duration) ")
+                                                Text("\(ArticleVM.article[index].subject["Spanish"]!) · \(ArticleVM.article[index].duration) ")
                                                     .font(.system(size: 13, weight: .light))
                                                     .foregroundColor(.gray)
                                             }

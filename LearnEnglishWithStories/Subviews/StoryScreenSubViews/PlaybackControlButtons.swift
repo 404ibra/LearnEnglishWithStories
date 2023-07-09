@@ -68,11 +68,15 @@ struct PlayBackControlButtons: View {
                 }//Button finish with label
                 .padding(.horizontal,8)
                 
-
+                Spacer()
                 HStack{
                     ForEach(0...contentCount-1, id:\.self){i in
+                        
                         Rectangle()
-                            .frame(width: geometry.size.width * 0.45/CGFloat(contentCount), height: 4)
+                            .frame(width:
+                                    currentPageIndex == i
+                                   ? geometry.size.width * 0.34/CGFloat(contentCount)
+                                   : geometry.size.width * 0.2/CGFloat(contentCount), height: 4)
                             .foregroundColor(
                                 currentPageIndex == i
                                 ? .mainorange.opacity(0.7)
@@ -83,7 +87,7 @@ struct PlayBackControlButtons: View {
                     }
                     
                 }
-                
+                Spacer()
                 HStack{
                     Image(systemName: "arrow.backward")
                         .foregroundColor(Color(hex: "1a659e"))

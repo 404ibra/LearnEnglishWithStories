@@ -156,18 +156,17 @@ class FavArticlesViewModel: ObservableObject {
                                     let favArticle = Article(id: snapshot.documentID,
                                                              articleid: snapshot["ArticleID"] as? String ?? "",
                                                              storynumber: snapshot["ArticleNumber"] as? Int ?? 0,
-                                                             name: snapshot["ArticleName"] as? String ?? "",
+                                                             name: snapshot["ArticleName"] as? [String : String] ?? ["" : ""],
                                                              readnow: snapshot["ReadNow"] as? Bool ?? false,
-                                                             subject: snapshot["ArticleSubject"] as? String ?? "",
+                                                             subject: snapshot["ArticleSubject"] as? [String : String] ?? ["" : ""],
                                                              free: snapshot["ArticleFree"] as? Bool ?? false,
                                                              duration: snapshot["ArticleDuration"] as? String ?? "",
-                                                             summary: snapshot["ArticleSummary"] as? String ?? "",
+                                                             summary: snapshot["ArticleSummary"] as? [String : String] ?? ["" : ""],
                                                              images: snapshot["ArticleImage"] as? String ?? "",
-                                                             level: snapshot["Level"] as? String ?? "",
+                                                             level: snapshot["Level"] as?[String : String] ?? ["" : ""],
                                                              sounds: snapshot["ArticleSounds"] as? [String] ?? [""],
-                                                             contentnames: snapshot["ContentNames"] as? [String] ?? [""],
-                                                             content: snapshot["Content"] as? [String] ?? [""],
-                                                             translate: snapshot["Translate"] as? [String] ?? [""])
+                                                             content: snapshot["Content"] as? [String: [String]] ?? ["" : [""]])
+                                                         //    translate: snapshot["Translate"] as? [String] ?? [""])
                                     
                                     self?.article!.append(favArticle)
                                 }
@@ -232,3 +231,5 @@ class AuthViewModel: ObservableObject {
     }
 }
 */
+
+

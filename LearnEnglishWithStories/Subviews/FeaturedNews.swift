@@ -12,12 +12,12 @@ import Kingfisher
 
 struct FeaturedNews: View {
     @StateObject var MainVM = MainVievModel()
-    @ObservedObject private var ArticleVM = ArticleViewModel()
+    @EnvironmentObject private var ArticleVM : ArticleViewModel
     @ObservedObject private var SoundVM: SoundManager
     
     init() {
         self.SoundVM = SoundManager()
-        ArticleVM.getData()
+       // ArticleVM.getData()
     }
    
 
@@ -97,7 +97,7 @@ struct FeaturedNews: View {
                                         }
                                         .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 2)
                                         //ZStack
-                                        Text(ArticleVM.article[index].name)
+                                        Text(ArticleVM.article[index].name["Spanish"]!)
                                             .font(.system(size: 16, weight: .light, design: .rounded))
                                             .foregroundColor(.black)
                                     }

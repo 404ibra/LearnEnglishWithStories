@@ -11,13 +11,12 @@ import Kingfisher
 
 struct ReadNow: View {
     @EnvironmentObject private var AuthVM : AuthViewModel
-    @ObservedObject private var ArticleVM = ArticleViewModel()
+
     @ObservedObject private var ArchiveVM = ArchiveViewModel()
+    @EnvironmentObject private var ArticleVM: ArticleViewModel
     
     @State private var iconChange: Bool = false
-    init(){
-        ArticleVM.readnow()
-    }
+  
     
     
     @State var selectedIndex = 0
@@ -28,49 +27,56 @@ struct ReadNow: View {
         NavigationStack{
            GeometryReader { g in
                 TabView(selection: $selectedIndex){
-                    ForEach(ArticleVM.readnowArticles.indices, id: \.self){ index in
-                        NavigationLink {
-                           StoryPreview(article: ArticleVM.readnowArticles[index], index: index) 
-                        } label: {
-                            ZStack(alignment: .bottom){
-                                ZStack{
-                                   KFImage(URL(string: ArticleVM.readnowArticles[index].images))  .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                    LinearGradient(
-                                        gradient: Gradient(colors: [Color.black.opacity(0.6), Color.clear]),
-                                        startPoint: .top,
-                                        endPoint: .center
-                                    )
-                                    LinearGradient(
-                                        gradient: Gradient(colors: [Color.black.opacity(0.6), Color.clear]),
-                                        startPoint: .bottom,
-                                        endPoint: .center
-                                    )
-                                }
-                                VStack{
-                                    Text(ArticleVM.readnowArticles[index].name)
-                                        .font(.system(size: 23, weight: .semibold, design: .rounded))
-                                        .foregroundColor(.white)
-                                        .padding(.bottom, 1)
-                                    HStack{
-                                        Text("\(ArticleVM.readnowArticles[index].subject) ·")
-                                        Text(ArticleVM.readnowArticles[index].level)
-                                        Text("·\(ArticleVM.readnowArticles[index].duration)")
-                                        
+                 
+                    if ArticleVM.article.filter({ $0.readnow == true }).count > 0 {
+                        
+                        
+                        
+                        ForEach(ArticleVM.article.filter({ $0.readnow == true }).indices, id: \.self){ index in
+                            NavigationLink {
+                                // StoryPreview(article: ArticleVM.readnowArticles[index], index: index)
+                            } label: {
+                                ZStack(alignment: .bottom){
+                                    ZStack{
+                                        KFImage(URL(string: ArticleVM.article.filter({ $0.readnow == true })[index].images))  .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                        LinearGradient(
+                                            gradient: Gradient(colors: [Color.black.opacity(0.6), Color.clear]),
+                                            startPoint: .top,
+                                            endPoint: .center
+                                        )
+                                        LinearGradient(
+                                            gradient: Gradient(colors: [Color.black.opacity(0.6), Color.clear]),
+                                            startPoint: .bottom,
+                                            endPoint: .center
+                                        )
                                     }
-                                    .font(.system(size: 15, weight: .light, design: .rounded))
-                                    .foregroundColor(.white)
-                                    .padding(.bottom, 0.1)
-                                    Text(ArticleVM.readnowArticles[index].subject)
-                                        .font(.system(size: 16, weight: .medium, design: .rounded))
-                                        .padding(.horizontal, 60)
+                                    VStack{
+                                        Text(ArticleVM.article.filter({ $0.readnow == true })[index].name["Spanish"]!)
+                                            .font(.system(size: 23, weight: .semibold, design: .rounded))
+                                            .foregroundColor(.white)
+                                            .padding(.bottom, 1)
+                                        HStack{
+                                            Text("\(ArticleVM.article.filter({ $0.readnow == true })[index].subject["Spanish"]!) ·")
+                                            Text(ArticleVM.article.filter({ $0.readnow == true })[index].level["Spanish"]!)
+                                            Text("·\(ArticleVM.article[index].duration)")
+                                            
+                                        }
+                                        .font(.system(size: 15, weight: .light, design: .rounded))
                                         .foregroundColor(.white)
-                                        .padding(.bottom, 0)
-                                        .multilineTextAlignment(.center)
-                                }.padding(.vertical, 35)
-                            }.tag(index)
+                                        .padding(.bottom, 0.1)
+                                        Text(ArticleVM.article.filter({ $0.readnow == true })[index].subject["Spanish"]!)
+                                            .font(.system(size: 16, weight: .medium, design: .rounded))
+                                            .padding(.horizontal, 60)
+                                            .foregroundColor(.white)
+                                            .padding(.bottom, 0)
+                                            .multilineTextAlignment(.center)
+                                    }.padding(.vertical, 35)
+                                }.tag(index)
+                            }
+                        }} else {
+                            Text("dsadas")
                         }
-                    }
                 }
                 .tabViewStyle(PageTabViewStyle())
                 .offset(y: g.frame(in: .global).minY > 0 ? -g.frame(in: .global).minY : 0)

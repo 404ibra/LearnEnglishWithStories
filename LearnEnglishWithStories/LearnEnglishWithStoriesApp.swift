@@ -25,7 +25,7 @@ struct LearnEnglishWithStoriesApp: App {
     
   @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
   @StateObject var AuthVM = AuthViewModel()
-
+    @StateObject var ArticleVM = ArticleViewModel()
 
   var body: some Scene {
     WindowGroup {
@@ -33,6 +33,7 @@ struct LearnEnglishWithStoriesApp: App {
      
             MainTabView()
                 .environmentObject(AuthVM)
+                .environmentObject(ArticleVM)
         
    
       

@@ -11,12 +11,13 @@ import Kingfisher
 
 struct FeatuderImages: View {
     @StateObject var MainVM = MainVievModel()
-    @ObservedObject private var ArticleVM = ArticleViewModel()
+   // @ObservedObject private var ArticleVM = ArticleViewModel()
     @ObservedObject private var SoundVM: SoundManager
+    @EnvironmentObject private var ArticleVM : ArticleViewModel
     
     init() {
         self.SoundVM = SoundManager()
-        ArticleVM.getData()
+   //     ArticleVM.getData()
     }
    
 
@@ -118,7 +119,7 @@ struct FeatuderImages: View {
                                         
                                         .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 2)
                                         //ZStack
-                                        Text("\(ArticleVM.article[index].name) (\(ArticleVM.article[index].level))")
+                                        Text("\(ArticleVM.article[index].name["Spanish"]!) (\(ArticleVM.article[index].level["Spanish"]!))")
                                             .font(.system(size: 16.5, weight: .light, design: .rounded))
                                             .foregroundColor(.black)
                                     }

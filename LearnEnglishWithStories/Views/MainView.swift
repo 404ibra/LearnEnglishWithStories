@@ -13,7 +13,7 @@ struct MainView: View {
     
     @EnvironmentObject private var AuthVM: AuthViewModel
     @StateObject private var MainVM = MainVievModel()
-    @ObservedObject private var ArchiveVM = ArchiveViewModel()
+ //   @ObservedObject private var ArchiveVM = ArchiveViewModel()
     @State private var isShow: Bool = true
   
 
@@ -33,7 +33,7 @@ struct MainView: View {
                     VStack(spacing: 0){
                         
                       
-                            ReadNow()
+                     ReadNow()
 
                       
                         

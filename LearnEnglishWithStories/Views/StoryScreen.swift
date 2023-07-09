@@ -12,9 +12,9 @@ var player: AVAudioPlayer!
 
 struct StoryScreen: View {
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject private var ArticleVM = ArticleViewModel()
+  //  @ObservedObject private var ArticleVM = ArticleViewModel()
     @ObservedObject private var ArticleMan = ArticleManager()
-    @ObservedObject private var TranslateMan = TranslateManager()
+  /*  @ObservedObject private var TranslateMan = TranslateManager()*/
     @ObservedObject private var SoundVM: SoundManager
    
     @StateObject private var MainVM = MainVievModel()
@@ -39,37 +39,12 @@ struct StoryScreen: View {
         
         ZStack{
             VStack(spacing: 0){
-               // ArticleHeadline(articleName: article.name)
-                /*VStack{
-                    HStack {
-                        Button {
-                            
-                        } label: {
-                            Image(systemName: "chevron.left")
-                                .foregroundColor(.black)
-                    }
-                        
-                        Spacer()
-                        Button {
-                            //TO DO
-                        } label: {
-                            Text("Sayfa Ayarları")
-                                .font(.system(size: 18, weight: .semibold, design: .rounded))
-                                .foregroundColor(Color(hex: "fa6c38"))
-                                .onTapGesture {
-                                    //self.pageSettings = true
-                                }
-                        }
-
-                    }.padding(.horizontal, 16)
-
-                }
-                 */
+              
                 //Learning Language
            
                 ScrollView {
                     
-                    StoryView(words: ArticleMan.getContent(for: currentPageIndex, storyIndex: articleIndex), isTranslate: false)
+                    StoryView(words: ArticleMan.getContent(for: currentPageIndex, storyIndex: articleIndex, article: article, language: "Spanish"), isTranslate: false)
                         
                        
                 }.frame(width:geometry.width, height: MainVM.learningLanguageExpand ?  geometry.height
@@ -90,7 +65,7 @@ struct StoryScreen: View {
                     
                 } else {
                     ScrollView {
-                        StoryView(words: TranslateMan.getTranslate(for: currentPageIndex, storyIndex: articleIndex), isTranslate: true)
+                        StoryView(words: ArticleMan.getContent(for: currentPageIndex, storyIndex: articleIndex, article: article, language: "Turkish"), isTranslate: true)
                            
                            
                     } .frame(width:geometry.width, height: 230)
@@ -108,12 +83,12 @@ struct StoryScreen: View {
                         print("önceki sayfa mevcut deil")
                     }
                 }, nextpage: {
-                    if currentPageIndex >= 0 && currentPageIndex < article.content.count - 1 {
+                    if currentPageIndex >= 0 && currentPageIndex < article.content["Spanish"]!.count - 1 {
                         currentPageIndex += 1
                     }else { return }
                     //TO DO ARTİCLE BİTTİ TEBRİKLERSSS DİALOGU
                 },
-                  contentCount: article.content.count,
+                  contentCount: article.content["Spanish"]!.count,
                   currentPageIndex: currentPageIndex,
                   audioURL: SoundVM.localURL
                 )
@@ -167,23 +142,6 @@ struct StoryScreen: View {
 
             }
         }
-       
-       
-     /*   .onAppear{
-          
-            SoundVM.downloadAndPlay(from: article.sounds[currentPageIndex])
-
-        }*/
-        
-        
-        
-        .onChange(of: currentPageIndex) { newValue in
-            print("\(newValue) sayfa indexi")
-            print(currentPageIndex)
-        
-            SoundVM.downloadAndPlay(from: article.sounds[newValue])
-       
-        }
 }
         }
     
@@ -192,45 +150,4 @@ struct StoryScreen: View {
 
 
 
-
-
-
-/*    StoryView(words: ArticleMan.getContent(for: currentPageIndex, storyIndex: storiesIndex))
-    Divider()
-    StoryView(words: TranslateMan.getTranslate(for: currentPageIndex, storyIndex: storiesIndex))*/
-
-
-
-
-/*Ωstruct StoryScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        StoryScreen(storiesIndex: 1)
-    }
-}*/
-
-/*
- 
- func playSound(status: Bool) {
-     let url = Bundle.main.url(forResource: "1_1", withExtension: "mp3")
-     //DO neveer if url is empty
-     guard url != nil else {
-         return
-     }
-     do{
-         player = try AVAudioPlayer(contentsOf: url!)
-         if status {
-             player?.play()
-         } else {
-             player?.stop()
-         }
-     } catch {
-         print("err")
-     }
- }
-
-
- 
- 
- 
- */
 

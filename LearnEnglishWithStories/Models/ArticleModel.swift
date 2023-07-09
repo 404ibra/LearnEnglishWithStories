@@ -13,18 +13,17 @@ struct Article: Identifiable, Codable {
     var id : String
     var articleid: String
     var storynumber: Int
-    var name: String
+    var name: [String : String]
     var readnow: Bool
-    var subject: String
+    var subject: [String : String]
     var free: Bool
     var duration: String
-    var summary: String
+    var summary: [String : String]
     var images: String
-    var level: String
+    var level: [String : String]
     var sounds: [String]
-    var contentnames: [String]
-    var content: [String]
-    var translate: [String]
+    var content: [String: [String]]
+   // var translate: [String]
     
 }
 

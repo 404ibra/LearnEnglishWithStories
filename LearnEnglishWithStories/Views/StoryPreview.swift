@@ -12,7 +12,7 @@ import Kingfisher
 struct StoryPreview: View {
     @EnvironmentObject private var AuthVM: AuthViewModel
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject private var ArticleVM = ArticleViewModel()
+    @EnvironmentObject private var ArticleVM : ArticleViewModel
     @ObservedObject private var ArchiveVM = ArchiveViewModel()
     
     
@@ -32,8 +32,8 @@ struct StoryPreview: View {
     init(article: Article, index: Int) {
         self.article = article
         self.index = index
-        ArticleVM.sameArticles(articleSubject: article.subject)
-        ArticleVM.getData()
+       // ArticleVM.sameArticles(articleSubject: article.subject)
+      //  ArticleVM.getData()
     }
 
 
@@ -61,13 +61,13 @@ struct StoryPreview: View {
                                 )
                             }
                             VStack{
-                                Text(article.name)
+                                Text(article.name["Spanish"]!)
                                     .font(.system(size: 26, weight: .semibold, design: .rounded))
                                     .foregroundColor(.white)
                                     .padding(.bottom, 1)
                                 HStack{
-                                    Text("\(article.subject) ·")
-                                    Text(article.level)
+                                    Text("\(article.subject["Spanish"]!) ·")
+                                    Text(article.level["Spanish"]!)
                                     Text("·\(article.duration)")
                                     
                                 }
@@ -83,7 +83,7 @@ struct StoryPreview: View {
                                         NavigationLink {
                                         
                
-                                            StoryScreen(articleIndex: article.storynumber , article: ArticleVM.article[index])
+                                    StoryScreen(articleIndex: article.storynumber , article: ArticleVM.article[index])
                                             
                                        
                                             
@@ -123,7 +123,7 @@ struct StoryPreview: View {
                                
                          
                                 VStack{
-                                    Text(getShortenedText(text: article.summary))
+                                    Text(getShortenedText(text: article.summary["Spanish"]!))
                                         .multilineTextAlignment(.leading)
                                         
                                         .foregroundColor(.white)
@@ -155,74 +155,65 @@ struct StoryPreview: View {
 
                         ScrollView(.horizontal, showsIndicators: false){
                             LazyHStack{
-                                ForEach(Array(ArticleVM.samearticles.indices), id: \.self) { i in
-                                    
-                                    
-                                    
-                                    NavigationLink {
-                                        StoryPreview(article: ArticleVM.samearticles[i], index: i)
-                                    } label: {
-                                        ZStack{
-                                             VStack{
-                                               
-                                                     ZStack(alignment: .leading){
-                                                         
-                                                         KFImage(URL(string: ArticleVM.samearticles[i].images))
-                                                             .resizable()
-                                                             .aspectRatio(contentMode: .fill)
-                                                             .frame(height: 120)
-                                                             .frame(width: 180)
-                                                             .cornerRadius(8)
-                                                             .padding(.trailing, 6)
-                                                         
-                                                         ZStack{
-                                                             Rectangle()
-                                                                 .frame(width: 16, height: 45)
-                                                                 .foregroundColor(.white.opacity(0.75))
-                                                                 .alignH(alignment: .leading)
-                                                             Text("Ücretsiz")
-                                                                 .font(.system(size: 10, weight: .light, design: .rounded))
-                                                                 .foregroundColor(.black)
-                                                             
-                                                                 .rotationEffect(.degrees(90))
-                                                                 .alignH(alignment: .leading)
-                                                                 .padding(.leading, -10)
-                                                             
-                                                         }
-                                                         
-                                                        
-                                                         
-                                                     }
-                                                 .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 2)
-                                                 //ZStack
-                                                
-                                             }
-                                         }
-                                    }
-
-                                    
-
+                                
+                                if ArticleVM.article.filter({ $0.subject["Turkish"]! == article.subject["Turkish"]}).count == 0 {
+                                    ForEach(Array(ArticleVM.article.filter{ $0.subject["Turkish"]! == article.subject["Turkish"]}.indices), id: \.self) { i in
                                         
-                                    
-                                }// for each loop
+                                        
+                                        
+                                        NavigationLink {
+                                            StoryPreview(article: ArticleVM.samearticles[i], index: i)
+                                        } label: {
+                                            ZStack{
+                                                VStack{
+                                                    
+                                                    ZStack(alignment: .leading){
+                                                        
+                                                        KFImage(URL(string: ArticleVM.samearticles[i].images))
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fill)
+                                                            .frame(height: 120)
+                                                            .frame(width: 180)
+                                                            .cornerRadius(8)
+                                                            .padding(.trailing, 6)
+                                                        
+                                                        ZStack{
+                                                            Rectangle()
+                                                                .frame(width: 16, height: 45)
+                                                                .foregroundColor(.white.opacity(0.75))
+                                                                .alignH(alignment: .leading)
+                                                            Text("Ücretsiz")
+                                                                .font(.system(size: 10, weight: .light, design: .rounded))
+                                                                .foregroundColor(.black)
+                                                            
+                                                                .rotationEffect(.degrees(90))
+                                                                .alignH(alignment: .leading)
+                                                                .padding(.leading, -10)
+                                                            
+                                                        }
+                                                        
+                                                        
+                                                        
+                                                    }
+                                                    .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 2)
+                                                    //ZStack
+                                                    
+                                                }
+                                            }
+                                        }
+                                        
+                                        
+                                        
+                                        
+                                        
+                                    }// for each loop
+                                }else {
+                                    Text("dlksakhgdkusahdfas")
+                                }
                             }
                         }
                     }.padding(.leading, 16)
-                    VStack{
-                        Text("İçerik")
-                            .alignH(alignment: .leading)
-                            .font(.system(size: 21, weight: .semibold, design: .rounded))
-                            .padding(.horizontal, 16)
-                            .padding(.top, 7)
-                            .padding(.bottom, 8)
-                        ForEach(article.contentnames, id:\.self) { content in
-                            Text(content)
-                                .font(.system(size: 16, weight: .light, design: .rounded))
-                        }
-                        .alignH(alignment: .leading)
-                        .padding(.horizontal, 16)
-                        
-                    }//VStack
+
                 }//Scrollview
                 .padding(.bottom, 48)
                 .navigationBarBackButtonHidden(true)
@@ -231,10 +222,7 @@ struct StoryPreview: View {
             }
             
         }
-        .onAppear{
-            print(index)
-        }
-
+        
       
         
         .toolbar() {
@@ -298,7 +286,7 @@ struct StoryPreview: View {
             VStack{
                 HStack(alignment:.center, spacing: 0){
                
-                    Text(article.name)
+                    Text(article.name["Spanish"]!)
                         .font(.system(size: 17, weight: .semibold))
                         
                         .padding()
@@ -317,9 +305,8 @@ struct StoryPreview: View {
    
                 }
                 .padding(.horizontal,16)
-                Text(article.summary)
+                Text(article.summary["Spanish"]!)
                     .padding()
-                Spacer()
             }
             .presentationDetents([.fraction(0.6)])
             .presentationDragIndicator(.visible)

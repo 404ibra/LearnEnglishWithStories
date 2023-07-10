@@ -11,13 +11,15 @@ struct DialogContainer: View {
     @StateObject private var MainVM = MainVievModel()
     @Binding var isActivated: Bool
     
+    var watchAdFunc: () -> Void
+    
     var body: some View {
         VStack{
-            Text("Upsss..")
+            Text("Reklamsız İçerik Deneyimi")
                 .font(.title2)
                 .bold()
                 .padding()
-            Text("Bu içerik yalnızca Premium Üyelerimiz için. Dilersen ilk sayfayı reklam izleyerek erişebilirsin.")
+            Text("Premium üyelik size reklamsız ve kesintisiz içerik deneyimi sağlar. Böylece istediğiniz içeriklere dikkatiniz dağılmadan erişebilirsiniz veya reklam izleyerek devam edebilirsiniz.")
                 .font(.system(size: 17, design: .rounded))
             
             Button {
@@ -35,9 +37,16 @@ struct DialogContainer: View {
                 .padding(.horizontal)
                 .padding(.vertical, 0)
             }
-            Text("Reklam izleyerek devam et")
-                .font(.system(size: 13))
-                .padding(.vertical, 8)
+      
+            Button {
+                watchAdFunc()
+              
+            } label: {
+                Text("Reklam izleyerek devam et")
+                    .font(.system(size: 13))
+                    .padding(.vertical, 8)
+            }
+
         }
         .fixedSize(horizontal: false, vertical: true)
         .padding()
@@ -51,7 +60,8 @@ struct DialogContainer: View {
                     } label: {
                         Image(systemName: "xmark")
                             .font(.title3)
-                            .fontWeight(.medium)
+                            .fontWeight(.light)
+                            .foregroundColor(.gray)
                     }
                     .tint(.black)
                     .padding()
@@ -83,7 +93,7 @@ struct DialogContainer: View {
 }
 
 
-
+/*
 
 struct DialogContainer_Previews: PreviewProvider {
     static var previews: some View {
@@ -91,3 +101,4 @@ struct DialogContainer_Previews: PreviewProvider {
     }
 }
 
+*/

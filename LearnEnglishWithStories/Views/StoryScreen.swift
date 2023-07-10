@@ -112,6 +112,7 @@ struct StoryScreen: View {
             
             
         }//Page big zstack
+      
         .toolbar(.hidden, for: .tabBar)
         .navigationBarBackButtonHidden(true)
         .toolbar() {

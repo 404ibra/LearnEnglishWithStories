@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import GoogleMobileAds
 
 
 struct MainView: View {
@@ -15,7 +15,8 @@ struct MainView: View {
     @StateObject private var MainVM = MainVievModel()
  //   @ObservedObject private var ArchiveVM = ArchiveViewModel()
     @State private var isShow: Bool = true
-  
+    
+   
 
     @State var SelectedTab : Int = 0
 
@@ -33,6 +34,16 @@ struct MainView: View {
                     VStack(spacing: 0){
                         
                       
+                        
+               /*         Button {
+                        
+                            reward.ShowReward()
+                        
+                        } label: {
+                            Text("tıkla")
+                        }*/
+
+                        
                      ReadNow()
 
                       
@@ -60,7 +71,7 @@ struct MainView: View {
                     ZStack{
                         Rectangle()
                             .frame(width: geometry.width, height: 25)
-                            .foregroundColor(.maindarkblue)
+                            .foregroundColor(Color(hex: "ef4f2e"))
                         Text("Kesintisiz Okumak İçin Şimdi Premium Ol")
                             .font(.system(size: 16, weight: .bold, design: .rounded))
                             .foregroundColor(.white)
@@ -68,7 +79,7 @@ struct MainView: View {
                 }
                 
             }
-         
+            
             .fullScreenCover(isPresented: $isShow) {
                         PaywallView()
  }
@@ -81,12 +92,12 @@ struct MainView: View {
         }//NavigationStack
         
     
-        
         .modifier(ViewStatusHiddenModifier())
 
     }
 
 }
+
 
 
 struct ViewStatusHiddenModifier: ViewModifier {
@@ -159,3 +170,5 @@ struct BackTitle: View {
        
     }
 }
+
+

@@ -23,6 +23,7 @@ struct LabelledDivider: View {
         HStack {
             line
             Text(label).foregroundColor(color)
+                .font(.system(size: 15, weight: .medium, design: .rounded))
             line
         }
     }

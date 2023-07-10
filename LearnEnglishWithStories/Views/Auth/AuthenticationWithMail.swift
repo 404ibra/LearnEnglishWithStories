@@ -18,36 +18,24 @@ struct AuthenticationWithMail: View {
     var body: some View {
         NavigationStack{
             VStack{
-                Image("new.logo")
-                    .resizable()
-                    .frame(width: 110, height: 55)
-                
-                Text("Hoş Geldin")
-                    .font(.title3)
-                    .foregroundColor(.mainorange)
-
+ 
+            
                 
                 TextField("E-Posta", text: $email )
                     .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
                     .background(
-                        RoundedRectangle(cornerRadius: 1)
-                            .strokeBorder(Color(hex: "0d4e89"), lineWidth: 1.75))
+                        RoundedRectangle(cornerRadius: 5)
+                            .strokeBorder(Color.gray, lineWidth: 0.2))
                     .padding(.horizontal, 32)
                 
                 TextField("Şifre", text: $password )
                     .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
                     .background(
-                        RoundedRectangle(cornerRadius: 2)
-                            .strokeBorder(Color(hex: "0d4e89"), lineWidth: 1.75))
+                        RoundedRectangle(cornerRadius: 5)
+                            .strokeBorder(Color.gray, lineWidth: 0.2))
                     .padding(.horizontal, 32)
                     .padding(.vertical, 16)
-                Text("Şifremi Unuttum")
-                    .font(.system(size: 15, weight: .medium, design: .rounded))
-                    .foregroundColor(.mainorange)
-                    .alignH(alignment: .leading)
-                    .padding(.horizontal, 32)
-                    .padding(.bottom, 10)
-                
+               
                 Button {
                     //TO DO
                     Task{try await AuthVM.signIn(withEmail: email,  password:password)}
@@ -56,63 +44,73 @@ struct AuthenticationWithMail: View {
                     ZStack{
                         Rectangle()
                             .frame(width: geometry.size.width * 0.85 ,height: 55)
-                            .foregroundColor(.mainorange)
+                            .foregroundColor(Color(hex: "2a5efd"))
                         Text("Devam Et")
                             .font(.system(size: 17, weight: .medium, design: .rounded))
                             .foregroundColor(.white)
                     }
                 }
-                
-                NavigationLink {
-                    SignupView()
-                } label: {
-                    HStack{
-                        Text("Bir hesabın yok mu?")
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                        Text("Kayıt Ol")
-                            .font(.subheadline)
-                            .foregroundColor(.mainorange)
-                    }
-                    .alignH(alignment: .leading)
+                Text("Şifremi Unuttum")
+                    .font(.system(size: 15, weight: .medium, design: .rounded))
+                    .foregroundColor(Color(hex: "2a5efd"))
+                    .alignH(alignment: .center)
                     .padding(.horizontal, 32)
-                }
+                    .padding(.bottom, 10)
+                
 
+                LabelledDivider(label: "VEYA")
+                
+                HStack{
+                    Image(systemName: "apple.logo")
+                        .foregroundColor(.black)
+                        .padding(.horizontal, 16)
+                    Text("Apple ile devam et")
+                        .font(.system(size: 16, weight: .medium, design: .rounded))
+                        .foregroundColor(.black)
+                      Spacer()
+                } .padding(EdgeInsets(top: 14, leading: 20, bottom: 14, trailing: 20))
                 
               
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .strokeBorder(Color.gray, lineWidth: 1)
+                        .padding(.horizontal, 16)
                 
-                LabelledDivider(label: "Veya")
+                )
                 
-                ZStack{
-                    Rectangle()
-                        .frame(width: geometry.size.width * 0.85, height: 55)
-                    HStack{
-                        Image(systemName: "apple.logo")
-                            .foregroundColor(.white)
-                        Text("Apple ile Devam Et")
-                            .font(.system(size: 16, weight: .semibold, design: .rounded))
-                            .foregroundColor(.white)
-                    }
-                }//Apple zstack
-     
-                ZStack{
-                    Rectangle()
-                        .frame(width: geometry.size.width * 0.85, height: 55)
-                        .foregroundColor(Color(hex: "4285f4"))
-                    HStack{
-                        Text("Google ile Devam Et")
-                            .font(.system(size: 16, weight: .semibold, design: .rounded))
-                            .foregroundColor(.white)
-                    }
-                }
+                HStack{
+                    Image("google")
+                        .resizable()
+                        .frame(width: 15, height: 15)
+                        .padding(.horizontal, 16)
+                    Text("Google ile oturum aç")
+                        .font(.system(size: 16, weight: .medium, design: .rounded))
+                        .foregroundColor(.black)
+                      Spacer()
+                } .padding(EdgeInsets(top: 14, leading: 20, bottom: 14, trailing: 20))
                 
+              
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .strokeBorder(Color.gray, lineWidth: 1)
+                        .padding(.horizontal, 16)
+                
+                )
                 
                 
                 
             
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color(hex: "f4f2f7"))
+
         }
-    }}
+        
+    }
+    
+    
+}
+
 
 struct AuthenticationWithMail_Previews: PreviewProvider {
     static var previews: some View {

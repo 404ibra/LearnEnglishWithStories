@@ -75,6 +75,10 @@
 		6CE7081B2A374A7000B8C853 /* LevelBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE7081A2A374A7000B8C853 /* LevelBar.swift */; };
 		6CE7081D2A374AF700B8C853 /* MedalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE7081C2A374AF700B8C853 /* MedalView.swift */; };
 		6CE7081F2A3752DA00B8C853 /* MedalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE7081E2A3752DA00B8C853 /* MedalModel.swift */; };
+		6CEEAD402A5D45F50069CC03 /* OnboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEEAD3F2A5D45F50069CC03 /* OnboardView.swift */; };
+		6CEEAD422A5D570E0069CC03 /* SignuupOpinion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEEAD412A5D570E0069CC03 /* SignuupOpinion.swift */; };
+		6CEEAD442A5D685D0069CC03 /* SelectLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEEAD432A5D685D0069CC03 /* SelectLanguage.swift */; };
+		6CEEAD462A5D69D10069CC03 /* SelectLanguages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEEAD452A5D69D10069CC03 /* SelectLanguages.swift */; };
 		6CEFB6022A45EE6E0024AFFF /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEFB6012A45EE6E0024AFFF /* AuthViewModel.swift */; };
 		6CEFB6072A4622E40024AFFF /* SlidingWelcomes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEFB6062A4622E40024AFFF /* SlidingWelcomes.swift */; };
 		C9439D7A6D674354C33AF208 /* Pods_LearnEnglishWithStories.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9D51BD5882A21D27DE8EA8 /* Pods_LearnEnglishWithStories.framework */; };
@@ -147,6 +151,10 @@
 		6CE7081A2A374A7000B8C853 /* LevelBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelBar.swift; sourceTree = "<group>"; };
 		6CE7081C2A374AF700B8C853 /* MedalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedalView.swift; sourceTree = "<group>"; };
 		6CE7081E2A3752DA00B8C853 /* MedalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedalModel.swift; sourceTree = "<group>"; };
+		6CEEAD3F2A5D45F50069CC03 /* OnboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardView.swift; sourceTree = "<group>"; };
+		6CEEAD412A5D570E0069CC03 /* SignuupOpinion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignuupOpinion.swift; sourceTree = "<group>"; };
+		6CEEAD432A5D685D0069CC03 /* SelectLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLanguage.swift; sourceTree = "<group>"; };
+		6CEEAD452A5D69D10069CC03 /* SelectLanguages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLanguages.swift; sourceTree = "<group>"; };
 		6CEFB6012A45EE6E0024AFFF /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		6CEFB6062A4622E40024AFFF /* SlidingWelcomes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingWelcomes.swift; sourceTree = "<group>"; };
 		A3877A82938830E1DE539C82 /* Pods-LearnEnglishWithStories.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnEnglishWithStories.release.xcconfig"; path = "Target Support Files/Pods-LearnEnglishWithStories/Pods-LearnEnglishWithStories.release.xcconfig"; sourceTree = "<group>"; };
@@ -278,6 +286,9 @@
 			children = (
 				6CAE86DB2A444A5000F2DE58 /* AuthenticationWithMail.swift */,
 				6CC9E9922A4598AF00B0926A /* SignupView.swift */,
+				6CEEAD3F2A5D45F50069CC03 /* OnboardView.swift */,
+				6CEEAD412A5D570E0069CC03 /* SignuupOpinion.swift */,
+				6CEEAD432A5D685D0069CC03 /* SelectLanguage.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -339,6 +350,7 @@
 				6C3276052A4C2026009ECD1F /* FeaturedNews.swift */,
 				6CE66B332A4CC89E00B1E502 /* ReadNow.swift */,
 				6C525AF32A59C452006ADA60 /* PopularView.swift */,
+				6CEEAD452A5D69D10069CC03 /* SelectLanguages.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -537,12 +549,14 @@
 				6CDD15C92A3B672100C40080 /* LastlyAdded.swift in Sources */,
 				6C3276062A4C2026009ECD1F /* FeaturedNews.swift in Sources */,
 				6CC9E9912A457AA500B0926A /* LabelDivider.swift in Sources */,
+				6CEEAD462A5D69D10069CC03 /* SelectLanguages.swift in Sources */,
 				6C1B49CA2A0D263800428512 /* LearnEnglishWithStories.xcdatamodeld in Sources */,
 				6CC2C4C22A332F8B00074C1E /* View+Extension.swift in Sources */,
 				6C010EC62A274D9D00538D83 /* MainView.swift in Sources */,
 				6C0EC67B2A35E3C10058A372 /* MyNotesView.swift in Sources */,
 				6CAE86DC2A444A5000F2DE58 /* AuthenticationWithMail.swift in Sources */,
 				6C55FC362A348320000DFCEC /* TextFieldAnimation.swift in Sources */,
+				6CEEAD422A5D570E0069CC03 /* SignuupOpinion.swift in Sources */,
 				6C47FF292A5B287C009B9C72 /* SoundViewModel.swift in Sources */,
 				6C96F5502A55D0340056AE9F /* SeeAnothersView.swift in Sources */,
 				6CEFB6022A45EE6E0024AFFF /* AuthViewModel.swift in Sources */,
@@ -566,8 +580,10 @@
 				6C17B6472A30FCB100552CB7 /* Icons.swift in Sources */,
 				6CEFB6072A4622E40024AFFF /* SlidingWelcomes.swift in Sources */,
 				6CAF71312A5C06D700134667 /* Ads.swift in Sources */,
+				6CEEAD442A5D685D0069CC03 /* SelectLanguage.swift in Sources */,
 				6C3DF1DE2A44714B00A3EFCC /* AuthHeader.swift in Sources */,
 				6C15FAEA2A31D83300C77AB1 /* ContinueSection.swift in Sources */,
+				6CEEAD402A5D45F50069CC03 /* OnboardView.swift in Sources */,
 				6C3816B02A30A22C000E498F /* DialogsFeatured.swift in Sources */,
 				6C17B64C2A30FDE400552CB7 /* Strings.swift in Sources */,
 				6C0C1D972A52C51E00E461CC /* PaywallView.swift in Sources */,

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AuthenticationWithMail: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     @EnvironmentObject var AuthVM: AuthViewModel
     
     @State private var email = ""
@@ -19,8 +21,6 @@ struct AuthenticationWithMail: View {
         NavigationStack{
             VStack{
  
-            
-                
                 TextField("E-Posta", text: $email )
                     .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
                     .background(
@@ -45,6 +45,7 @@ struct AuthenticationWithMail: View {
                         Rectangle()
                             .frame(width: geometry.size.width * 0.85 ,height: 55)
                             .foregroundColor(Color(hex: "2a5efd"))
+                            .cornerRadius(8)
                         Text("Devam Et")
                             .font(.system(size: 17, weight: .medium, design: .rounded))
                             .foregroundColor(.white)
@@ -72,8 +73,8 @@ struct AuthenticationWithMail: View {
                 
               
                 .background(
-                    RoundedRectangle(cornerRadius: 12)
-                        .strokeBorder(Color.gray, lineWidth: 1)
+                    RoundedRectangle(cornerRadius: 6)
+                        .strokeBorder(Color.gray, lineWidth: 0.3)
                         .padding(.horizontal, 16)
                 
                 )
@@ -91,8 +92,8 @@ struct AuthenticationWithMail: View {
                 
               
                 .background(
-                    RoundedRectangle(cornerRadius: 12)
-                        .strokeBorder(Color.gray, lineWidth: 1)
+                    RoundedRectangle(cornerRadius: 6)
+                        .strokeBorder(Color.gray, lineWidth: 0.3)
                         .padding(.horizontal, 16)
                 
                 )
@@ -100,6 +101,34 @@ struct AuthenticationWithMail: View {
                 
                 
             
+            }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Image(systemName: "chevron.backward")
+                            .foregroundColor(.gray)
+                    }
+
+                }
+                ToolbarItem(placement: .principal) {
+                 
+                    HStack {
+                        Image("xx")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 28)
+                        
+                        Text("TEKRAR MERHABA")
+                            .font(.system(size: 15, weight: .medium, design:.rounded))
+                            .tracking(1.2)
+                            .foregroundColor(.gray)
+                    }
+                    
+                }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color(hex: "f4f2f7"))

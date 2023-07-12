@@ -14,7 +14,7 @@ import Foundation
 
 protocol AuthenticationProtocol {
     func signIn(withEmail email: String, password: String) async throws
-    func signUp(email: String, password: String, fullname: String) async throws
+    func signUp(email: String, password: String, fullname: String, mainLanguage: String, learningLanguage: String) async throws
     func signOut() async throws
 }
 
@@ -44,7 +44,7 @@ class AuthViewModel: ObservableObject, AuthenticationProtocol, UserFetchProtocol
         }
     }
     
-    func signUp(email: String, password: String, fullname: String) async throws {
+    func signUp(email: String, password: String, fullname: String, mainLanguage: String, learningLanguage: String) async throws {
         do {
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
             self.userSession = result.user
@@ -58,7 +58,10 @@ class AuthViewModel: ObservableObject, AuthenticationProtocol, UserFetchProtocol
                 favStories: nil,
                 medals: nil,
                 level: nil,
-                history: nil)
+                history: nil,
+                userLanguages: ["MainLanguage" : mainLanguage,
+                                "LearningLanguage" : learningLanguage]
+            )
             let encodedUser = try Firestore.Encoder().encode(user)
             try await Firestore.firestore().collection("Users").document(user.id).setData(encodedUser)
             await fetchUser()

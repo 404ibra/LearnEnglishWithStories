@@ -1,13 +1,15 @@
+
 //
-//  SignuupOpinion.swift
+//  SignupView.swift
 //  LearnEnglishWithStories
 //
 //  Created by İbrahim Aktaş on 11.07.2023.
 //
 
+ 
 import SwiftUI
 
-struct SignuupOpinion: View {
+struct SignupType: View {
     @Environment(\.presentationMode) var presentationMode
     
     let geometry = UIScreen.main.bounds.size
@@ -59,7 +61,7 @@ struct SignuupOpinion: View {
                 )
                 LabelledDivider(label: "VEYA")
                 NavigationLink {
-                    SignupView()
+                  SignupView()
                 } label: {
                     HStack{
                         Image(systemName: "envelope")
@@ -84,8 +86,6 @@ struct SignuupOpinion: View {
                     .font(.system(size: 12, weight: .light, design: .rounded))
                     .padding(.horizontal, 16)
                 Spacer()
-                Text("Misafir olarak devam et")
-                    .font(.system(size: 15, weight: .light, design: .rounded))
             }.navigationBarBackButtonHidden(true)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
@@ -119,8 +119,10 @@ struct SignuupOpinion: View {
     }
 }
 
-struct SignuupOpinion_Previews: PreviewProvider {
+struct SignupType_Previews: PreviewProvider {
     static var previews: some View {
-        SignuupOpinion()
+        SignupType()
     }
 }
+
+

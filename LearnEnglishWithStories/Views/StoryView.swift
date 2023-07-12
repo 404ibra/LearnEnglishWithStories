@@ -16,7 +16,7 @@ struct StoryView: View {
     
     @State private var translateDialog: Bool = false
     @State private var selectedWord: String?
-    
+   
      var mean = "MeanTürkçe"
     
     var isTranslate: Bool
@@ -76,7 +76,7 @@ struct StoryView: View {
                                             // check true
                                             MainVM.isLongPressWord = true
                                             selectedWord = word
-                                            print(selectedWord)
+                                          
                                         }
                                         .sheet(isPresented: $translateDialog) {
                                             VStack{
@@ -99,7 +99,13 @@ struct StoryView: View {
                                                     Spacer()
                                                     Button {
                                                         //TO DO
+                                                     
+                                                        let impactMed = UIImpactFeedbackGenerator(style: .heavy)
+                                                        impactMed.impactOccurred()
                                                         ArchiveVM.addNewWord(main: selectedWord ?? "", learn: mean )
+                                                        translateDialog = false
+                                               
+                                                        
                                                     } label: {
                                                         HStack{
                                                             Image(systemName: "bookmark")

@@ -9,10 +9,13 @@ import Foundation
 
 
 class ArchiveViewModel: ObservableObject {
+    @Published var isLoading: Bool = false
     let service = ArchiveService()
     
     func addNewWord(main: String, learn: String ){
+        isLoading = true
         service.newFavWords(MainLanguage: main, LearningLanguage: learn)
+        isLoading = true
     }
     
     func removeWord(main: String, learn: String ){

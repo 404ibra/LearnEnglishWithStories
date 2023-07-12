@@ -12,7 +12,7 @@ var player: AVAudioPlayer!
 
 struct StoryScreen: View {
     @Environment(\.presentationMode) var presentationMode
-  //  @ObservedObject private var ArticleVM = ArticleViewModel()
+   @ObservedObject private var ArticleVM = ArticleViewModel()
     @ObservedObject private var ArticleMan = ArticleManager()
   /*  @ObservedObject private var TranslateMan = TranslateManager()*/
     @ObservedObject private var SoundVM: SoundManager
@@ -108,7 +108,11 @@ struct StoryScreen: View {
             }
             
             
-        
+            if ArticleVM.isLoading {
+                Rectangle()
+                    .foregroundColor(.pink)
+                    .frame(width: 300, height: 50)
+            }
             
             
         }//Page big zstack

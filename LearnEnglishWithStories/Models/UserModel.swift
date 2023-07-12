@@ -19,4 +19,5 @@ struct UserModel: Identifiable, Codable {
     let medals: [String]?
     let level: Double?
     let history: [String]?
+    let userLanguages: [String : String]?
 }

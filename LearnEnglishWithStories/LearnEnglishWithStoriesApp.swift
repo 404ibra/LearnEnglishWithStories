@@ -33,7 +33,7 @@ struct LearnEnglishWithStoriesApp: App {
     WindowGroup {
 
      
-            MainTabView()
+        MainTabView()
                 .environmentObject(AuthVM)
                 .environmentObject(ArticleVM)
         

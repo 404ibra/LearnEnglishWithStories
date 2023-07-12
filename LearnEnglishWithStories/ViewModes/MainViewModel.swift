@@ -20,8 +20,13 @@ class MainVievModel: ObservableObject {
     @Published var translateExpand = false
     @Published var learningLanguageExpand = false
     @Published var watchedAD: Bool = false
+    @Published var saveWordSuccess: Bool = false
 }
       
 
 
 
+
+class SignupViewModel: ObservableObject{
+    
+}

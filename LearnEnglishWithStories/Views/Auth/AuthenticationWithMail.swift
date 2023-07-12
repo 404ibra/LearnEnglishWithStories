@@ -44,16 +44,16 @@ struct AuthenticationWithMail: View {
                     ZStack{
                         Rectangle()
                             .frame(width: geometry.size.width * 0.85 ,height: 55)
-                            .foregroundColor(Color(hex: "2a5efd"))
+                            .foregroundColor(Color(hex: "87C2D2"))
                             .cornerRadius(8)
                         Text("Devam Et")
-                            .font(.system(size: 17, weight: .medium, design: .rounded))
+                            .font(.system(size: 17, weight: .semibold, design: .rounded))
                             .foregroundColor(.white)
                     }
                 }
                 Text("Şifremi Unuttum")
                     .font(.system(size: 15, weight: .medium, design: .rounded))
-                    .foregroundColor(Color(hex: "2a5efd"))
+                    .foregroundColor(Color(hex: "87C2D2"))
                     .alignH(alignment: .center)
                     .padding(.horizontal, 32)
                     .padding(.bottom, 10)

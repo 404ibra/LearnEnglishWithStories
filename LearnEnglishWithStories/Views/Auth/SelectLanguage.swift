@@ -13,6 +13,8 @@ struct SelectLanguageView: View {
     @State private var learningLanguage: Bool = false
     @State private var mainLanguage: Bool = false
     
+    let geometry = UIScreen.main.bounds
+    
     var body: some View {
         NavigationStack{
             ZStack{
@@ -43,7 +45,9 @@ struct SelectLanguageView: View {
                         
                         )
                     }
-
+                    
+                    
+                    
                     Text("Hangi dili konuşuyorsun?")
                         .font(.system(size: 15, weight: .light, design: .rounded ))
                         .padding(.top, 32)
@@ -66,6 +70,22 @@ struct SelectLanguageView: View {
                         
                         )
                     }
+                    NavigationLink {
+                        NameView()
+                    } label: {
+                        ZStack{
+                            Rectangle()
+                                .frame(width: geometry.size.width * 0.85 ,height: 55)
+                                .foregroundColor(Color(hex: "87C2D2"))
+                                .cornerRadius(8)
+                            Text("Devam Et")
+                                .font(.system(size: 17, weight: .medium, design: .rounded))
+                                .foregroundColor(.white)
+                        }
+                    }
+                    .padding(.top, 32)
+                    
+                    
                     Spacer()
                 }
                 

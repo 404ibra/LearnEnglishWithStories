@@ -15,7 +15,7 @@ struct MainView: View {
     @StateObject private var MainVM = MainVievModel()
  //   @ObservedObject private var ArchiveVM = ArchiveViewModel()
     @State private var isShow: Bool = true
-    
+    @State private var onboarding: Bool = true
    
 
     @State var SelectedTab : Int = 0
@@ -26,74 +26,84 @@ struct MainView: View {
   
     var body: some View { 
        
-        NavigationStack{
+        
+        if onboarding {
             
-      
-            ZStack(alignment: .bottom){
-                ScrollView(showsIndicators: false){
-                    VStack(spacing: 0){
+            OnboardView()
+                .toolbar(.hidden, for: .tabBar)
+            
+            
+        } else {
+            
+            
+            NavigationStack{
+                
+                
+                ZStack(alignment: .bottom){
+                    ScrollView(showsIndicators: false){
+                        VStack(spacing: 0){
+                            
+                            
+                            
+                            /*         Button {
+                             
+                             reward.ShowReward()
+                             
+                             } label: {
+                             Text("tıkla")
+                             }*/
+                            
+                            
+                            ReadNow()
+                            
+                            
+                            
+                            FeaturedView(HeadlineText: "Seviyenize Göre")
+                            
+                                .padding(.bottom,12)
+                            Divider()
+                            LastlyAddedView(HeadlineText: "En Günceller")
+                                .padding(.bottom,20)
+                            Divider()
+                            FeaturedPopularView(HeadlineText: "Son Zamanlarda Popüler")
+                                .padding(.bottom,12)
+                            Divider()
+                            FeaturedNewsiew(HeadlineText: "Haberler")
+                                .padding(.bottom,12)
+                            Spacer()
+                        }
+                        .padding(.top,12)
                         
-                      
                         
-               /*         Button {
                         
-                            reward.ShowReward()
-                        
-                        } label: {
-                            Text("tıkla")
-                        }*/
-
-                        
-                     ReadNow()
-
-                      
-                        
-                        FeaturedView(HeadlineText: "Seviyenize Göre")
-                           
-                            .padding(.bottom,12)
-                        Divider()
-                        LastlyAddedView(HeadlineText: "En Günceller")
-                            .padding(.bottom,20)
-                        Divider()
-                        FeaturedPopularView(HeadlineText: "Son Zamanlarda Popüler")
-                            .padding(.bottom,12)
-                        Divider()
-                        FeaturedNewsiew(HeadlineText: "Haberler")
-                            .padding(.bottom,12)
-                        Spacer()
                     }
-                    .padding(.top,12)
-                    
-                 
-                    
-                }
-                if AuthVM.currentUser?.isPremium == false {
-                    ZStack{
-                        Rectangle()
-                            .frame(width: geometry.width, height: 25)
-                            .foregroundColor(Color(hex: "ef4f2e"))
-                        Text("Kesintisiz Okumak İçin Şimdi Premium Ol")
-                            .font(.system(size: 16, weight: .bold, design: .rounded))
-                            .foregroundColor(.white)
+                    if AuthVM.currentUser?.isPremium == false {
+                        ZStack{
+                            Rectangle()
+                                .frame(width: geometry.width, height: 25)
+                                .foregroundColor(Color(hex: "ef4f2e"))
+                            Text("Kesintisiz Okumak İçin Şimdi Premium Ol")
+                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                .foregroundColor(.white)
+                        }
                     }
+                    
                 }
                 
-            }
-            
-            .fullScreenCover(isPresented: $isShow) {
-                        PaywallView()
- }
-            
+                .fullScreenCover(isPresented: $isShow) {
+                    PaywallView()
+                }
+                
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color(hex: "f4f2f7"))
-
-       
+                .background(Color(hex: "f4f2f7"))
+                
+                
+                
+            }//NavigationStack
+            .navigationBarBackButtonHidden(true)
+            .modifier(ViewStatusHiddenModifier())
             
-        }//NavigationStack
-        
-    
-        .modifier(ViewStatusHiddenModifier())
-
+        }
     }
 
 }

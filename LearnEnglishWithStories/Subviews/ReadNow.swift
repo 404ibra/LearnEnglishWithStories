@@ -83,7 +83,9 @@ struct ReadNow: View {
                     .frame(width: geometry.size.width,
                            height: g.frame(in: .global).minY > 0 ? UIScreen.main.bounds.height * 0.65 + g.frame(in: .global).minY : UIScreen.main.bounds.height * 0.65)
             }
-        }.toolbar {
+        }
+         
+        .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Text("Şimdi Oku")
                     .font(.system(.title))
@@ -91,41 +93,6 @@ struct ReadNow: View {
                     .foregroundColor(.white)
 
             }
-           /* ToolbarItem(placement: .navigationBarTrailing) {
-         
-                
-               
-             if AuthVM.currentUser!.favStories!.contains(ArticleVM.readnowArticles[selectedIndex].articleid) {
-                    Button {
-                        ArchiveVM.removeFavArticle(articleID: ArticleVM.readnowArticles[selectedIndex].articleid)
-                        iconChange = false
-                    } label: {
-                        Image(systemName: "checkmark")
-                            .font(.system(size: 12))
-                            .foregroundColor(.white)
-                            .frame(width: 24, height: 24)
-                            .background(
-                                Circle()
-                                    .foregroundColor(.gray.opacity(0.6))
-                            )
-                    }
-
-                } else {
-                    Button {
-                        ArchiveVM.addFavArticle(articleID: ArticleVM.readnowArticles[selectedIndex].articleid)
-                        iconChange = true
-                    } label: {
-                        Image(systemName: "plus")
-                            .font(.system(size: 12))
-                            .foregroundColor(.white)
-                            .frame(width: 24, height: 24)
-                            .background(
-                                Circle()
-                                    .foregroundColor(.gray.opacity(0.6))
-                            )
-                    }
-                }
-                }*/
         }
         .onChange(of: iconChange, perform: { _ in
             Task { await AuthVM.fetchUser() }

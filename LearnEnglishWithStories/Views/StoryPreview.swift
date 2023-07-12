@@ -358,6 +358,7 @@ struct StoryPreview: View {
                 .padding(.horizontal,16)
                 Text(article.summary["Spanish"]!)
                     .padding()
+                Spacer()
             }
             .presentationDetents([.fraction(0.6)])
             .presentationDragIndicator(.visible)

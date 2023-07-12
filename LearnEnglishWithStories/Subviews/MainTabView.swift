@@ -13,43 +13,26 @@ struct MainTabView: View {
         UITabBar.appearance().barTintColor = .black // custom color.
     }*/
     var body: some View {
- 
- 
-     
-  
-          
             TabView{
-         
-                    
-                     
                             ForEach(HomeTabItem.tabItems) { item in
                                 item.page.tabItem {
-                             
-                                     
                                         VStack{
-                                            
                                             Image(systemName: item.model.icon.rawValue)
                                             Text(item.model.title.rawValue)
-                                        
                                     }
                                 }
                               
                             }
-                
-                
-            
         }
-        
-           
-        .onAppear {
-            let tabBarAppearance = UITabBarAppearance()
-            tabBarAppearance.configureWithDefaultBackground()
-            UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
-        }
-     
+            .onAppear {
+                let tabBarAppearance = UITabBarAppearance()
+                tabBarAppearance.configureWithDefaultBackground()
+                UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+            }
+         
       
         
-        .accentColor(Color(hex: "ef4f2e"))
+            .accentColor(.mainorange)
        
        
 

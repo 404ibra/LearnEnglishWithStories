@@ -33,8 +33,21 @@ struct MyVocabuleryView: View {
                         }
                     }
                 }
-            }else {
-                Text("err")
+            }else if userData.currentUser == nil {
+                VStack(alignment: .leading){
+                    Text("Görünüşe göre bir hesabın yok")
+                        .font(.system(size: 20, weight: .semibold, design: .rounded))
+                        .foregroundColor(.black)
+                    Text("Arşivi ve diğer birçok özelliği kullanabilmen için bir dakika içinde hemen hesap açabilirsin")
+                        .font(.system(size: 15, weight: .light, design: .rounded))
+                        .foregroundColor(.gray)
+                    Image("onboarding3")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 300, height: 300)
+                    
+                }.padding(.horizontal, 16)
+                
             }
         }
     }

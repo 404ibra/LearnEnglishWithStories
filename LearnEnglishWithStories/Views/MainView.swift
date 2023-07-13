@@ -15,7 +15,7 @@ struct MainView: View {
     @StateObject private var MainVM = MainVievModel()
  //   @ObservedObject private var ArchiveVM = ArchiveViewModel()
     @State private var isShow: Bool = true
-    @State private var onboarding: Bool = true
+    @State private var onboarding: Bool = false
    
 
     @State var SelectedTab : Int = 0
@@ -42,17 +42,7 @@ struct MainView: View {
                 ZStack(alignment: .bottom){
                     ScrollView(showsIndicators: false){
                         VStack(spacing: 0){
-                            
-                            
-                            
-                            /*         Button {
-                             
-                             reward.ShowReward()
-                             
-                             } label: {
-                             Text("tıkla")
-                             }*/
-                            
+                    
                             
                             ReadNow()
                             
@@ -70,6 +60,7 @@ struct MainView: View {
                             Divider()
                             FeaturedNewsiew(HeadlineText: "Haberler")
                                 .padding(.bottom,12)
+                            FeaturedCategoryView(HeadlineText: "Kategoriler")
                             Spacer()
                         }
                         .padding(.top,12)

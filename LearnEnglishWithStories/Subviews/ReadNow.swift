@@ -34,7 +34,7 @@ struct ReadNow: View {
                         
                         ForEach(ArticleVM.article.filter({ $0.readnow == true }).indices, id: \.self){ index in
                             NavigationLink {
-                                // StoryPreview(article: ArticleVM.readnowArticles[index], index: index)
+                                 StoryPreview(article: ArticleVM.article[index], index: index)
                             } label: {
                                 ZStack(alignment: .bottom){
                                     ZStack{

@@ -11,8 +11,11 @@ import SwiftUI
 struct SelectLanguages: View {
     @StateObject private var MainVM = MainVievModel()
     @Binding var isActivated: Bool
+
+ 
     
     @State private var eyeSaverMode: Bool = false
+
     let headline: String
     
     var body: some View {
@@ -34,6 +37,8 @@ struct SelectLanguages: View {
                         ForEach(Languages.allLanguages) { language in
                             Button(action: {
                                 //TO DO TELEFONU TİTRET
+                                
+                                
                             }, label: {
                                 VStack{
                                     HStack{

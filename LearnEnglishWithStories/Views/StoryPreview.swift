@@ -22,6 +22,7 @@ struct StoryPreview: View {
     @State private var isSheetPresented = false
     @State private var insideChange: Int?
     @State private var iconChange: Bool?
+ 
    
     @State private var dialog: Bool = false
     
@@ -92,14 +93,18 @@ struct StoryPreview: View {
                                                
                                              
                                             } label: {
-                                                Text("Şimdi Oku")
-                                                    .font(.system(size: 19, weight: .semibold, design: .rounded))
-                                                    .foregroundColor(.black)
-                                                    .padding(.horizontal,32)
-                                                    .padding(.vertical, 12)
-                                                    .background(Color(hex: "eaeaec"))
-                                                    .cornerRadius(8)
-                                            }
+                                                if reward.isLoading {
+                                                    ProgressView()
+                                                }  else   {
+                                                    Text(String(reward.isLoading))
+                                                        .font(.system(size: 19, weight: .semibold, design: .rounded))
+                                                        .foregroundColor(.black)
+                                                        .padding(.horizontal,32)
+                                                        .padding(.vertical, 12)
+                                                        .background(Color(hex: "eaeaec"))
+                                                        .cornerRadius(8)
+
+                                                }                                         }
 
                                         } else if article.free && (AuthVM.currentUser == nil || AuthVM.currentUser!.isPremium == false)   {
 
@@ -154,7 +159,9 @@ struct StoryPreview: View {
                                                       isSheetPresented = true
                                                   }, label: {
                                                       Text("Devamını Oku")
-                                     })
+                                                         
+                                                  })
+                                        
                                     }.frame(width: UIScreen.main.bounds.width)
                                     
                                 }.padding(.vertical, 35)
@@ -255,6 +262,7 @@ struct StoryPreview: View {
          
                 
             reward.LoadReward()
+          
              
             
         }.disabled(!reward.rewardLoaded)
@@ -311,12 +319,13 @@ struct StoryPreview: View {
                         }
                         
                     }}else {
-                        Button {
+                        NavigationLink {
                             
-                      
+                      OnboardView().toolbar(.hidden, for: .tabBar)
+                             
                             
                         } label: {
-                            Image(systemName: "person.circle")
+                            Image(systemName: "person.circle.fill")
                                 .font(.system(size: 12))
                                 .foregroundColor(.white)
                                 .frame(width: 24, height: 24)

@@ -79,12 +79,36 @@ struct StoryView: View {
                                           
                                         }
                                         .sheet(isPresented: $translateDialog) {
-                                            VStack{
+                                            VStack(alignment: .leading){
+                                                HStack{
+                                                    Image(systemName: "rectangle.portrait.on.rectangle.portrait")
+                                                        .foregroundColor(.mainorange)
+                                                        .padding(.horizontal, 16)
+                                                        .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                                                        .background(
+                                                            Circle()
+                                                                .strokeBorder(Color.gray, lineWidth: 0.2)
+                                                              
+                                                            
+                                                        )
+                                                        .padding(.trailing, 8 )
+                                                    Image(systemName: "rectangle.stack")
+                                                        .foregroundColor(.mainorange)
+                                                        .padding(.horizontal, 16)
+                                                        .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                                                        .background(
+                                                            Circle()
+                                                                .strokeBorder(Color.gray, lineWidth: 0.2)
+                                                                 
+                                                            
+                                                        )
+                                                }.padding(.horizontal, 16)
                                                 Text(selectedWord!)
-                                                Divider()
+                                                    .font(.system(size: 23, weight: .semibold, design: .rounded))
+                                                    .foregroundColor(Color(hex: "6a95a3"))
+                                                    .padding(.horizontal, 16)
                                                     
-                                                Text("Anlam")
-                                                Divider()
+                                              
                                                     
                                                 HStack{
                                                     HStack{
@@ -114,11 +138,10 @@ struct StoryView: View {
                                                     }
 
                                                 }
-                                                .padding(.horizontal, 32)
-                                                .padding(.vertical, 8)
-                                                .frame(width: geometry.size.width * 0.8)
+                                              
+                                                 Spacer()
                                             }
-                                            .presentationDetents([.fraction(0.23)])
+                                            .presentationDetents([.fraction(0.4)])
                                             .presentationDragIndicator(.visible)
                                         }
                                 }

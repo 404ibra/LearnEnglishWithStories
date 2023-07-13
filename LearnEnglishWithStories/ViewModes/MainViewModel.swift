@@ -21,6 +21,8 @@ class MainVievModel: ObservableObject {
     @Published var learningLanguageExpand = false
     @Published var watchedAD: Bool = false
     @Published var saveWordSuccess: Bool = false
+    @Published var learningLanguage: String?
+    @Published var mainLanguage: String?
 }
       
 

@@ -9,6 +9,7 @@ import GoogleMobileAds
 
 class Reward: NSObject, GADFullScreenContentDelegate, ObservableObject {
     @Published var rewardLoaded: Bool = false
+    @Published var isLoading: Bool = false
     var rewardedAd: GADRewardedAd?
 
     override init() {
@@ -17,6 +18,7 @@ class Reward: NSObject, GADFullScreenContentDelegate, ObservableObject {
 
     //Ödüllü reklamlar yükleniyor
     func LoadReward() {
+        isLoading = true
         GADRewardedAd.load(withAdUnitID: "ca-app-pub-3940256099942544/1712485313", request: GADRequest()) { (ad, error) in
             if let _ = error {
                 print("😭: okunamadı")
@@ -27,7 +29,9 @@ class Reward: NSObject, GADFullScreenContentDelegate, ObservableObject {
             self.rewardLoaded = true
             self.rewardedAd = ad
             self.rewardedAd?.fullScreenContentDelegate = self
+           
         }
+        isLoading = false
     }
 
     // Ödüllü reklamları görüntüleme

@@ -17,7 +17,7 @@ struct OnboardView: View {
                 
                 
                 OnboardingTabView(tabIndex: tabIndex, offset: $offset)
-                    .padding(.top, 60)
+                    .padding(.top, 30)
                 Spacer()
                 
                 if tabIndex < 2 {
@@ -121,7 +121,13 @@ struct OnboardView: View {
              
              
                  Button {
-                     offset = CGFloat((2-tabIndex))*(UIScreen.main.bounds.size.width)
+                     if tabIndex != 2 {
+                         offset = CGFloat((2-tabIndex))*(UIScreen.main.bounds.size.width)
+
+                     } else {
+                         offset = 2*(UIScreen.main.bounds.size.width)
+                     }
+                        
                      tabIndex = 2
                      
                  } label: {

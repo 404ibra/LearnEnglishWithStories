@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct OnboardingTabView: View {
-    var tabIndex: Int
+     var tabIndex: Int
     @Binding var offset: CGFloat
     var images : [String] = ["onboarding1", "onboarding2","onboarding3"]
     var body: some View {
@@ -29,9 +29,9 @@ struct OnboardingTabView: View {
                                         DispatchQueue.main.async {
                                             for i in OnboardingModel.onboards.indices {
                                                 if tabIndex == i {
-                                                   
                                                     withAnimation(.default){
                                                         offset = -minX
+                                                        
                                                         
                                                     }
                                                 }
@@ -122,6 +122,7 @@ struct OnboardingTabView: View {
         
         return 22 * progress
     }
+  
     
 }
 

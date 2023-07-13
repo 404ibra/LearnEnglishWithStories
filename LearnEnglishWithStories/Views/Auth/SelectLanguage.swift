@@ -13,6 +13,9 @@ struct SelectLanguageView: View {
     @State private var learningLanguage: Bool = false
     @State private var mainLanguage: Bool = false
     
+    @State private var learningLangaugeisChange: String = ""
+    @State private var mainLanguageisChange: String = ""
+    
     let geometry = UIScreen.main.bounds
     
     var body: some View {
@@ -30,7 +33,7 @@ struct SelectLanguageView: View {
                         learningLanguage = true
                     } label: {
                         HStack{
-                            Text("İngilizce")
+                            Text("Brushca")
                                 .font(.system(size: 16, weight: .regular, design: .rounded))
                                 .foregroundColor(.black)
                               Spacer()
@@ -55,7 +58,7 @@ struct SelectLanguageView: View {
                         mainLanguage = true
                     } label: {
                         HStack{
-                            Text("İngilizce")
+                            Text("Brushca")
                                 .font(.system(size: 16, weight: .regular, design: .rounded))
                                 .foregroundColor(.black)
                               Spacer()
@@ -71,12 +74,12 @@ struct SelectLanguageView: View {
                         )
                     }
                     NavigationLink {
-                        NameView()
+                        
                     } label: {
                         ZStack{
                             Rectangle()
                                 .frame(width: geometry.size.width * 0.85 ,height: 55)
-                                .foregroundColor(Color(hex: "87C2D2"))
+                                .foregroundColor(Color(hex: "6a95a3"))
                                 .cornerRadius(8)
                             Text("Devam Et")
                                 .font(.system(size: 17, weight: .medium, design: .rounded))
@@ -91,6 +94,7 @@ struct SelectLanguageView: View {
                 
                 if  learningLanguage {
                     SelectLanguages(isActivated: $learningLanguage, headline: "İlgi çekici metinlerle hangi dili öğrenmek istersin?")
+                       
                 } else if mainLanguage {
                     SelectLanguages(isActivated: $mainLanguage, headline: "Gündelik hayatında hangi dili kullanıyorsun?")
                 }
@@ -108,29 +112,47 @@ struct SelectLanguageView: View {
                         Image(systemName: "chevron.backward")
                             .foregroundColor(.gray)
                     }
-
-                }
-                ToolbarItem(placement: .principal) {
-                 
-                    HStack {
-                        Image("xx")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 28)
-                        
-                        Text("BAZI AYARLAR")
-                            .font(.system(size: 15, weight: .medium, design:.rounded))
-                            .tracking(1.2)
-                            .foregroundColor(.gray)
-                    }
                     
                 }
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    ZStack {
+                        Circle()
+                            .stroke(
+                                Color(hex: "fa6b35").opacity(0.5),
+                                lineWidth:4
+                            )
+                        Circle()
+                        
+                            .trim(from: 0, to: progressIndicator() )
+                            .stroke(
+                                Color(hex: "fa6b35"),
+                                lineWidth: 4
+                            )
+                            .rotationEffect(.degrees(-90))
+                            .animation(.easeOut, value: progressIndicator())
+                    }.frame(width: 22, height: 22)
+                }}
+             .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color(hex: "f4f2f7"))
         }
     }
-}
+    
+    func progressIndicator() -> CGFloat {
+        var progress: CGFloat = 0.49
+        
+        
+        
+        
+        withAnimation(.default) {
+          progress += learningLanguage == true ? 0.25 : 0
+            progress += mainLanguage == true ? 0.25 : 0
+           }
+        return progress
+    }
+    
+      }
+ 
+ 
 
 struct SelectLanguageView_Previews: PreviewProvider {
     static var previews: some View {

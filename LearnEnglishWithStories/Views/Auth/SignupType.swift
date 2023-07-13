@@ -11,77 +11,127 @@ import SwiftUI
 
 struct SignupType: View {
     @Environment(\.presentationMode) var presentationMode
+    let geometry = UIScreen.main.bounds
+    @State  var email: String = ""
+    @State  var password : String = ""
+    @State var fullname : String = ""
     
-    let geometry = UIScreen.main.bounds.size
     var body: some View {
         NavigationStack{
             VStack(alignment: .center){
-                Image("signup")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: geometry.width * 0.6, height: geometry.height * 0.25)
-                    .padding(.top, 40)
-                 
                 
-                HStack{
+                
+                
+                
+                
+                
+                VStack(alignment: .leading){
+                    Text("Merhaba!")
+                        .font(.system(size: 26, weight: .bold, design: .rounded))
+                        .padding(.horizontal, 16)
+                        .padding(.top, 30)
+                    Text("Hemen yeni bir hesap oluşturabilirsin")
+                        .font(.system(size: 16, weight: .medium, design: .rounded))
+                        .foregroundColor(Color(hex: "6a95a3"))
+                        .padding(.horizontal, 16	)
+                    TextField("ben brush", text: $fullname )
+                        .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
+                    
+                        .background(
+                            RoundedRectangle(cornerRadius: 5)
+                                .strokeBorder(Color.gray, lineWidth: 0.2))
+                        .padding(.horizontal, 32)
+                        .padding(.vertical, 30)
+                    TextField("ornek@ornek.", text: $email)
+                    
+                        .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
+                        .background(
+                            RoundedRectangle(cornerRadius: 5)
+                                .strokeBorder(Color.gray, lineWidth: 0.2))
+                        .padding(.horizontal, 32)
+                        .padding(.bottom, 30)
+                    
+                    
+                    SecureField("en az 6 karakterli şifre", text: $password )
+                        .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
+                        .background(
+                            RoundedRectangle(cornerRadius: 5)
+                                .strokeBorder(Color.gray, lineWidth: 0.2))
+                        .padding(.horizontal, 32)
+                        .padding(.bottom, 30)
+                    
+                    
+                    
+                    
+                    NavigationLink {
+                        SelectLanguageView()
+                    } label: {
+                        ZStack{
+                            Rectangle()
+                                .frame(width: geometry.size.width * 0.85 ,height: 55)
+                                .foregroundColor(Color(hex: "6a95a3"))
+                                .cornerRadius(8)
+                            Text("Devam Et")
+                                .font(.system(size: 17, weight: .medium, design: .rounded))
+                                .foregroundColor(.white)
+                        }
+                    }.alignH(alignment: .center)
+                    
+                    
+                    /*
+                     Button {
+                     Task{try await AuthVM.signUp(email: email, password: password, fullname: fullname)}
+                     } label: {
+                     ZStack{
+                     Rectangle()
+                     .frame(width: geometry.size.width * 0.85 ,height: 55)
+                     .foregroundColor(Color(hex: "2a5efd"))
+                     .cornerRadius(8)
+                     Text("Devam Et")
+                     .font(.system(size: 17, weight: .medium, design: .rounded))
+                     .foregroundColor(.white)
+                     }*/
+                    
+                    
+                    
+                }
+                LabelledDivider(label: "VEYA")
+                Text("Apple veya Google hesabın ile kaydol")
+                    .font(.system(size: 16, weight: .medium, design: .rounded))
+                    .foregroundColor(.gray)
+                    .padding(.horizontal, 16    )
+                HStack(spacing: 0){
                     Image(systemName: "apple.logo")
                         .foregroundColor(.black)
                         .padding(.horizontal, 16)
-                    Text("Apple ile devam et")
-                        .font(.system(size: 16, weight: .regular, design: .rounded))
-                        .foregroundColor(.black)
-                      Spacer()
-                } .padding(EdgeInsets(top: 14, leading: 20, bottom: 14, trailing: 20))
-                
-              
-                .background(
-                    RoundedRectangle(cornerRadius: 6)
-                        .strokeBorder(Color.gray, lineWidth: 0.3)
-                        .padding(.horizontal, 16)
-                
-                )
-                
-                HStack{
+                    
+                        .padding(EdgeInsets(top: 14, leading: 20, bottom: 14, trailing: 20))
+                        .background(
+                            Circle()
+                                .strokeBorder(Color.gray, lineWidth: 0.3)
+                                .padding(.horizontal, 16)
+                            
+                        )
+                    
+                    
                     Image("google")
                         .resizable()
                         .frame(width: 15, height: 15)
                         .padding(.horizontal, 16)
-                    Text("Google ile oturum aç")
-                        .font(.system(size: 16, weight: .regular, design: .rounded))
-                        .foregroundColor(.black)
-                      Spacer()
-                } .padding(EdgeInsets(top: 14, leading: 20, bottom: 14, trailing: 20))
-                
-              
-                .background(
-                    RoundedRectangle(cornerRadius: 6)
-                        .strokeBorder(Color.gray, lineWidth: 0.3)
-                        .padding(.horizontal, 16)
-                
-                )
-                LabelledDivider(label: "VEYA")
-                NavigationLink {
-                  SignupView()
-                } label: {
-                    HStack{
-                        Image(systemName: "envelope")
-                            .foregroundColor(.black)
-                            .padding(.horizontal, 16)
-                        Text("E-posta ile devam et")
-                            .font(.system(size: 16, weight: .regular, design: .rounded))
-                            .foregroundColor(.black)
-                          Spacer()
-                    } .padding(EdgeInsets(top: 14, leading: 20, bottom: 14, trailing: 20))
                     
-                  
-                    .background(
-                        RoundedRectangle(cornerRadius: 6)
-                            .strokeBorder(Color.gray, lineWidth: 0.3)
-                            .padding(.horizontal, 16)
+                        .padding(EdgeInsets(top: 14, leading: 20, bottom: 14, trailing: 20))
                     
-                    )
+                    
+                        .background(
+                            Circle()
+                                .strokeBorder(Color.gray, lineWidth: 0.3)
+                                .padding(.horizontal, 16)
+                            
+                        )
+                    
                 }
-
+                
+                
                 Text("Hesap oluşturarak Brush'un Kullanıcı Sözleşmesi koşullarını kabul etmiş olursunuz")
                     .font(.system(size: 12, weight: .light, design: .rounded))
                     .padding(.horizontal, 16)
@@ -96,28 +146,44 @@ struct SignupType: View {
                             Image(systemName: "chevron.backward")
                                 .foregroundColor(.gray)
                         }
-
+                        
                     }
-                    ToolbarItem(placement: .principal) {
-                     
-                        HStack {
-                            Image("xx")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 28)
+
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        
+                        ZStack {
+                            Circle()
+                                .stroke(
+                                    Color(hex: "fa6b35").opacity(0.5),
+                                    lineWidth:4
+                                )
+                            Circle()
                             
-                            Text("ARAMIZA KATIL")
-                                .font(.system(size: 15, weight: .medium, design:.rounded))
-                                .tracking(1.2)
-                                .foregroundColor(.gray)
-                        }
+                                .trim(from: 0, to: progressIndicator() )
+                                .stroke(
+                                    Color(hex: "fa6b35"),
+                                    lineWidth: 4
+                                )
+                                .rotationEffect(.degrees(-90))
+                                .animation(.easeOut, value: progressIndicator())
+                        }.frame(width: 22, height: 22)
                         
                     }
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color(hex: "f4f2f7"))
         }
     }
-}
+    
+    func progressIndicator() -> CGFloat {
+        var progress: CGFloat = 0
+        
+        withAnimation(.default) {
+            progress += (fullname.count >= 2) ? 0.16 : -0.16
+            progress += (email.count >= 2) ? 0.16 : -0.16
+            progress += (password.count >= 2) ? 0.16 : -0.16
+           }
+        return progress
+    }}
 
 struct SignupType_Previews: PreviewProvider {
     static var previews: some View {
@@ -126,3 +192,7 @@ struct SignupType_Previews: PreviewProvider {
 }
 
 
+//Text("Apple ile devam et")
+//    .font(.system(size: 16, weight: .regular, design: .rounded))
+//    .foregroundColor(.black)
+//  Spacer()

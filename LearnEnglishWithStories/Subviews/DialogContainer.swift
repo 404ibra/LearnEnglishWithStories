@@ -19,32 +19,50 @@ struct DialogContainer: View {
                 .font(.title2)
                 .bold()
                 .padding()
-            Text("Premium üyelik size reklamsız ve kesintisiz içerik deneyimi sağlar. Böylece istediğiniz içeriklere dikkatiniz dağılmadan erişebilirsiniz veya reklam izleyerek devam edebilirsiniz.")
+            Text("Kesintisiz deneyim ve birçok özellik için premium olabilir veya reklam izleyerek devam edebilirsiniz")
                 .font(.system(size: 17, design: .rounded))
             
             Button {
                 print("")
             } label: {
-                ZStack{
-                    RoundedRectangle(cornerRadius: 20)
-                        .foregroundColor(.mainorange)
-                    Text("Hesabımı Yükselt")
-                        .font(.system(size: 16, weight: .bold))
+                HStack{
+                    Spacer()
+                    Text("Premium ol")
+                        .font(.system(size: 16, weight: .medium, design: .rounded))
                         .foregroundColor(.white)
-                        .padding()
-                }
-                .padding(.top, 5)
-                .padding(.horizontal)
-                .padding(.vertical, 0)
+                    Spacer()
+                } .padding(EdgeInsets(top: 14, leading: 20, bottom: 14, trailing: 20))
+                
+                
+                    .background(
+                        RoundedRectangle(cornerRadius: 12)
+                        
+                            .foregroundColor(Color(hex: "fa6b35"))
+                            .padding(.horizontal, 16)
+                        
+                    ).padding(.top, 5)
+                 
             }
       
             Button {
                 watchAdFunc()
               
             } label: {
-                Text("Reklam izleyerek devam et")
-                    .font(.system(size: 13))
-                    .padding(.vertical, 8)
+                HStack{
+                    Spacer()
+                    Text("Reklam izleyerek devam et")
+                        .font(.system(size: 16, weight: .medium, design: .rounded))
+                        .foregroundColor(.mainorange)
+                    Spacer()
+                } .padding(EdgeInsets(top: 14, leading: 20, bottom: 14, trailing: 20))
+                
+                
+                    .background(
+                        RoundedRectangle(cornerRadius: 12)
+                            .strokeBorder(Color(hex: "fa6b35"), lineWidth: 0.3)
+                            .padding(.horizontal, 16)
+                        
+                    )
             }
 
         }
@@ -55,6 +73,7 @@ struct DialogContainer: View {
         .overlay{
             VStack{
                 HStack{
+                    Spacer()
                     Button {
                         closeDialog(MainVM: MainVM)
                     } label: {
@@ -65,8 +84,8 @@ struct DialogContainer: View {
                     }
                     .tint(.black)
                     .padding()
-                    Spacer()
-                }
+                  
+                }.padding(.bottom, 16)
                 Spacer()
             }
         }

@@ -83,65 +83,95 @@ struct StoryView: View {
                                                 HStack{
                                                     Image(systemName: "rectangle.portrait.on.rectangle.portrait")
                                                         .foregroundColor(.mainorange)
-                                                        .padding(.horizontal, 16)
+                                                        
                                                         .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                                                         .background(
                                                             Circle()
-                                                                .strokeBorder(Color.gray, lineWidth: 0.2)
+                                                                .strokeBorder( Color(hex: "fa6b35"), lineWidth: 0.2)
+                                                              
+                                                            
+                                                        ).padding(.trailing, 8)
+                                                       
+                                                    
+                                                    Button {
+                                                        let impactMed = UIImpactFeedbackGenerator(style: .heavy)
+                                                        impactMed.impactOccurred()
+                                                        ArchiveVM.addNewWord(main: selectedWord ?? "", learn: mean )
+                                                        translateDialog = false
+                                                    } label: {
+                                                        Image(systemName: "rectangle.stack")
+                                                            .foregroundColor(.mainorange)
+                                                          
+                                                            .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                                                            .background(
+                                                                Circle()
+                                                                    .strokeBorder( Color(hex: "fa6b35"), lineWidth: 0.2)        )
+                                                    }
+
+                                                    
+                                                    
+                                                }.padding(.horizontal, 16)
+                                                    .padding(.top, 16)
+                                                    .padding(.bottom, 15)
+                                                Text(selectedWord!.editSelectedWord())
+                                                    .font(.system(size: 28, weight: .bold, design: .rounded))
+                                                    .foregroundColor(Color(hex: "6a95a3"))
+                                                    .padding(.horizontal, 16)
+                                                    .padding(.bottom, 8)
+                                                    
+                                                    
+                                                VStack{
+                                                    Text("Premium kullanıcıları, tek tek kelime çevirilerine erişebilir")
+                                                        
+                                                          .font(.system(size: 19, weight: .light, design: .rounded))
+                                                          .padding(.horizontal, 32)
+                                                          .lineLimit(nil)
+                                                          
+                                                      HStack{
+                                                          Spacer()
+                                                          Text("Premium Alın")
+                                                              .font(.system(size: 16, weight: .medium, design: .rounded))
+                                                              .foregroundColor(.white)
+                                                          Spacer()
+                                                      }
+                                      
+                                                      .padding(EdgeInsets(top: 14, leading: 20, bottom: 14, trailing: 20))
+                                                      
+                                                      
+                                                          .background(
+                                                              RoundedRectangle(cornerRadius: 6)
+                                                              
+                                                                  .foregroundColor(Color(hex: "6a95a3"))
+                                                                  .padding(.horizontal, 16)
+                                                              
+                                                          ).padding(.horizontal, 16)
+                                                }
+                                                
+                                                HStack{
+                                                  
+                                                        Image(systemName: "speaker.wave.3")
+                                                        .foregroundColor(.mainorange)
+                                                        .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                                                        .background(
+                                                            Circle()
+                                                                .strokeBorder(Color(hex: "fa6b35"), lineWidth: 0.2)
                                                               
                                                             
                                                         )
-                                                        .padding(.trailing, 8 )
-                                                    Image(systemName: "rectangle.stack")
-                                                        .foregroundColor(.mainorange)
-                                                        .padding(.horizontal, 16)
-                                                        .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
-                                                        .background(
-                                                            Circle()
-                                                                .strokeBorder(Color.gray, lineWidth: 0.2)
-                                                                 
-                                                            
-                                                        )
-                                                }.padding(.horizontal, 16)
-                                                Text(selectedWord!)
-                                                    .font(.system(size: 23, weight: .semibold, design: .rounded))
-                                                    .foregroundColor(Color(hex: "6a95a3"))
-                                                    .padding(.horizontal, 16)
-                                                    
-                                              
-                                                    
-                                                HStack{
-                                                    HStack{
-                                                        Image(systemName: "waveform")
-                                                        Text("Dinle")
-                                                    }.onTapGesture {
+                                                    .onTapGesture {
                                                         let uttarance = AVSpeechUtterance(string: selectedWord ?? "")
                                                         uttarance.voice = AVSpeechSynthesisVoice(language: "en-US")
                                                         uttarance.rate = 0.45
                                                         synthesizer.speak(uttarance)
                                                     }
                                                     Spacer()
-                                                    Button {
-                                                        //TO DO
-                                                     
-                                                        let impactMed = UIImpactFeedbackGenerator(style: .heavy)
-                                                        impactMed.impactOccurred()
-                                                        ArchiveVM.addNewWord(main: selectedWord ?? "", learn: mean )
-                                                        translateDialog = false
-                                               
-                                                        
-                                                    } label: {
-                                                        HStack{
-                                                            Image(systemName: "bookmark")
-                                                            Text("Kaydet")
-                                                        }.foregroundColor(.black)
-                                                    }
 
-                                                }
-                                              
-                                                 Spacer()
+                                                }.padding(.horizontal, 16)
+                                                    .padding(.top, 32)
+                                                Spacer()
+                                                
                                             }
-                                            .presentationDetents([.fraction(0.4)])
+                                            .presentationDetents([.fraction(0.45)])
                                             .presentationDragIndicator(.visible)
                                         }
                                 }

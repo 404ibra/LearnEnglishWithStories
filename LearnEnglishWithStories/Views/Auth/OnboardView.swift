@@ -34,7 +34,7 @@ struct OnboardView: View {
                                 .foregroundColor(.white)
                             Spacer()
                         }
-                        .animation(.linear(duration: 10), value: tabIndex)
+        
                         .padding(EdgeInsets(top: 14, leading: 20, bottom: 14, trailing: 20))
                         
                         
